@@ -261,8 +261,78 @@ class PageUpdateService
         $dir = $langauge->rtl == 1 ? 'rtl' : 'ltr';
         $cssLinks  = implode('', array_map(fn($c) => "<link rel=\"stylesheet\" href=\"$c\">", $assets['css']));
         $headJs    = implode('', array_map(fn($j) => "<script src=\"$j\"></script>", $assets['js_head']));
+        $preloaderJs = "<script>(function(global) {
+                const instaPreloader = {
+                    show: function() {
+                        const loader = document.getElementById('insta-global-preloader');
+                        if (loader) {
+                            loader.style.display = 'flex';
+                        }
+                    },
+                    hide: function() {
+                        const loader = document.getElementById('insta-global-preloader');
+                        if (loader) {
+                            loader.style.display = 'none';
+                        }
+                    }
+                };
+                global.instaPreloader = instaPreloader;
+            })(window);</script>";
+        $preloaderDiv = "<div id='insta-global-preloader'><img src='".getConfigValue('APP_ASSET_PATH').$theme->preloader."' alt='Preloader'></div>";
         $bodyJs    = implode('', array_map(fn($j) => "<script src=\"$j\"></script>", $assets['js']));
         $customCss = "<style>{$page->custom_css}</style>";
+        $preloaderCss = "<style>
+                    #insta-global-preloader {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.5);
+                        display: none;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 999999;
+                    }
+                </style>";
+        $toastCss = "<style>.insta-toast-container {
+                        position: fixed;
+                        top: 1.25rem;
+                        right: 1.25rem;
+                        z-index: 9999;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                    }
+
+                    .insta-toast {
+                        padding: 0.75rem 1rem;
+                        border-radius: 0.375rem;
+                        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                        color: white;
+                        animation: slide-in-down 0.3s ease-out;
+                        opacity: 1;
+                        transition: opacity 0.3s ease-in-out;
+                    }
+
+                    .insta-toast-success {
+                        background-color: #16a34a;
+                    }
+
+                    .insta-toast-error {
+                        background-color: #dc2626;
+                    }
+
+                    @keyframes slide-in-down {
+                        from {
+                        transform: translateY(-10px);
+                        opacity: 0;
+                        }
+                        to {
+                        transform: translateY(0);
+                        opacity: 1;
+                        }
+                    }</style>";                
         $customJs  = "<script>{$page->custom_js}</script>";
         $languageSwitcher = "<script>
                             const languageSwitcher = document.querySelector('.insta-manage-language-switcher');
@@ -297,9 +367,13 @@ class PageUpdateService
             {$cssLinks}
             {$headJs}
             {$customCss}
+            {$preloaderCss}
+            {$toastCss}
             {$whatsappCss}
         </head>
         <body>
+            {$preloaderJs}
+            {$preloaderDiv}
             {$content}
             {$whatsappHtml}
             {$bodyJs}
