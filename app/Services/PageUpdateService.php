@@ -257,6 +257,7 @@ class PageUpdateService
     private function renderHtml(Theme $theme, Page $page, string $content, array $assets, array $plugins, array $meta, array $scripts, $lang): string
     {
         $langauge = getAllLanguage($lang);
+        $themeFavicon = getConfigValue('APP_ASSET_PATH') . $theme->fav_icon;
         $dir = $langauge->rtl == 1 ? 'rtl' : 'ltr';
         $cssLinks  = implode('', array_map(fn($c) => "<link rel=\"stylesheet\" href=\"$c\">", $assets['css']));
         $headJs    = implode('', array_map(fn($j) => "<script src=\"$j\"></script>", $assets['js_head']));
@@ -286,8 +287,10 @@ class PageUpdateService
         <html lang="{$lang}" dir="{$dir}">
         <head>
             <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>{$meta['title']}</title>
             <meta name="description" content="{$meta['description']}">
+            <link rel="icon" href="{$themeFavicon}" type="image/x-icon">
             <meta property="og:title" content="{$meta['og_title']}"/>
             <meta property="og:description" content="{$meta['og_desc']}"/>
             <meta property="og:image" content="{$meta['og_image']}"/>
