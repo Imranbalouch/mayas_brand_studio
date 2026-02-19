@@ -595,13 +595,20 @@ class PageController extends Controller
 
     public function widgetshowPage($id)
     {
+        $pageType = request()->header('page-type');
         $themeId = request()->header('theme-id');
         $activeTheme = Theme::where('status', 1)->first(); 
         $widget = Widget::where('shortkey', $id)->where('theme_id', $activeTheme->uuid)->has('theme')->with(["widgetFields:uuid,widget_id,field_name,field_id,field_type,field_options,is_required", "theme" => function ($query) {
-            $query->select('uuid', 'name')->where('status', 1);
+            $query->select('*')->where('status', 1);
         }])->first();
         if ($widget != null) {
             $widgetFields = $widget->widgetFields;
+            return response()->json([
+                'status_code' => 200,
+                'data' => $widget,
+                'view' => view('cms.widgets.widget_attribute', compact('widgetFields'))->render(),
+            ]);
+        } elseif($pageType) {
             return response()->json([
                 'status_code' => 200,
                 'data' => $widget,
