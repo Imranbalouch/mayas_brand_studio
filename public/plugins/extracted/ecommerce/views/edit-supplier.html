@@ -1,0 +1,88 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-6">
+          <h3 class="mb-4">Edit Supplier</h3>
+        </div>
+      </div>
+    </div>
+    <div class="widget-wrapper">
+      <form id="SupplierEditForm" action class="form-content">
+        <div class="product-content p-5">
+          <div class="row gap-lg-0 gap-5">
+            <div class="col-lg-12 form-input mt-3">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-input form-group">
+                    <label for="company" class="required">Company</label>
+                    <input name="company" type="text" class="form-control"
+                      required>
+                  </div>
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="form-input form-group">
+                    <label for="country_select"
+                      class="required">Country/Region</label>
+                    <select name="country_id" id="country_select"
+                      class="form-control selectpicker" required>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="form-input form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" class="form-control">
+                  </div>
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="form-input form-group">
+                    <label for="apart_suite">Apartment, Suite, etc</label>
+                    <input type="text" name="apart_suite" class="form-control">
+                  </div>
+                </div>
+                <div class="col-lg-6 mt-3">
+                  <div class="form-input form-group">
+                    <label for="city">City</label>
+                    <input type="text" name="city" class="form-control">
+                  </div>
+                </div>
+                <div class="col-lg-6 mt-3">
+                  <div class="form-input form-group">
+                    <label for="postal_code">Postal Code</label>
+                    <input type="text" name="postal_code" class="form-control">
+                  </div>
+                </div>
+                <div class="col-12 mt-3">
+                  <div class="form-input form-group">
+                    <label for="contact_name">Contact Name</label>
+                    <input type="text" name="contact_name" class="form-control">
+                  </div>
+                </div>
+                <div class="col-lg-6 mt-3">
+                  <div class="form-input form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" name="email" class="form-control">
+                  </div>
+                </div>
+                <div class="col-lg-6 mt-3">
+                  <div class="form-input form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" name="phone" id="phone"
+                      class="form-control"
+                      oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                    <span class="error-txt"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="form-footer mt-4 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary btn-modal-text mt-2"
+                  id="btn_upd">Update</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

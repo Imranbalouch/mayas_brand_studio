@@ -1,0 +1,400 @@
+<div class="container-xxl container-p-y">
+  <form id="editDiscountForm" method="post">
+    <div class="spinner-border text-primary d-none" id="img_load" role="status">
+      <span class="visually-hidden"></span>
+    </div>
+
+    <div class="row">
+      <!-- Main Form Content - Now on Left (col-lg-8) -->
+      <div class="col-lg-8">
+          <div class="card-header">
+            <h5 class="mb-4">Edit discount</h5>
+            <span class="badge bg-warning" id="discount_status"></span>
+          </div>
+          <input type="text" class="d-none" name="discount_type" id="discount_type" value="amount_off_orders">
+            <!-- Discount Method Selection Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <h6 class="mb-3">Amount off orders</h6>
+                <div class="d-flex gap-3">
+                  <div class="discount-method-card" data-method="code">
+                    <div class="card">
+                      <div class="card-body text-center" style="cursor: pointer;">
+                        <h5 class="card-title">Discount code</h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="discount-method-card" data-method="automatic" style="cursor: pointer;">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Automatic discount</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" id="method" name="method" value="code">
+              
+
+            <!-- Discount Code/Name Card -->
+                <div class="row mt-4">
+                  <div class="col-md-6 mb-3" id="discountNameField">
+                    <label class="form-label required">Discount Code</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" id="code" name="code" required>
+                      <button class="btn btn-outline-primary waves-effect" type="button" id="generateCode">Generate</button>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3 d-none" id="automaticNameField">
+                    <label class="form-label required">Discount Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Discount Type Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label required">Discount Type</label>
+                    <select class="form-control selectpicker" id="type" name="type" required>
+                      <option value="percentage">Percentage</option>
+                      <option value="amount">Fixed Amount</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label required">Value</label>
+                    <div class="input-group">
+                      <input type="number" class="form-control" id="value" name="value" required>
+                      <span class="input-group-text" id="value-addon">%</span>
+                    </div>
+                  </div>
+                </div>   
+              </div>
+            </div>
+            
+            <!-- Availability Card -->
+            <div class="card mb-4 availabilityCard d-none">
+              <div class="card-body">
+                <label class="form-label">Availability</label>
+                  <label class="form-check-label" for="no_requirements">Automatically applied on all sales channels you have set up except Point of Sale (POS)</label>
+                <div class="form-check mt-2">
+                    <input class="form-check-input" type="checkbox" name="apply_on_pos" id="apply_on_pos" value="apply_on_pos">
+                    <label class="form-check-label" for="apply_on_pos">Apply on POS (Pro locations only)</label>
+                  </div>
+              </div>
+            </div>
+            <!-- Minimum Purchase Requirements Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <label class="form-label">Minimum purchase requirements</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="requirement_type" id="no_requirements" value="" checked>
+                  <label class="form-check-label" for="no_requirements">No minimum requirements</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="requirement_type" id="min_amount" value="amount">
+                  <label class="form-check-label" for="min_amount">Minimum purchase amount (AED)</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="requirement_type" id="min_quantity" value="quantity">
+                  <label class="form-check-label" for="min_quantity">Minimum quantity of items</label>
+                </div>
+                <div class="mt-2" id="requirementValueContainer" style="display:none;">
+                  <input type="number" class="form-control" id="requirement_value" name="requirement_value" placeholder="Enter value">
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Customer Eligibility Card -->
+            <div class="card mb-4 customerEligibilityCard">
+              <div class="card-body">
+                <label class="form-label">Customer eligibility</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eligibility" id="all_customers" value="everyone" checked>
+                  <label class="form-check-label" for="all_customers">All customers</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eligibility" id="specific_groups" value="specific_groups">
+                  <label class="form-check-label" for="specific_groups">Specific customer segments</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="eligibility" id="specific_customers" value="specific_customers">
+                  <label class="form-check-label" for="specific_customers">Specific customers</label>
+                </div>
+                
+                <!-- Customer Segments Selection (hidden by default) -->
+                <div class="mt-3" id="customerSegmentsSelection" style="display:none;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6>Selected Customer Segments</h6>
+                      <div class="table-responsive">
+                        <table class="table" id="customerSegmentsTable">
+                          <thead>
+                            <tr>
+                              <th>Segment</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                      <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#customerSegmentsModal">
+                        Browse Segments
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Specific Customers Selection (hidden by default) -->
+                <div class="mt-3" id="specificCustomersSelection" style="display:none;">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6>Selected Customers</h6>
+                      <div class="table-responsive">
+                        <table class="table" id="specificCustomersTable">
+                          <thead>
+                            <tr>
+                              <th>Customer</th>
+                              <th>Email</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody></tbody>
+                        </table>
+                      </div>
+                      <button type="button" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#customerModal">
+                        Browse Customers
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Maximum Discount Uses Card -->
+              <div class="card mb-4 usageLimitCard">
+                <div class="card-body">
+                  <label class="form-label">Maximum discount uses</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="uses_customer_limit[]" id="total_limit" value="total">
+                    <label class="form-check-label" for="total_limit">Limit number of times this discount can be used in total</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="uses_customer_limit[]" id="customer_limit" value="customer">
+                    <label class="form-check-label" for="customer_limit">Limit to one use per customer</label>
+                  </div>
+                  <div class="mt-2" id="usageLimitContainer" style="display:none;">
+                    <input type="number" class="form-control" id="uses_limit" name="uses_limit" placeholder="Enter limit">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Combinations Card -->
+              <div class="card mb-4">
+                <div class="card-body">
+                  <label class="form-label">Combinations</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="combination_type[]" id="combine_no_limit" value="product_discount">
+                    <label class="form-check-label" for="combine_no_limit">Product discounts</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="combination_type[]" id="combine_total_limit" value="order_discount">
+                    <label class="form-check-label" for="combine_total_limit">Order discounts</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="combination_type[]" id="combine_customer_limit" value="shipping_discount">
+                    <label class="form-check-label" for="combine_customer_limit">Shipping discounts</label>
+                  </div>
+                </div>
+              </div>
+
+            <!-- Active Dates Card -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date">
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <label class="form-label">Start Time</label>
+                    <input type="time" class="form-control" id="start_time" name="start_time">
+                  </div>
+                  <div class="col-md-12 mb-3">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="enable_end_date" name="enable_end_date">
+                      <label class="form-check-label" for="enable_end_date">Set end date</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3 Enddate" style="display:none;">
+                    <label class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date">
+                  </div>
+                  <div class="col-md-6 mb-3 Enddate" style="display:none;">
+                    <label class="form-label">End Time</label>
+                    <input type="time" class="form-control" id="end_time" name="end_time">
+                  </div>
+                </div>
+              </div>
+            </div>
+        <div class="text-end">
+          <button type="button" id="updateDiscount" class="btn btn-primary">Update Discount</button>
+        </div>
+      </div>
+      
+      <!-- Discount Summary - Now on Right (col-lg-4) -->
+      <div class="col-lg-4" style="margin-top: 35px;">
+        <div class="card mb-4">
+          <div class="card-body">
+           
+            <div class="summary-item">
+            <span class="summary-value" id="summary-method">Discount code</span>
+           </div>
+              <div class="summary-item mt-4">
+                <span class="summary-label"><strong>Type:</strong></span><br> <span class="summary-label" id="summary-page"></span>
+              </div>
+              <br>
+            <h5 class="card-title">Details</h5>
+            <ul class="discount-summary mt-2">  
+               <li class="summary-item">
+                <span class="summary-label">For Online Store</span>
+              </li>
+              <li class="summary-item">
+                <span class="summary-label">Applies to:</span>
+                <span class="summary-value" id="summary-applies">All countries</span>
+              </li>
+              <li class="summary-item">
+                <span class="summary-label">Requirements:</span>
+                <span class="summary-value" id="summary-requirements">None</span>
+              </li>
+              <li class="summary-item">
+                <span class="summary-label">Combinations:</span>
+                <span class="summary-value" id="summary-combinations">Combines with product and order discounts</span>
+              </li>
+              <li class="summary-item">
+                <span class="summary-label">Customers:</span>
+                <span class="summary-value" id="summary-customers">All customers</span>
+              </li>
+              <li class="summary-item">
+                <span class="summary-label">Usage limits:</span>
+                <span class="summary-value" id="summary-usage">None</span>
+              </li>
+              <li class="summary-item">
+                <span class="summary-label">Active dates:</span>
+                <span class="summary-value" id="summary-dates">No date restrictions</span>
+              </li>
+               <li class="summary-item">
+                <span class="summary-value">Active from today</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+   <!-- Customer Segments Modal -->
+<div class="modal fade" id="customerSegmentsModal" tabindex="-1" aria-labelledby="customerSegmentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="customerSegmentsModalLabel">Select Customer Segments</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body custom-modal-body">
+        <div class="table-responsive mt-3">
+          <table class="table" id="allSegmentsTable">
+            <thead>
+              <tr>
+                <th>Segment</th>
+                <th>Description</th>
+                <th>Select</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Customers who haven't purchased</td>
+                <td>Customers who have never made a purchase</td>
+                <td><input type="checkbox" class="form-check-input segment-checkbox" data-segment-id="no_purchase"></td>
+              </tr>
+              <tr>
+                <td>Customers who have purchased more than once</td>
+                <td>Repeat customers with multiple orders</td>
+                <td><input type="checkbox" class="form-check-input segment-checkbox" data-segment-id="repeat_customers"></td>
+              </tr>
+              <tr>
+                <td>Abandoned checkouts in the last 30 days</td>
+                <td>Customers who abandoned carts recently</td>
+                <td><input type="checkbox" class="form-check-input segment-checkbox" data-segment-id="abandoned_checkouts"></td>
+              </tr>
+              <tr>
+                <td>Email subscribers</td>
+                <td>Customers subscribed to email</td>
+                <td><input type="checkbox" class="form-check-input segment-checkbox" data-segment-id="email_subscribers"></td>
+              </tr>
+              <tr>
+                <td>Customers who have purchased at least once</td>
+                <td>All customers with at least one purchase</td>
+                <td><input type="checkbox" class="form-check-input segment-checkbox" data-segment-id="has_purchased"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="addSegments" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Customer Segments Modal End -->
+ 
+   <!-- Customer Modal Start -->
+<div class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="customerModalLabel">Select Customers</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body custom-modal-body">
+        <div class="d-flex align-items-center margin-left-right custom-form-field-search search-bar-main-full">
+          <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+            <button class="cursor" onclick="return false;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
+            <input type="text" id="customerSearch" placeholder="Search customers">
+          </div>
+        </div>
+        <div class="table-responsive mt-3">
+          <table class="table" id="allCustomersTable">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Select</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="addCustomers" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Customer Modal End -->
+</div>

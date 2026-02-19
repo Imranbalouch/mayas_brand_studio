@@ -1,46 +1,47 @@
 <?php
  
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\BlogController;
-use App\Http\Controllers\API\MenuController;
-use App\Http\Controllers\API\RoleController;
-use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\API\BrandController;
-use App\Http\Controllers\API\PluginController;
-use App\Http\Controllers\API\StaffController; 
-
-use App\Http\Controllers\API\CountryController;
-use App\Http\Controllers\API\InquiryController;
-use App\Http\Controllers\API\CategoryController;
-use App\Http\Controllers\API\CurrencyController;
-use App\Http\Controllers\API\LanguageController;
-use App\Http\Controllers\API\PageTypeController;
-use App\Http\Controllers\API\RegisterController;
-use App\Http\Controllers\Api\CMS\ThemeController;
-use App\Http\Controllers\API\OtherMenuController;
-use App\Http\Controllers\API\NewsletterController;
-use App\Http\Controllers\API\PermissionController;
 use App\Http\Controllers\API\ActivityLogController;
-use App\Http\Controllers\API\FilemanagerController;
-use App\Http\Controllers\API\Plugin\SMTPController;
-use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\BlogCategoryController;
-use App\Http\Controllers\API\WebsiteConfigController;
-use App\Http\Controllers\API\ForgotPasswordController;
+use App\Http\Controllers\API\BlogCategoryTranslationController;
+use App\Http\Controllers\API\BlogController;
 use App\Http\Controllers\API\BlogTranslationController;
-
-use App\Http\Controllers\API\GalleryCategoryController;
-use App\Http\Controllers\API\Plugin\WhatsAppController;
+use App\Http\Controllers\API\BrandController;
 use App\Http\Controllers\API\BrandtranslationController;
 use App\Http\Controllers\API\BusinessSettingsController;
-use App\Http\Controllers\API\Menu_translationController;
-use App\Http\Controllers\API\Plugin\ReCaptchaController;
-use App\Http\Controllers\API\Permission_assignsController;
-use App\Http\Controllers\API\Special_permissionController;
+use App\Http\Controllers\API\CategoryController;
+
 use App\Http\Controllers\API\CategoryTranslationController;
-use App\Http\Controllers\API\BlogCategoryTranslationController;
+use App\Http\Controllers\Api\CMS\ThemeController;
+use App\Http\Controllers\API\CollectionController;
+use App\Http\Controllers\API\CountryController;
+use App\Http\Controllers\API\CurrencyController;
+use App\Http\Controllers\API\FilemanagerController;
+use App\Http\Controllers\API\ForgotPasswordController;
+use App\Http\Controllers\API\GalleryCategoryController;
+use App\Http\Controllers\API\InquiryController;
+use App\Http\Controllers\API\LanguageController;
+use App\Http\Controllers\API\Menu_translationController;
+use App\Http\Controllers\API\MenuController;
+use App\Http\Controllers\API\NewsletterController;
+use App\Http\Controllers\API\OtherMenuController;
+use App\Http\Controllers\API\PageTypeController;
+use App\Http\Controllers\API\Permission_assignsController;
+use App\Http\Controllers\API\PermissionController;
 use App\Http\Controllers\API\Plugin\PluginController as PluginPluginController;
+use App\Http\Controllers\API\Plugin\ReCaptchaController;
+
+use App\Http\Controllers\API\Plugin\SMTPController;
+use App\Http\Controllers\API\Plugin\WhatsAppController;
+use App\Http\Controllers\API\PluginController;
+use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\Special_permissionController;
+use App\Http\Controllers\API\StaffController; 
+use App\Http\Controllers\API\TestimonialController;
+use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\WebsiteConfigController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -191,6 +192,19 @@ Route::middleware(['auth:admin', 'scopes:admin'])->group(function(){
     Route::delete('delete_category_translation/{id?}', [CategoryTranslationController::class, 'delete_category_translation'])->middleware('check.permission:delete');
     Route::get('get_own_category_translation/{authid?}', [CategoryTranslationController::class, 'get_own_category_translation'])->middleware('check.permission:view');
     Route::get('get_category_translation', [CategoryTranslationController::class, 'get_category_translation'])->middleware('check.permission:viewglobal');
+
+    // Collection
+    Route::prefix('collection')->group(function () {
+        Route::controller(CollectionController::class)->group(function () {
+            Route::get('/','index')->middleware('check.permission:view,viewglobal');
+            Route::post('/store', 'store')->name('filemanager.store')->middleware('check.permission:add');
+            Route::get('/edit/{id}', 'edit')->middleware('check.permission:edit');
+            Route::post('/update/{id}', 'update')->middleware('check.permission:update');
+            Route::post('/status/{id}', 'updateStatus')->middleware('check.permission:update');
+            Route::delete('/delete/{id}','destroy')->middleware('check.permission:delete');  
+        });
+        Route::get('/get_active_collections',[CollectionController::class,'get_active_collections']);
+    });
 
  
 

@@ -1,0 +1,172 @@
+ <style>
+
+  table.dataTable tbody tr.odd td.dataTables_empty::before {
+        content: none !important;
+    }
+ </style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+            <div class="col-md-6"> 
+            <h3 class="mb-4"><g-t>Discount / Coupon</g-t></h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-baseline"> 
+                <a href="javascript:;" id="btn_new" class="btn btn-primary" style="display: none;">
+                    <svg class="me-2" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M8.00024 2V14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M2 8.00006H14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    </svg>
+                    <g-t>Create discount</g-t>
+                  </a>
+                <!-- <form action="#" method="POST">
+                    <div class="form-group d-flex">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date" name="start_date" required>
+                        <label for="end-date">End Date:</label>
+                        <input type="date" id="end-date" name="end_date" required>
+                        <button type="submit">Submit</button>
+                    </div>
+                </form> -->
+
+            </div>
+        </div>
+          </div>
+      <div class="card-datatable pt-0">
+        <table class="datatables-basic table table-bordered" id="Table_View"> 
+                
+                <thead>
+                    <tr> 
+                        <th ></th>
+                        <th ><g-t>Name / Code</g-t></th> 
+                        <th ><g-t>Status</g-t></th> 
+                        <!-- <th ><g-t>Channel</g-t></th>  -->
+                        <!-- <th ><g-t>Method</g-t></th>   -->
+                        <!-- <th ><g-t>Type</g-t></th>  -->
+                        <th ><g-t>Status</g-t></th>  
+
+                    </tr>
+                </thead>
+                                
+        <tbody>
+            <!-- Data will be populated here via AJAX -->
+        </tbody>
+ 
+        </table>
+      </div>
+    </div>
+     
+
+    <div id="edit_Modal" class="modal fade">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="popup_title_add">Order Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Image</th>
+                                <th>QTY</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order_details">
+                            <!-- Content will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer" style="margin-top: 20px;">
+                    <button id="btn_cls" type="button" value="Close" onclick="discon()" class="btn btn-outline-primary waves-effect" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+ 
+  </div>
+ <div class="modal fade" id="exampleModalOne" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Select Discount Type</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body custom-modal-body-discount">
+          <div class="add-product-modal-main">
+            <div class="discount-option-list">
+              <a href="javascript:;" class="d-flex justify-content-between align-items-center product-new-modal-open-discount discount-option" data-type="amount-off-products">
+                <div>
+                  <div class="discount-option-title">Amount off products</div>
+                  <div class="discount-option-desc">Discount specific products or collections of products</div>
+                </div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0" fill="#000"></path>
+                </svg>
+              </a>
+              
+              <a href="javascript:;" class="d-flex justify-content-between align-items-center product-new-modal-open-discount discount-option" data-type="buy-x-get-y">
+                <div>
+                  <div class="discount-option-title">Buy X get Y</div>
+                  <div class="discount-option-desc">Discount specific products or collections of products</div>
+                </div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0" fill="#000"></path>
+                </svg>
+              </a>
+              
+              <a href="javascript:;" class="d-flex justify-content-between align-items-center product-new-modal-open-discount discount-option" data-type="amount-off-order">
+                <div>
+                  <div class="discount-option-title">Amount off order</div>
+                  <div class="discount-option-desc">Discount the total order amount</div>
+                </div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0" fill="#000"></path>
+                </svg>
+              </a>
+              
+              <a href="javascript:;" class="d-flex justify-content-between align-items-center product-new-modal-open-discount discount-option" data-type="free-shipping">
+                <div>
+                  <div class="discount-option-title">Free shipping</div>
+                  <div class="discount-option-desc">Offer free shipping on an order</div>
+                </div>
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0" fill="#000"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+  <!--/ Content -->
+<style>
+   .active-discount-status-badge{
+    display: inline-block;
+    padding: 2px 6px;
+    color: #014b40;
+    background-color: #affebf;
+    border-radius: 8px;
+    font-size: 12px;
+   }
+   .inactive-discount-status-badge{
+    display: inline-block;
+    padding: 2px 6px;
+    color: rgba(97, 97, 97, 1);
+    background-color: rgba(0, 0, 0, .06);
+    border-radius: 8px;
+    font-size: 12px;
+   }
+</style>

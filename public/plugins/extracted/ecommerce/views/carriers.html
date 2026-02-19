@@ -1,0 +1,56 @@
+<style>
+    .form-group {
+        margin-bottom: 15px;
+    }
+   
+    input[type="date"] {
+        padding: 5px;
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+    }
+    table.dataTable tbody tr.odd td.dataTables_empty::before {
+        content: none !important;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6"> 
+                    <h3 class="mb-4"><g-t>Carriers</g-t></h3>
+                </div>
+                <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-baseline">
+                    <a href="javascript:;" id="btn_new" class="btn btn-primary ms-lg-0 ms-auto"
+                        style="display: none;">
+                        <svg class="me-2" width="16" height="17" viewBox="0 0 16 17" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00024 2V14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <path d="M2 8.00006H14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <g-t>add_new</g-t>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-datatable table-responsive pt-0">
+            <table class="datatables-basic table table-bordered table" id="Table_View"> 
+                <thead>
+                    <tr> 
+                        <th width="5%">#</th>
+                        <th width="20%"><g-t>name</g-t></th> 
+                        <th width="20%"><g-t>description</g-t></th> 
+                        <th width="20%"><g-t>url</g-t></th> 
+                        <th width="15%"><g-t>status</g-t></th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated here via AJAX -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

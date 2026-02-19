@@ -1,0 +1,593 @@
+<link rel="stylesheet" href="./assets/css/edit-collection.css">
+<style>
+  .blank{
+    display: none;
+  }
+</style>
+<div class="container-xxl container-p-y">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0 align-items-center">
+      <div class="col-12 col-lg-6">
+        <h3 class="d-flex align-items-center gap-3">
+          <span class="page-back-btn" onclick="window.history.back();">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+              <path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path>
+            </svg>
+          </span>
+          <g-t>Edit Collection</g-t>
+        </h3>
+      </div>
+      <div class="col-12 col-lg-6 d-flex justify-content-start justify-content-lg-end align-items-center gap-2" id="top_actions">
+        <!-- <a href="javascript:;" class="view-collection btn btn-primary">
+          <g-t>View</g-t>
+        </a> -->
+        <div class="dropdown" data-bs-auto-close="false">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More actions
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" id="delete-collection" href="javascript:void(0)">
+                Delete Collection
+              </a>
+            </li>
+            <!-- <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                Search Flow runs
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+                Localize
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+       <div class="row mt-4" id="formError" style="display: none;">
+          <div class="col-lg-12">
+            <div class="card mb-4">
+              <div class="widget-wrapper">
+                <div class="error-top">There is 1 error with this product:</div>
+                <div class="error-bottom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <form method="post" enctype="multipart/form-data" id="updateCollectionFrom" class="row">
+    <div class="col-lg-8">
+      <div class="card border">
+        <div class="card-body p-4">
+          <label class="form-label required" for="name"><g-t>Title</g-t></label>
+          <div class="input mb-4">
+            <input type="text" class="form-control md" name="name" placeholder="e.g. Summer collection, Under $100, Staff picks">
+            <span class="error-txt"></span>
+          </div>
+
+          <label for="description" class="form-label"><g-t>description</g-t></label>
+          <textarea class="form-control mb-2" id="editorCk"></textarea>
+        </div>
+      </div>
+      <div class="card border mt-4 d-none" id="productConditions">
+        <input class="form-check-input" name="smart" type="text" hidden>
+        <div class="card-body p-4">
+          <div class="subtitle">Conditions</div>
+          <div class="d-flex gap-5 align-items-center mt-4">
+            <div>Products must match:</div>
+            <div class="d-flex gap-3">
+              <div class="form-check m-0">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="condition_status" id="condition_status0" value="0" />
+                  <span>all conditions</span>
+                </label>
+              </div>
+              <div class="form-check m-0">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="radio" name="condition_status" id="condition_status1" value="1" />
+                  <span>any condition</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="product-conditions-box mt-5">
+            <div class="items">
+            </div>
+            <div class="warning-txt d-none">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4f4700"><path d="M8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path><path d="M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path><path fill-rule="evenodd" d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path></svg>
+              This collection will include all products with at least one variant that matches: Weight.
+            </div>
+            <a href="" class="add-condition-item-btn" id="addConditionItemBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5z"></path></svg>
+              Add another condition
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4 d-none" id="withConditionProducts">
+        <div class="card-body p-4">
+          <div class="subtitle">Products</div>
+          <div class="product-search-filter mb-3">
+            <div>
+              <select class="productsSortSelect" id="productsWithConditionSortSelect">
+                <option value="BEST_SELLING">Best selling</option>
+                <option value="ALPHA_ASC">Product title A-Z</option>
+                <option value="ALPHA_DESC">Product title Z-A</option>
+                <option value="PRICE_DESC">Highest price</option>
+                <option value="PRICE_ASC">Lowest price</option>
+                <option value="CREATED_DESC">Newest</option>
+                <option value="CREATED">Oldest</option>
+                <option value="MANUAL">Manually</option>
+              </select>
+            </div>
+          </div>
+          <div class="added-products d-none mt-3"></div>
+          <div class="product-empty d-none">
+            <img src="./assets/img/no-products.svg" width="40" alt="" />
+            <p>There are no products in this collection.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4 d-none" id="withoutConditionProducts">
+        <div class="card-body p-4">
+          <select name="product_id[]" id="product_id" style="display: none;" multiple></select>
+          <div class="subtitle">Products</div>
+          <div class="product-search-filter mb-3">
+            <div>
+              <div class="input has-icon">
+                <span class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a"><path fill-rule="evenodd" d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"></path></svg>
+                </span>
+                <input type="text" class="form-control md" id="editSearchProduct" placeholder="Search products" />
+              </div>
+              <a href="" data-bs-toggle="modal" data-bs-target="#addProductModal" class="btn border border-secondary">Browse</a>
+            </div>
+            <!-- <div>
+              <select class="productsSortSelect" id="productsWithOutConditionSortSelect">
+                <option value="BEST_SELLING">Best selling</option>
+                <option value="ALPHA_ASC">Product title A-Z</option>
+                <option value="ALPHA_DESC">Product title Z-A</option>
+                <option value="PRICE_DESC">Highest price</option>
+                <option value="PRICE_ASC">Lowest price</option>
+                <option value="CREATED_DESC">Newest</option>
+                <option value="CREATED">Oldest</option>
+                <option value="MANUAL">Manually</option>
+              </select>
+            </div> -->
+          </div>
+          <div class="pro-warning-tagline d-none">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#003a5a"><path d="M8 12a.75.75 0 0 1-.75-.75v-3.5a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75"></path><path d="M7 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"></path><path fill-rule="evenodd" d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path></svg>
+            This collection will be sorted by <strong>Product title Z-A</strong> after saving.
+          </div>
+          <div class="added-products mt-3">
+          </div>
+          <div class="product-empty">
+            <img src="./assets/img/no-products.svg" width="40" alt="" />
+            <p>There are no products in this collection.</p>
+            <p>Search or browse to add products.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card border seo mt-4">
+        <div class="card-body p-4">
+          <div class="subtitle"><span>Search engine listing</span>
+            <span class="seoBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z">
+                </path>
+              </svg>
+            </span>
+          </div>
+          <p class="desc" id="seoMainDesc">Add a title and description to see how this product might appear in a search engine listing</p>
+          <div class="seo-prev" style="display: none;">
+            <div class="site-name"></div>
+            <div class="site-link">https://nomandigitalgraphiks.myshopify.com > collections > <span></span></div>
+            <div class="site-title"></div>
+            <div class="site-desc"></div>
+          </div>
+          <div id="seoTab" style="display: none;">
+            <hr />
+            <div class="mb-6">
+              <label class="form-label" for="seoTitle"><g-t>Page title</g-t></label>
+              <input type="text" class="form-control" id="seoTitle" name="meta_title">
+              <span class="desc"><span id="seoTitleCount">0</span> of 70 characters used</span>
+            </div>
+            <div class="col-lg-12 mb-6">
+              <label for="seoDesc" class="form-label"><g-t>Meta description</g-t></label>
+              <textarea name="meta_description" id="seoDesc" class="form-control" row="10"></textarea>
+              <span class="desc"><span id="seoDescCount">0</span> of 160 characters used</span>
+            </div>
+            <div class="mb-6">
+              <label class="form-label"><g-t>URL handle</g-t></label>
+              <div class="input has-prefix mb-2">
+                <div class="prefix">collections/</div>
+                <input type="text" id="seoLink" style="padding-inline-start: 100px;" class="form-control" name="slug">
+                <span class="error-txt"></span>
+              </div>
+              <span class="desc site-link">https://nomandigitalgraphiks.myshopify.com/collections/<span></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card border">
+        <div class="widget-wrapper">
+          <div class="tab-content">
+            <select name="channel_uuid[]" id="channel_uuid" style="display: none;" multiple></select>
+            <input type="text" name="published_datetime" style="display: none;" />
+            <div class="row">
+              <div class="col-12">
+                <div class="d-flex justify-content-between">
+                  <div class="subtitle">Publishing</div><br>
+                  <a href="#" style="color: #005bd3;" data-bs-toggle="modal" data-bs-target="#manageSalesChannels">Manage</a>
+                </div>
+              </div>
+              <div class="publishing-box">
+                <h3>Sales channels</h3>
+                <div id="sales-channels" class="mb-4"></div>
+                <!-- <div class="col-12 mb-1">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="circleBefore active">Online Store</span>
+                    <svg data-bs-toggle="modal" data-bs-target="#manageCalender" class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#8d8d8d"> <path fill-rule="evenodd" d="M4 .25a.75.75 0 0 1 .75.75v.528c.487-.028 1.07-.028 1.768-.028h2.482v-.5a.75.75 0 0 1 1.5 0v.604a3.04 3.04 0 0 1 2.25 2.936c0 .835-.678 1.513-1.513 1.513h-8.733c-.004.288-.004.617-.004.997v2.468c0 1.233 1 2.232 2.232 2.232a.75.75 0 0 1 0 1.5 3.73 3.73 0 0 1-3.732-3.732v-2.5c0-.813 0-1.469.043-2 .045-.546.14-1.026.366-1.47a3.75 3.75 0 0 1 1.841-1.733v-.815a.75.75 0 0 1 .75-.75m7.237 4.303h-8.61c.033-.13.072-.234.118-.324a2.25 2.25 0 0 1 .984-.984c.197-.1.458-.17.912-.207.462-.037 1.057-.038 1.909-.038h3.16c.85 0 1.54.69 1.54 1.54v.005l-.004.004-.004.003z"> </path> <path d="M12.25 10a.75.75 0 0 0-1.5 0v1.293c0 .331.132.65.366.884l.854.853a.749.749 0 1 0 1.06-1.06l-.78-.78z"> </path> <path fill-rule="evenodd" d="M11.5 16a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9m0-1.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path> </svg>
+                  </div>
+                </div>
+                <div class="update-menu-note">
+                  <div>To add this collection to your online store's navigation, you need to <a href="">update your menu</a></div>
+                  <div><a href="" class="hide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#003a5a"><path d="M11.97 13.03a.749.749 0 1 0 1.06-1.06l-3.97-3.97 3.97-3.97a.749.749 0 1 0-1.06-1.06l-3.97 3.97-3.97-3.97a.749.749 0 1 0-1.06 1.06l3.97 3.97-3.97 3.97a.749.749 0 1 0 1.06 1.06l3.97-3.97z"></path></svg></a></div>
+                </div>
+                <div class="col-12 mb-1">
+                  <span class="circleBefore pos">Point of Sale</span>
+                  <div style="display: none;">
+                    <p>Point of Sale has not been set up. Finish the remaining steps to start selling in person.</p>
+                    <a href="#" class="pt-0 text-decoration-underline">Learn more</a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4">
+        <div class="card-body p-4">
+          <div class="subtitle">Image</div>
+          <div class="form-group">
+            <div class="input-group custome-filemanager" data-type="image">
+              <div class="input-group-prepend w-100">
+                <div class="input-group-text bg-soft-secondary font-weight-medium border-0 p-0">
+                  <div class="media-input w-100">
+                    <div class="selection">
+                      <a href="">Add image</a>
+                    </div>
+                    <div class="accepts">or drop an image to upload</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-control file-amount">Choose File</div>
+              <input type="hidden" name="image" class="selected-files" id="logoFile">
+            </div>
+            <div class="d-flex flex-wrap gap-4 pt-4 filemanager-image-preview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4">
+        <div class="widget-wrapper">
+          <div class="tab-content">
+            <div class="row">
+              <div class="col-12 mb-4">
+                <div class="subtitle">Status</div>
+              </div>
+              <div class="col-12">
+                <div class="mb-6 fv-row">
+                  <select name="status" id="status" class="form-control selectpicker">
+                    <option value="1">Active</option>
+                    <option value="0">InActive</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4">
+        <div class="widget-wrapper">
+          <div class="tab-content">
+            <div class="row">
+              <div class="col-12 mb-4">
+                <div class="subtitle">Language</div>
+              </div>
+              <div class="col-12">
+                <div class="mb-6 fv-row">
+                  <select name="language" required class="form-select select2" id="language">
+                      <option value="" selected disabled>Please select language</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 mt-4 d-flex justify-content-end">
+      <button class="btn btn-primary">Save</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal" id="manageCalender">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Schedule Online Store publishing</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-0">Schedule product to be published on this date and time:</p>
+        <div class="publishing-store-date">
+          <div class="d-flex gap-3 my-3">
+            <div class="custom-calender">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M5.75 1.5a.75.75 0 0 0-1.5 0v.407a3 3 0 0 0-.702.252c-.706.36-1.28.933-1.64 1.639-.226.444-.32.924-.365 1.47-.043.531-.043 1.187-.043 2v1.464c0 .813 0 1.469.043 2 .045.546.14 1.026.366 1.47.36.706.933 1.28 1.639 1.64.444.226.924.32 1.47.365.531.043 1.187.043 2 .043h3.383c.323 0 .542 0 .735-.02a3.75 3.75 0 0 0 3.344-3.344c.02-.193.02-.412.02-.735v-2.883c0-.813 0-1.469-.043-2-.045-.546-.14-1.026-.366-1.47a3.76 3.76 0 0 0-1.638-1.64 3 3 0 0 0-.703-.251v-.407a.75.75 0 0 0-1.5 0v.259c-.373-.009-.794-.009-1.268-.009h-1.964c-.474 0-.895 0-1.268.009zm-1.521 1.995c.197-.1.458-.17.912-.207.462-.037 1.057-.038 1.909-.038h1.9c.852 0 1.447 0 1.91.038.453.037.714.107.912.207.423.216.767.56.983.984.1.197.17.458.207.912.014.18.024.38.029.609h-9.982q.008-.34.03-.61c.036-.453.106-.714.206-.911a2.25 2.25 0 0 1 .984-.984m-1.229 4.005v1.2c0 .852 0 1.447.038 1.91.037.453.107.714.207.912.216.423.56.767.984.983.197.1.458.17.912.207.462.037 1.057.038 1.909.038h3.306c.385 0 .52-.001.626-.012a2.25 2.25 0 0 0 2.006-2.006c.011-.106.012-.241.012-.626v-2.606z">
+                </path>
+              </svg>
+              <input type="text" class="form-control" id="putdate" />
+            </div>
+            <div class="custom-calender">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M8.75 4a.75.75 0 0 0-1.5 0v4c0 .199.079.39.22.53l2 2a.749.749 0 1 0 1.06-1.06l-1.78-1.78z">
+                </path>
+                <path fill-rule="evenodd"
+                  d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+              </svg>
+
+              <!-- Time Dropdown -->
+              <select class="form-control" id="putTime">
+                <!-- AM Times -->
+                <option value="12:00 AM">12:00 AM</option>
+                <option value="12:15 AM">12:15 AM</option>
+                <option value="12:30 AM">12:30 AM</option>
+                <option value="12:45 AM">12:45 AM</option>
+                <option value="01:00 AM">01:00 AM</option>
+                <option value="01:15 AM">01:15 AM</option>
+                <option value="01:30 AM">01:30 AM</option>
+                <option value="01:45 AM">01:45 AM</option>
+                <option value="02:00 AM">02:00 AM</option>
+                <option value="02:15 AM">02:15 AM</option>
+                <option value="02:30 AM">02:30 AM</option>
+                <option value="02:45 AM">02:45 AM</option>
+                <option value="03:00 AM">03:00 AM</option>
+                <option value="03:15 AM">03:15 AM</option>
+                <option value="03:30 AM">03:30 AM</option>
+                <option value="03:45 AM">03:45 AM</option>
+                <option value="04:00 AM">04:00 AM</option>
+                <option value="04:15 AM">04:15 AM</option>
+                <option value="04:30 AM">04:30 AM</option>
+                <option value="04:45 AM">04:45 AM</option>
+                <option value="05:00 AM">05:00 AM</option>
+                <option value="05:15 AM">05:15 AM</option>
+                <option value="05:30 AM">05:30 AM</option>
+                <option value="05:45 AM">05:45 AM</option>
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="06:15 AM">06:15 AM</option>
+                <option value="06:30 AM">06:30 AM</option>
+                <option value="06:45 AM">06:45 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="07:15 AM">07:15 AM</option>
+                <option value="07:30 AM">07:30 AM</option>
+                <option value="07:45 AM">07:45 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="08:15 AM">08:15 AM</option>
+                <option value="08:30 AM">08:30 AM</option>
+                <option value="08:45 AM">08:45 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="09:15 AM">09:15 AM</option>
+                <option value="09:30 AM">09:30 AM</option>
+                <option value="09:45 AM">09:45 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="10:15 AM">10:15 AM</option>
+                <option value="10:30 AM">10:30 AM</option>
+                <option value="10:45 AM">10:45 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="11:15 AM">11:15 AM</option>
+                <option value="11:30 AM">11:30 AM</option>
+                <option value="11:45 AM">11:45 AM</option>
+                <!-- PM Times -->
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="12:15 PM">12:15 PM</option>
+                <option value="12:30 PM">12:30 PM</option>
+                <option value="12:45 PM">12:45 PM</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="01:15 PM">01:15 PM</option>
+                <option value="01:30 PM">01:30 PM</option>
+                <option value="01:45 PM">01:45 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="02:15 PM">02:15 PM</option>
+                <option value="02:30 PM">02:30 PM</option>
+                <option value="02:45 PM">02:45 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="03:15 PM">03:15 PM</option>
+                <option value="03:30 PM">03:30 PM</option>
+                <option value="03:45 PM">03:45 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="04:15 PM">04:15 PM</option>
+                <option value="04:30 PM">04:30 PM</option>
+                <option value="04:45 PM">04:45 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="05:15 PM">05:15 PM</option>
+                <option value="05:30 PM">05:30 PM</option>
+                <option value="05:45 PM">05:45 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="06:15 PM">06:15 PM</option>
+                <option value="06:30 PM">06:30 PM</option>
+                <option value="06:45 PM">06:45 PM</option>
+                <option value="07:00 PM">07:00 PM</option>
+                <option value="07:15 PM">07:15 PM</option>
+                <option value="07:30 PM">07:30 PM</option>
+                <option value="07:45 PM">07:45 PM</option>
+                <option value="08:00 PM">08:00 PM</option>
+                <option value="08:15 PM">08:15 PM</option>
+                <option value="08:30 PM">08:30 PM</option>
+                <option value="08:45 PM">08:45 PM</option>
+                <option value="09:00 PM">09:00 PM</option>
+                <option value="09:15 PM">09:15 PM</option>
+                <option value="09:30 PM">09:30 PM</option>
+                <option value="09:45 PM">09:45 PM</option>
+                <option value="10:00 PM">10:00 PM</option>
+                <option value="10:15 PM">10:15 PM</option>
+                <option value="10:30 PM">10:30 PM</option>
+                <option value="10:45 PM">10:45 PM</option>
+                <option value="11:00 PM">11:00 PM</option>
+                <option value="11:15 PM">11:15 PM</option>
+                <option value="11:30 PM">11:30 PM</option>
+                <option value="11:45 PM">11:45 PM</option>
+              </select>
+              <span class="get-time-name">EST</span>
+            </div>
+          </div>
+
+          <div class="show-calender">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="calendar-section">
+                  <div class="row no-gutters">
+                    <div class="col-md-6">
+                      <div class="calendar calendar-first" id="calendar_first">
+                        <div class="calendar_header">
+                          <button class="switch-month switch-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd"
+                                d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75">
+                              </path>
+                            </svg>
+                          </button>
+                          <h2></h2>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-6">
+                      <div class="calendar calendar-second" id="calendar_second">
+                        <div class="calendar_header">
+                          <h2></h2>
+                          <button class="switch-month switch-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd"
+                                d="M1.5 8a.75.75 0 0 1 .75-.75h9.69l-2.72-2.72a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.749.749 0 1 1-1.06-1.06l2.72-2.72h-9.69a.75.75 0 0 1-.75-.75">
+                              </path>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                      </div>
+
+                    </div>
+
+                  </div> <!-- End Row -->
+
+                </div> <!-- End Calendar -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="publishing-store-time"></div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal" id="schedulePublish">Schedule publishing</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="manageSalesChannels" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Manage sales channels</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="d-flex justify-content-between pb-5">
+          <div class="manage-sales-text">Select all</div>
+          <div class="manage-sales-select">
+            <checkedNumber>0</checkedNumber> of 2 selected
+          </div>
+        </div>
+
+        <div class="sales-checkbox" id="sales-checkboxs">
+          <!-- <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="de784a53-09bc-424b-98f7-ca902a14ed1c"
+              id="online-store" name="getChannelId[]">
+            <label class="form-check-label" for="online-store">
+              <span>Online Store</span>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="e8d7763e-2fb7-4edc-953d-f2e65f2b4dd5" id="pos"
+              name="getChannelId[]">
+            <label class="form-check-label" for="pos">
+              <span>Point of sale</span>
+            </label>
+          </div> -->
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+          id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="exampleModalLabel">All products</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body custom-modal-body">
+        <div class="add-product-modal-main px-4">
+          <div id="Table_View_filter" class="table-search-main dataTables_filter bg-transparent border" style="display: flex;">
+            <button class="cursor" onclick="return false;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+            </button>
+            <input type="text" id="custom_search_po" placeholder="Searching all products" required="">
+          </div>
+        </div>
+        <div class="table-modal-main">
+          <div id="table_product" class="product-table-body">
+          </div>
+          <div class="spinner-border text-primary d-block mx-auto mt-5 d-none" id="product_load">
+            <span class="visually-hidden"></span>
+          </div>
+        </div>
+      <div id="pagination" class="page-link mt-3 ps-3"></div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button id="AddProduct" type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal" id="addProductIds">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/js/custom-calender.js"></script>
+<script src="./assets/js/short-code.js"></script>
+
+<script src="./assets/js/select2.min.js"></script>

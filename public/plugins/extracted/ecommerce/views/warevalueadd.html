@@ -1,0 +1,100 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="mb-2"><g-t>add</g-t> <g-t>warehouses_locations</g-t></h3>
+                </div>
+            </div>
+        </div>
+        <div class="widget-wrapper">
+            <form action="" id="addWarehouseForm" method="post" enctype="multipart/form-data">
+                <div class="widget-content d-flex flex-wrap-sm">
+
+                    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="nav-general-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-general" type="button" role="tab" aria-controls="nav-general"
+                                aria-selected="true">General</button>
+                        </li>
+                    </ul> -->
+
+                </div>
+                <div class="product-content">
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade show active" id="nav-general" role="tabpanel"
+                            aria-labelledby="nav-general-tab">
+                            <div class="row gap-lg-0 gap-5">
+                                <div class="col-lg-12 form-input mt-3">
+
+                                    <div class="row">
+ 
+                                        <div class="mb-6 fv-row  col-md-12">
+                                            <label class="form-label required" for="location_name"><g-t>location_name</g-t></label>
+                                            <input type="text" class="form-control mb-2" id="location_name" name="location_name"
+                                                required>
+                                        </div>
+                
+                                        <div class="mb-6 fv-row  col-md-12">
+                                            <label class="form-label" for="location_address"><g-t>location_address</g-t></label>
+                                            <input type="text" class="form-control mb-2" id="location_address" name="location_address"
+                                                >
+                                        </div>
+                                        <div class="mb-6 fv-row  col-md-12">
+                                            <label class="form-label" for="capacity"><g-t>capacity</g-t></label>
+                                            <input type="number" class="form-control mb-2" id="capacity" name="capacity"
+                                                >
+                                        </div>
+                                        <div class="mb-6 fv-row  col-md-12">
+                                            <label class="form-label" for="current_stock_level"><g-t>current_stock_level</g-t></label>
+                                            <input type="number" class="form-control mb-2" id="current_stock_level" name="current_stock_level"
+                                                >
+                                        </div>
+                                        <div class="mb-6 fv-row  col-md-12">
+                                            <label class="form-label" for="location_address"><g-t>location_address</g-t></label>
+                                            <input type="text" class="form-control mb-2" id="location_address" name="location_address"
+                                                >
+                                        </div>
+    
+                                        <div class="mb-6 fv-row col-md-12">
+                                            <label class="form-label required" for="warehouse_uuid"><g-t>warehouse</g-t></label>
+                                            <select class="form-control mb-2" id="warehouse_uuid" name="warehouse_uuid" required>
+                                                <option value="">Select Warehouse</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <div class="mb-6 fv-row col-md-12">
+                                            <label class="form-label required" for="manager_uuid"><g-t>manager</g-t></label>
+                                            <select class="form-control mb-2" id="manager_uuid" name="manager_uuid" required>
+                                                <option value="">Select Manager</option>
+                                            </select>
+                                        </div>
+                                        
+<!-- Disabled fields for phone and email -->
+                                        <div class="mb-6 fv-row col-md-12">
+                                            <label class="form-label" for="manager_phone"><g-t>Phone</g-t></label>
+                                            <input type="text" class="form-control mb-2" id="manager_phone" name="manager_phone" disabled>
+                                        </div>
+
+                                        <div class="mb-6 fv-row col-md-12">
+                                            <label class="form-label" for="manager_email"><g-t>Email</g-t></label>
+                                            <input type="text" class="form-control mb-2" id="manager_email" name="manager_email" disabled>
+                                        </div>
+
+                                    
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 d-flex justify-content-end gap-3 align-items-center">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+
+            </form>
+        </div>
+    </div>
+</div>

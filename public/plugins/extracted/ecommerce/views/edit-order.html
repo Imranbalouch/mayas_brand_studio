@@ -1,0 +1,387 @@
+ 
+<div class="container-xxl container-p-y">
+  <!-- DataTable with Buttons -->
+
+  <form action id="addOrderForm" method="post" enctype="multipart/form-data">
+
+    <input type="text" class="varient_data" style="display: none;">
+    <input type="text" class="varient_data_view" name="varient_data_view" style="display: none;">
+    <div class="spinner-border text-primary d-none" id="img_load" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+    <div class="row" id="topBar">
+      <div class="col-lg-12">
+        <div class="mb-4">
+          <div class="widget-wrapper d-flex justify-content-between align-items-center">
+            <div>
+              <span class="top_heading" id="order_code"></span>
+              <span class="badge bg-warning" id="order_payment_status"></span>
+              <span class="badge bg-secondary" id="order_fulfilled_status"></span>
+              <span class="badge bg-success" id="order_payment_method"></span>
+              <span class="badge bg-success" id="order_delivery_status"></span>
+              <div class=""><span id="order_date"></span> <span id="order_status"></span></div>
+            </div>
+            <button class="btn btn-primary d-none" id="downloadInvoiceBtn">
+              <i class="fas fa-download"></i> Download Invoice
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-lg-12 d-none" >
+      <div class="widget-content border">
+        <div class="row">
+          <div class="col-lg-12 form-input mt-3">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group mt-0">
+                  <label for="">Customer</label>
+                  <select name="customer_id" id="customer_id" class="form-control selectpicker"> 
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group mt-0">
+                  <div class="subtitle">Location</div>
+                  <select name="location_id" id="location_id" class="form-control selectpicker"> 
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group mt-0">
+                  <div class="subtitle">Market</div>
+                    <select name="market_id" id="market_id" class="form-control selectpicker"> 
+                    </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <select name="discount_type"   id="discount_type" class="d-none">
+                            <option value="amount">Amount</option>
+                            <option value="percentage">Percentage</option>
+                          </select>
+  <input type="number" value="0" class="d-none" id="discount_value" name="discount_value"  min="0"> 
+  <input type="text" value="" class="d-none" id="shipping_name" name="shipping_name" placeholder="Free Shipping" maxlength="255"> 
+  <input type="number" value="0" class="d-none" id="shipping_charges" name="shipping_charges" placeholder="Value"> 
+  <input type="number" value="0" class="d-none" id="grand_total" name="grand_total" placeholder="Grand Total"> 
+  <input type="number" value="0" class="d-none" id="total_coupon_amount" name="total_coupon_amount" placeholder="Total Coupon Amount"> 
+  <input type="number" value="0" class="d-none" id="total_vat" name="total_vat" placeholder="Total Vat"> 
+
+      <div class="col-lg-9" id="item_list">
+        <div class="card">
+          <div class="card-header">
+            <div class="row mb-4">
+              <div class="col-md-12">
+                <h5 class="mb-2">Products</h5> 
+                  <div id="product_table_one" class="d-none">
+                    <div class="table-responsive">
+                      <table class="datatables-basic table table" id="Table_View">
+                        <thead>
+                          <tr>
+                            <th width="25%"><g-t>Product</g-t></th> 
+                            <th width="20%"><g-t>Quantity</g-t></th> 
+                            <th width="20%"><g-t>Total</g-t></th> 
+                          </tr>
+                        </thead>
+      
+                        <tbody>
+      
+                        </tbody>
+      
+                      </table>
+                    </div>
+      
+                   
+                  </div>
+
+
+              </div>
+              
+            </div>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#paymentModal" class="text-center btn btn-primary d-none move_right mark_as_paid" style="text-transform: none;">Mark as Paid</button>
+            <button type="button" class="text-center btn btn-primary d-none move_right fullfill_items">Fulfill Items</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#trackingModal" class="text-center btn btn-primary d-none move_right add_tracking">Add Tracking</button>
+            <div class="btn-group d-none move_right tracking_status_group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Update Status
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item update-status" data-status="On_the_way" href="#">On the way</a></li>
+                    <li><a class="dropdown-item update-status" data-status="delivered" href="#">Delivered</a></li>
+                    <li><a class="dropdown-item update-status" data-status="cancelled" href="#">Cancelled</a></li>
+                </ul>
+            </div>
+          </div>
+          </div>
+
+        
+        <div class="card seo mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle"><h5>Payment</h5>
+                 
+              </div>
+              
+              <div class="widget-content border"> 
+                <div class="cost-summary-main">
+                  <span>Subtotal</span>
+                  <span id="variantOrdernumber"></span>
+                  <span id="po-subtotal">AED 0.00</span>
+                  <input id="tax-included-input" type="hidden" value="0">
+                </div>
+                <div class="cost-summary-main">
+                  <span class="disabled-text" id="discount_label">Add discount</span>
+                  <span><a href="javascript:;" id="discount_modal" class="d-none" data-bs-toggle="modal" data-bs-target="#discountModal">Add discount</a></span>
+                  <span  id="discounted_label">AED 0.00</span>
+                </div>
+                <div class="cost-summary-main">
+                    <span class="disabled-text">Coupon Amount</span>
+                    <span><a href="javascript:;" class="d-none" data-bs-toggle="modal" data-bs-target="#couponAmount">Coupon Amount</a></span>
+                    <span   id="total-coupon-amount">AED 0.00</span>
+                  </div>
+                <div class="cost-summary-main">
+                    <span class="disabled-text" id="shipping_label">Add shipping or delivery</span>
+                    <span><a href="javascript:;" id="shipping_modal" class="d-none" data-bs-toggle="modal" data-bs-target="#shippingModal">Add shipping or delivery</a></span>
+                    <span   id="shipping_charges_label">AED 0.00</span>
+                  </div>
+                  
+                  <div class="cost-summary-main">
+                    <span class="disabled-text">Total Vat</span>
+                    <span><a href="javascript:;" class="d-none" data-bs-toggle="modal" data-bs-target="#totalVat">Total Vat</a></span>
+                    <span   id="total-vat">AED 0.00</span>
+                  </div>
+                  
+                <div class="cost-summary-main d-none">
+                  <span class="disabled-text">Estimated tax</span>
+                  <!-- <span>Not calculated</span> -->
+                  <span id="shipping-fee">AED 0.00</span>
+                </div>
+                <div class="cost-summary-main">
+                  <h6>Total</h6>
+                  <h6 id="grand-total">AED 0.00</h6>
+                  <input id="grand-total-input" type="hidden" value="100">
+                </div>
+              </div>
+            </div>
+             
+          </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="card seo mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle"><h5>Timeline</h5>
+                 
+              </div>
+              
+              <div class="widget-content" id="time_line"> 
+                 
+              </div>
+            </div>
+             
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Notes</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row"> 
+                  <div class="desc md mt-1" id="note"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+
+         
+          
+      <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12">
+                  <div class="subtitle">Customer</div>
+                  <div class="desc md mt-1" id="customer_name"></div>
+
+                  <div class="subtitle mt-4">Contact information</div>
+                  <div class="desc md mt-1" id="customer_email"></div>
+                  <div class="desc md mt-1" id="customer_phone"></div>
+
+                  <div class="subtitle mt-4">Shipping address</div>
+                  <div class="desc md mt-1" id="customer_shipping_name"></div>
+                  <div class="desc md mt-1" id="customer_shipping_phone"></div>
+                  <div class="desc md mt-1" id="customer_shipping_email"></div>
+                  <div class="desc md mt-1" id="customer_shipping_address"></div>
+                  <div class="desc md mt-1" id="customer_shipping_city"></div>
+                  <div class="desc md mt-1" id="customer_shipping_state"></div>
+                  <div class="desc md mt-1" id="customer_shipping_country"></div>
+
+                  <div class="subtitle mt-4">Billing address</div>
+                  <div class="desc md mt-1" id="customer_billing_name"></div>
+                  <div class="desc md mt-1" id="customer_billing_phone"></div>
+                  <div class="desc md mt-1" id="customer_billing_email"></div>
+                  <div class="desc md mt-1" id="customer_billing_address"></div>
+                  <div class="desc md mt-1" id="customer_billing_city"></div>
+                  <div class="desc md mt-1" id="customer_billing_state"></div>
+                  <div class="desc md mt-1" id="customer_billing_country"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12">
+                  <div class="subtitle">Tags</div>
+                  <input type="text" class="form-control" name="tag"   placeholder="Enter your tags">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+
+         
+         
+        
+      </div>
+      <textarea id="variation_data" rows="20"  name="variation_data" class="d-none"></textarea>
+      <!-- <div class="col-12 mt-4 text-end">
+        <button type="button" id="dataSave" class="btn btn-primary">Submit</button>
+      </div> -->
+    </div>
+  </form>
+
+</div>
+
+  
+
+
+
+   <!-- trackingModal Modal Start --> 
+   <div class="modal fade" id="trackingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Tracking</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <div class="modal-body ">
+          <div class="add-product-modal-main"> 
+            <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full"> 
+              
+                    <div class="col-12 row">
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label required" for="tracking_number"><g-t>Tracking Number</g-t></label>
+                        <div class="input mb-2">
+                          <input type="text" value="" required class="form-control tracking_number_input" id="tracking_number" name="tracking_number[]" placeholder="Tracking Number" maxlength="255"> 
+                        </div>
+                      </div>
+
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label required" for="shipping_carrier"><g-t>Shipping</g-t></label>
+                        <div class="input mb-2">
+                          <select name="shipping_carrier" id="shipping_carrier" class="form-control selectpicker"> 
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            
+
+           
+        </div>
+        
+
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" onclick="addTracking()" class="btn btn-primary btn-modal-text">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <!-- Modal End -->
+
+
+
+  <!-- payment Modal Start --> 
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Payment</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <div class="modal-body ">
+          <div class="add-product-modal-main">
+         
+
+
+            <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full"> 
+              
+                    <div class="col-12 row">
+                      <div class="mb-6 fv-row col-12">
+                     <label class="form-label">Mark this order as paid if you received <span id="grand-total-order"></span> from another payment method. This will create an order.</label> 
+                      </div>
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label required" for="payment_method"><g-t>Payment Method</g-t></label>
+                        <div class="input mb-2">
+                          <select name="payment_method"   id="payment_method" class="form-control selectpicker">
+                            <option value="other">Other</option>
+                            <option value="bank">Bank Depost</option>
+                            <option value="cod">Cash on Delivery (COD)</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      
+                    </div>
+                  </div>
+              </div>
+            
+
+           
+        </div>
+        
+
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" onclick="mark_as_paid()" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal" style="text-transform: none;">Mark as Paid</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <!-- Modal End -->

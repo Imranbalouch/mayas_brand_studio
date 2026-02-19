@@ -1,0 +1,264 @@
+<style>
+.search-reverse .dataTables_wrapper > .row:nth-child(1) {
+  flex-direction: row-reverse;
+}
+.search-reverse .dataTables_wrapper > .row:nth-child(1) .dataTables_filter {
+  text-align: left;
+}
+.search-reverse .dataTables_wrapper > .row:nth-child(1) .dataTables_length {
+  text-align: right;
+}
+table.dataTable tbody tr.odd td.dataTables_empty::before {
+        content: none !important;
+    }
+</style>
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+            <div class="col-md-6"> 
+            <h3 class="mb-4"><g-t>Customer Report</g-t></h3>
+            </div>
+            <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-baseline"> 
+                 <div id="export_buttons" class="mb-2"></div>
+            </div>
+        </div>
+          </div>
+      <div class="card-datatable table-responsive pt-0 search-reverse">
+        <table class="datatables-basic table table-bordered table" id="Table_View"> 
+                <thead>
+                    <tr> 
+                        <th width="5%"></th>
+                        <th width="20%"><g-t>name</g-t></th> 
+                        <th width="20%"><g-t>email</g-t></th> 
+                        <th width="20%"><g-t>phone</g-t></th> 
+                        <th width="20%"><g-t>recent_purchased</g-t></th> 
+                    </tr>
+                </thead>
+        
+          <tbody>
+            <!-- Data will be populated here via AJAX -->
+        </tbody>
+ 
+        </table>
+      </div>
+    </div>
+     
+
+    <!-- Create Modal Start  -->
+<div id="add_Modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-scrollable modal-md">
+        <div class="modal-content">
+            <div class="modal-header"> 
+                <h4 id="popup_title_add"></h4>  
+            </div>
+            <form id="create_form">
+                <div class="row"> 
+                    <div class="col-md-12"> 
+                        <div class="col-md-12"> 
+                 <div>
+                 
+        <div class="form-group mt-4 mx-2 rtl-d-flxw-100"> 
+            <div class="mb-6 fv-row col-md-12 form-floating form-floating-outline mb-5">    
+                <input type="text" class="form-control mb-2" id="txt_name_add" name="txt_name_add" required> 
+                <label class="form-label required" for="txt_name_add"><g-t>name</g-t></label>
+            </div>
+            <div class="row"> 
+            <div class="mb-6 fv-row col-md-3 form-floating form-floating-outline mb-5">    
+                <input type="number" class="form-control mb-2" id="txt_parent_id_add" aria-label="Parent id" name="txt_parent_id_add" min="0" required> 
+                <label class="form-label required" for="txt_parent_id_add"><g-t>parent_id</g-t></label>
+            </div>
+            <div class="mb-6 fv-row col-md-3 form-floating form-floating-outline mb-5">     
+                <input type="number" class="form-control mb-2" id="txt_sort_id_add" name="txt_sort_id_add" min="0" required> 
+                <label class="form-label required" for="txt_sort_id_add"><g-t>sort_id</g-t></label>
+            </div>
+            <div class="mb-6 fv-row col-md-6 form-floating form-floating-outline mb-5">    
+                <input type="text" class="form-control mb-2" id="txt_url_add" name="txt_url_add" required> 
+                <label class="form-label required" for="txt_url_add"><g-t>url</g-t></label>
+            </div>
+            </div>
+            <div class="mb-6 fv-row col-md-12">   
+                        <!-- Basic  -->
+                        <div class="d-flex align-items-start align-items-sm-center gap-6">
+                            <img
+                            src="assets/img/avatars/1.png"
+                            alt="user-avatar"
+                            class="d-block w-px-100 h-px-100 rounded-4"
+                            id="uploadedAvatar_Add" />
+                            <input hidden id="icon_value">
+                            <div class="button-wrapper">
+                            <label for="FileUploadSingle_add" class="btn btn-primary me-3 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">Upload new photo</span>
+                                <i class="ri-upload-2-line d-block d-sm-none"></i>
+                                <input
+                                type="file" 
+                                class="account-file-input"
+                                id="FileUploadSingle_add"
+                                hidden
+                                accept="image/png, image/jpeg" />
+                            </label>
+                            <button type="button" class="btn btn-outline-danger account-image-reset mb-4">
+                                <i class="ri-refresh-line d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Reset</span>
+                            </button>
+
+                            <div>Allowed JPG, GIF or PNG. Max size of 500MB</div>
+                            </div>
+                        </div> 
+                        <!-- /Basic  -->
+                
+                <!-- <div class="form-group fileuploader">
+                    <label class="required form-label" for=""><g-t>icon</g-t> <span>(20x20)</span></label>
+                    <input class="required" id="FileUploadSingle_add" type="file" w="20" h="20" accept=".txt,.png, .jpg, .jpeg, .webp" required hidden>
+                    <div class="file-preview-box">
+                    <label for="FileUploadSingle_add" class="custom-upload-file-wrapper2 cursor">
+                        <div>
+                        <img class="d-block mx-auto" width="40px" src="./assets/img/Image-preview.svg" alt="">
+                        <div class="w-max d-flex gap-2 mx-auto mt-2">
+                            <span>
+                            <img src="./assets/img/custom-upload-file-wrapper-img-1.png" alt="">
+                            </span>
+                            <span><g-t>choose_image</g-t></span>
+                        </div>
+                        </div>
+                    </label>
+                    </div> 
+                    <div class="file-preview-imgs"></div>
+                    <span class="error-txt"></span> 
+                </div> -->
+            </div>
+
+            <div class="form-check mb-4">
+                <input class="form-check-input" type="checkbox" value="ck_active_add" id="ck_active_add">
+                <label class="form-check-label" for="ck_active_add">
+                  <span><g-t>active</g-t></span>
+                </label>
+              </div>
+             
+</div>
+
+</div>
+</div></div></div>  
+                <div class="modal-footer" style="margin-top: 20px;">
+                    <div class="col-md-12" style="text-align:right;">
+                        <button id="btn_sav" type="button" value="Save" class="btn btn-primary waves-effect waves-light" onclick="save_record();"
+                            class="btn btn-success">Save</button> 
+                        <button id="btn_cls" type="button" value="Close" onclick="discon()" class="btn btn-outline-primary waves-effect" data-bs-dismiss="modal">Close</button> 
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+ <!-- Create Modal End  -->
+
+
+
+  <!-- Edit Modal Start  -->
+<div id="edit_Modal" class="modal fade">
+    <div class="modal-dialog modal-dialog-scrollable modal-md">
+        <div class="modal-content">
+            <div class="modal-header"> 
+                <h4 id="popup_title"></h4>  
+            </div>
+            <form id="update_form">
+                <div class="row"> 
+                    <div class="col-md-12"> 
+                        <div class="col-md-12"> 
+                 <div>
+                 <div class="card-header overflow-hidden">   
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                   
+                </ul> 
+            </div>
+        <!-- Tab panes -->
+        <div class="tab-content p-3 py-3" id="tab_content">           
+        </div>  
+        <div class="form-group mt-4 mx-2 rtl-d-flxw-100">
+            <input id="txt_id" type="hidden" class="required form-label">
+            <hr> 
+            <div class="row"> 
+            <div class="mb-6 fv-row col-md-3">     
+                <label class="form-label required" for="txt_url"><g-t>parent_id</g-t></label>
+                <input type="number" class="form-control mb-2" id="txt_parent_id" name="txt_parent_id" required> 
+            </div>
+            <div class="mb-6 fv-row col-md-3">     
+                <label class="form-label required" for="txt_url"><g-t>sort_id</g-t></label>
+                <input type="number" class="form-control mb-2" id="txt_sort_id" name="txt_sort_id" required> 
+            </div>
+            <div class="mb-6 fv-row col-md-6">   
+                <label class="form-label required" for="txt_url"><g-t>url</g-t></label>
+                <input type="text" class="form-control mb-2" id="txt_url" name="txt_url" required> 
+            </div>
+        </div> 
+            <div class="content-wrapper">
+                <!-- Content -->
+                <div class="container-xxl flex-grow-1 container-p-y">
+                
+                   
+                
+                    <div class="row">
+                        <!-- Basic  -->
+                        <div class="d-flex align-items-start align-items-sm-center gap-6">
+                            <img
+                              src="assets/img/avatars/1.png"
+                              alt="user-avatar"
+                              class="d-block w-px-100 h-px-100 rounded-4"
+                              id="uploadedAvatar" />
+                              <input hidden id="icon_value">
+                            <div class="button-wrapper">
+                              <label for="FileUploadSingle" class="btn btn-primary me-3 mb-4" tabindex="0">
+                                <span class="d-none d-sm-block">Upload new photo</span>
+                                <i class="ri-upload-2-line d-block d-sm-none"></i>
+                                <input
+                                  type="file" 
+                                  class="account-file-input"
+                                  id="FileUploadSingle"
+                                  hidden
+                                  accept="image/png, image/jpeg" />
+                              </label>
+                              <button type="button" class="btn btn-outline-danger account-image-reset mb-4">
+                                <i class="ri-refresh-line d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Reset</span>
+                              </button>
+    
+                              <div>Allowed JPG, GIF or PNG. Max size of 500MB</div>
+                            </div>
+                          </div> 
+                     <!-- /Basic  -->
+
+                     
+                    </div>
+
+            
+            <div class="mt-6 fv-row col-md-6"> 
+                <label class="form-label" for="ck_active" id="active_lbl"> <span><g-t>active</g-t></span></label>
+                <input type="checkbox" class="form-check-input" id="ck_active" name="ck_active"> 
+            </div> 
+</div>
+
+</div>
+</div></div></div>  
+                <div class="modal-footer" style="margin-top: 20px;">
+                    <div class="col-md-12" style="text-align:right;"> 
+                        <button id="btn_upd" type="button" value="Update" class="btn btn-primary waves-effect waves-light" onclick="update_record();"
+                            class="btn btn-warning" />Update</button>
+                        <button id="btn_cls" type="button" value="Close" onclick="discon()" class="btn btn-outline-primary waves-effect" data-bs-dismiss="modal" />Close</button>
+                    </div>
+                </div>
+            </form>
+
+
+            
+        </div>
+    </div>
+</div>
+ <!-- Edit Modal End  -->
+
+ 
+  </div>
+  <!--/ Content -->
+<style>
+   
+</style>

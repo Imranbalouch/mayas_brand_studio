@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Database\QueryException;
-use Symfony\Component\HttpFoundation\Response;
-use Mail;
-use Auth;
-use Session;
-use Hash;
 use DB;
-use App\Models\Category;
-use App\Models\CategoryTranslation;
-use App\Models\Language;
-use App\Models\Role;
-use App\Services\PermissionService;
-use App\Traits\MessageTrait;
-use Illuminate\Support\Facades\Validator;
+use Auth;
+use Hash;
+use Mail;
+use Session;
 use Carbon\Carbon; 
+use App\Models\Role;
+use App\Models\Category;
+use App\Models\Language;
 use Illuminate\Support\Str;
+use App\Traits\MessageTrait;
+use Illuminate\Http\Request;
+use App\Models\CategoryTranslation;
+use App\Services\PermissionService;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\Response;
 
 
 class CategoryController extends Controller
@@ -77,6 +78,9 @@ class CategoryController extends Controller
 
     public function add_category(Request $request)
     {
+        $lang   = $request->language ?? defaultLanguages()->app_language_code;
+        $langId = getLanguage($lang);
+        $all_languages = all_languages();
         
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255|unique:categories,name',
@@ -146,6 +150,7 @@ class CategoryController extends Controller
             }
 
             $category->save();
+            $this->updateCategoryTranslation($category, $lang, $langId->uuid, $request, $all_languages);
 
             return response()->json([
                 'status_code'=>200,
@@ -167,13 +172,31 @@ class CategoryController extends Controller
 
     }
 
-    public function edit_category($uuid){
+    public function edit_category($uuid, Request $request){
 
         try {
             
-            $edit_category_by_id = Category::where('uuid', $uuid)->first();
+            // $edit_category_by_id = Category::where('uuid', $uuid)->first();
 
-            if(!$edit_category_by_id)
+            // if(!$edit_category_by_id)
+            // {
+            //     return response()->json([
+            //         'status_code' => Response::HTTP_NOT_FOUND,
+            //         'message' => $this->get_message('not_found'),
+            //     ], Response::HTTP_NOT_FOUND);
+            // }
+
+            $lang = getConfigValue('default_lang');
+            if ($request->has('lang')) {
+                $lang = $request->lang;
+            }
+            // dd($lang, $uuid);
+             $category = Category::with(['category_translations' => function ($query) use ($lang) {
+                $query->where('lang', $lang);
+            }])->where('uuid', $uuid)->first();
+            // dd($category);
+
+             if(!$category)
             {
                 return response()->json([
                     'status_code' => Response::HTTP_NOT_FOUND,
@@ -181,54 +204,78 @@ class CategoryController extends Controller
                 ], Response::HTTP_NOT_FOUND);
             }
             
-            $get_active_language = Language::where('status', '1')->get();
+            // $get_active_language = Language::where('status', '1')->get();
 
-            $now = Carbon::now();
-            $auth_id = Auth::user()->uuid;
+            // $now = Carbon::now();
+            // $auth_id = Auth::user()->uuid;
 
-            if(count($get_active_language) > 0){
+            // if(count($get_active_language) > 0){
 
-                foreach($get_active_language as $key => $language){
+            //     foreach($get_active_language as $key => $language){
                     
-                    $check_category_translation = CategoryTranslation::where('category_id', $edit_category_by_id->id)
-                    ->where('language_id', $language->id)
-                    ->where('status', '1')->first();
+            //         $check_category_translation = CategoryTranslation::where('category_id', $edit_category_by_id->id)
+            //         ->where('language_id', $language->id)
+            //         ->where('status', '1')->first();
 
-                    if($check_category_translation)
-                    {
+            //         if($check_category_translation)
+            //         {
                         
                         
 
-                    }
-                    else{
+            //         }
+            //         else{
 
-                        $save_category_translation = CategoryTranslation::insert([
-                            ['uuid' => Str::uuid(), 'category_id' => $edit_category_by_id->id, 'name' => $edit_category_by_id->name , 'language_id' => $language->id , 'lang' => $language->app_language_code , 'auth_id' => $auth_id , 'created_at' => $now, 'updated_at' => $now],
-                        ]);
+            //             $save_category_translation = CategoryTranslation::insert([
+            //                 ['uuid' => Str::uuid(), 'category_id' => $edit_category_by_id->id, 'name' => $edit_category_by_id->name , 'language_id' => $language->id , 'lang' => $language->app_language_code , 'auth_id' => $auth_id , 'created_at' => $now, 'updated_at' => $now],
+            //             ]);
 
-                    }
+            //         }
 
 
-                }
+            //     }
 
  
-            } 
+            // } 
 
-            $category_translations = CategoryTranslation::where('category_id', $edit_category_by_id->id)
-            ->where('category_translations.status', '1')
-            ->join('languages', 'category_translations.language_id', '=', 'languages.id')
-            ->select('languages.code as language_code', 'languages.name as language_name' , 'languages.flag as flag' , 'languages.rtl as dir', 'category_translations.*')
-            ->get();
+            // $category_translations = CategoryTranslation::where('category_id', $edit_category_by_id->id)
+            // ->where('category_translations.status', '1')
+            // ->join('languages', 'category_translations.language_id', '=', 'languages.id')
+            // ->select('languages.code as language_code', 'languages.name as language_name' , 'languages.flag as flag' , 'languages.rtl as dir', 'category_translations.*')
+            // ->get();
 
             
-            if ($edit_category_by_id) {
+            if ($category) {
 
-                $edit_category_by_id->translations = $category_translations;
+                $data = [
+                'uuid' => $category->uuid,
+                'parent_id' => $category->getTranslation('parent_id', $lang), 
+                'level' => $category->getTranslation('level', $lang), 
+                'name' => $category->getTranslation('name', $lang),
+                'order_level' => $category->getTranslation('order_level', $lang), 
+                'commision_rate' => $category->commision_rate,
+                'banner' => $category->getTranslation('banner', $lang),
+                'icon' => $category->getTranslation('icon', $lang), 
+                'cover_image' => $category->getTranslation('cover_image', $lang), 
+                'featured' => $category->getTranslation('featured', $lang),
+                'top' => $category->top,
+                'digital' => $category->digital,
+                'slug' => $category->slug,
+                'meta_title' => $category->getTranslation('meta_title', $lang),
+                'meta_description' => $category->getTranslation('meta_description', $lang), 
+                'og_title' => $category->getTranslation('og_title', $lang), 
+                'og_description' => $category->getTranslation('og_description', $lang), 
+                'og_image' => $category->getTranslation('og_image', $lang),
+                'x_title' => $category->getTranslation('x_title', $lang), 
+                'x_description' => $category->getTranslation('x_description', $lang), 
+                'x_image' => $category->getTranslation('x_image', $lang), 
+                'status' => $category->status,
+            ];
+                // $edit_category_by_id->translations = $category_translations;
        
                 return response()->json([
 
                     'status_code' => Response::HTTP_OK,
-                    'data' => $edit_category_by_id,
+                    'data' => $data,
 
                 ], Response::HTTP_OK);
 
@@ -267,6 +314,8 @@ class CategoryController extends Controller
             $uuid = request()->header('uuid');
             // Find the category by ID
             $category = Category::where('uuid', $uuid)->first();
+            $lang   = $request->language ?? defaultLanguages()->app_language_code;
+            $langId = getLanguage($lang);
 
             if (!$category) {
                 return response()->json([
@@ -337,48 +386,49 @@ class CategoryController extends Controller
             } else {
                 $category->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->name)) . '-' . Str::random(5);
             }
-
+            if($lang == defaultLanguages()->app_language_code){
             $category->save();
+            }
+            $this->updateCategoryTranslation($category, $lang, $langId->uuid, $request);
 
+            // $updatedTranslations = false;
 
-            $updatedTranslations = false;
-
-            foreach ($request->all() as $key => $value) {
+            // foreach ($request->all() as $key => $value) {
                 
-                if (strpos($key, 'name_') === 0) {
+            //     if (strpos($key, 'name_') === 0) {
                     
-                    $languageCode = substr($key, 5);
+            //         $languageCode = substr($key, 5);
 
-                    $languageId = DB::table('languages')->where('code', $languageCode)->value('id');
+            //         $languageId = DB::table('languages')->where('code', $languageCode)->value('id');
 
-                    if($languageId){
+            //         if($languageId){
                         
-                        CategoryTranslation::where('language_id', $languageId)
-                        ->where('category_id', $category->id)
-                        ->update(['name' => $value]);
+            //             CategoryTranslation::where('language_id', $languageId)
+            //             ->where('category_id', $category->id)
+            //             ->update(['name' => $value]);
 
-                        $updatedTranslations = true;
-                    }
+            //             $updatedTranslations = true;
+            //         }
 
-                }
+            //     }
 
-            }
+            // }
 
 
-            if ($updatedTranslations) {
+            // if ($updatedTranslations) {
                 
-                $get_active_language = Language::where('status', '1')->where('is_default', '1')->first();
-                $get_role_trans_by_def_lang = CategoryTranslation::where('category_id', $category->id)
-                ->where('language_id', $get_active_language->id)
-                ->first();
+            //     $get_active_language = Language::where('status', '1')->where('is_default', '1')->first();
+            //     $get_role_trans_by_def_lang = CategoryTranslation::where('category_id', $category->id)
+            //     ->where('language_id', $get_active_language->id)
+            //     ->first();
 
-                $upd_brand2 = DB::table('categories')
-                ->where('id', $category->id)
-                ->update([
-                    'name' => $get_role_trans_by_def_lang->name,
-                ]);
+            //     $upd_brand2 = DB::table('categories')
+            //     ->where('id', $category->id)
+            //     ->update([
+            //         'name' => $get_role_trans_by_def_lang->name,
+            //     ]);
 
-            }
+            // }
 
             return response()->json([
                 'status_code' => 200,
@@ -418,7 +468,7 @@ class CategoryController extends Controller
 
         // Delete the category and its translations
         $category->delete();
-        CategoryTranslation::where('category_id', $category->id)->delete();
+        CategoryTranslation::where('category_uuid', $uuid)->delete();
 
         return response()->json([
             'status_code' => 200,
@@ -539,6 +589,59 @@ class CategoryController extends Controller
         } 
         
     } 
+
+    private function updateCategoryTranslation(Category $category, string $lang, string $langUuid, Request $request, $languages = []): void
+    {
+        if ($languages) {
+            foreach ($languages as $language) {
+                $translation = CategoryTranslation::firstOrNew([
+                    'lang' => $language->app_language_code,
+                    'language_id' => $language->uuid,
+                    'category_uuid' => $category->uuid
+                ]);
+                $translation->name = $request->name;
+                $translation->parent_id = $request->parent_id;
+                $translation->level = $request->level;
+                $translation->order_level = $request->order_level;
+                $translation->featured = $request->featured;
+                $translation->banner = $request->banner;
+                $translation->icon = $request->icon;
+                $translation->cover_image = $request->cover_image;
+                $translation->meta_title = $request->meta_title;
+                $translation->meta_description = $request->meta_description;
+                $translation->og_title = $request->og_title;
+                $translation->og_description = $request->og_description;
+                $translation->og_image = $request->og_image;
+                $translation->x_title = $request->x_title;
+                $translation->x_description = $request->x_description;
+                $translation->x_image = $request->x_image;
+                $translation->save();
+            }
+        } else {
+            $translation = CategoryTranslation::firstOrNew([
+                'lang' => $lang,
+                'language_id' => $langUuid,
+                'category_uuid' => $category->uuid
+            ]);
+            $translation->name = $request->name;
+            $translation->parent_id = $request->parent_id;
+            $translation->level = $request->level;
+            $translation->order_level = $request->order_level;
+            $translation->featured = $request->featured;
+            $translation->banner = $request->banner;
+            $translation->icon = $request->icon;
+            $translation->cover_image = $request->cover_image;
+            $translation->meta_title = $request->meta_title;
+            $translation->meta_description = $request->meta_description;
+            $translation->og_title = $request->og_title;
+            $translation->og_description = $request->og_description;
+            $translation->og_image = $request->og_image;
+            $translation->x_title = $request->x_title;
+            $translation->x_description = $request->x_description;
+            $translation->x_image = $request->x_image;
+            $translation->save();
+        }
+    }
 
 
 

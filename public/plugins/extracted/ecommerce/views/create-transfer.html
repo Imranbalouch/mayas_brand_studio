@@ -1,0 +1,531 @@
+<div style="overflow: h;" class="main-content create-purchase-main">
+    <div class="w-100 d-flex justify-content-between align-items-center flex-wrap gap-lg-0 gap-4">
+        <div class="purchase-icon-main">
+            <span class="page-back-btn" onclick="window.history.back();">
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75">
+                    </path>
+                </svg>
+            </span>
+            <h2 class="purchase-title">Create Transfer Inventory</h2>
+        </div>
+    </div>
+    <div class="widget-wrapper">
+        <div class="widget-content">
+            <div class="row">
+                <div class="col-lg-12 form-input mt-3">
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="form-group">
+                                <label for="Selectsupplier">Origin</label>
+                                <div class="select-dropdown">
+                                    <div class="droupdown-head one">
+                                        <span id="Selectsupplier" data-uuid="">Select origin</span>
+                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="droupdown-body supplier">
+                                        <ul id="select_supplier" class="p-3 m-0"></ul>
+                                        <!-- <div class="create-new-supplier">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#createSupplier">Create new origin</a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <div class="form-group">
+                                <label for="">Destination</label>
+                                <div class="select-dropdown">
+                                    <div class="droupdown-head one">
+                                        <span id="Selectlocation">Select location</span>
+                                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                    <div class="droupdown-body supplier">
+                                        <ul id="select_location" data-uuid="" class="p-3 m-0">
+                                            <!-- <li>
+                                                <label class="custom-checkbox">
+                                                    Acme
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox">
+                                                    NomanDigitalGraphiks
+                                                </label>
+                                            </li> -->
+                                        </ul>
+                                        <!-- <div class="create-new-supplier">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalThree">Create new supplier</a>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-content">
+            <div class="row">
+                <div class="col-lg-12 form-input mt-3">
+                    <div class="purchase-table-main">
+                        <h5 class="mb-2">Add product</h5>
+                        <div class="form-group row mb-4">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center gap-4">
+                                    <div id="Table_View_filter" class="table-search-main dataTables_filter"
+                                        style="display: flex;">
+                                        <button class="cursor" onclick="return false;">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                                                    stroke="black" stroke-opacity="0.65" stroke-width="1.2"
+                                                    stroke-linecap="round" stroke-linejoin="round"></path>
+                                                <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black"
+                                                    stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                                                    stroke-linejoin="round"></path>
+                                            </svg>
+                                        </button>
+                                        <input type="text" id="custom_search_po" placeholder="Searching all products"
+                                            required="">
+                                    </div>
+                                    <a href="" data-bs-toggle="modal" 
+                                        class="custom-button-browse">Browse</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product_table_one" class="d-none">
+                            <div class="table-responsive">
+                                <table class="datatables-basic table table" id="Table_View">
+                                    <thead>
+                                        <tr>
+                                            <th width="35%"><g-t>Product</g-t></th>
+                                            <th width="25%"><g-t>SKU</g-t></th>
+                                            <th width="25%"><g-t>Quantity</g-t></th>
+                                            <th width="5%"><g-t>&nbsp;</g-t></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="variant-purchase-main">
+                                <span> <span id="variantOrdernumber">1</span> variant on purchase order</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="widget-content">
+                    <h5 class="mb-4">Transfer details</h5>
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="form-input form-group">
+                                <label for="">Date Created</label>
+                                <input type="date" class="form-control" name="estimated-date" required>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-4">
+                            <div class="form-group mt-0">
+                                <label for="">Shipping carrier</label>
+                                <select name="shipping-carrier" id="shipping_carrier" class="form-control selectpicker">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-input form-group">
+                                <label for="">Tracking name</label>
+                                <input type="text" class="form-control" name="tracking-number" required placeholder="Enter Tracking name">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="widget-content">
+                    <h5 class="mb-4">Additional details</h5>
+                    <div class="row">
+                
+                        <div class="col-12">
+                            <div class="form-input form-group">
+                                <label for="">Tags</label>
+                                <input type="text" class="form-control" name="tag" required placeholder="Enter your tags">
+                            </div>
+                        </div>
+                        <div class="col-12 mt-5">
+                            <div class="form-input form-group custom-count">
+                                <label for="">Note to supplier</label>
+                                <textarea placeholder="Enter your supplier" name="note_to_supplier" maxlength="5000" id="duplicateTextarea"
+                                class="form-control" rows="3"></textarea>
+                                <div class="count-textarea-main" id="the-count">
+                                <span id="current">0</span>
+                                <span id="maximum">/ 5000</span>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-flex justify-content-end">
+                    <button id="dataSave" type="button" class="btn btn-primary btn-modal-text">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header custom-modal-header">
+                <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Manage cost summary</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-input form-group">
+                            <label for="">Adjustment</label>
+                            <span class="text-adjustment">Shipping</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-input form-group">
+                            <label for="">Amount</label>
+                            <input type="text" class="form-control" placeholder="Rs 0.00">
+                        </div>
+                    </div>
+                </div>
+                <div class="my-4" id="add-adjustment"></div>
+                <div class="row">
+                    <div class="col-12">
+                        <a class="add-adjustment-main" onclick="addSelectInput()">
+                            <i style="color: #ed2121;" class="fa fa-plus-circle fa-lg"></i>
+                            Add adjustment
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-modal-text">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="createSupplier" tabindex="-1" role="dialog" aria-labelledby="createSupplierLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+        <form id="SupplierForm" action="" class="modal-content">
+            <div class="modal-header custom-modal-header">
+                <h5 class="modal-title custom-modal-title" id="createSupplierLabel">Create supplier</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body supplier-body">
+                <div class="row">
+                    <!-- <div class="col-12">
+                        <div class="supplier-alert">
+                            <span>To save this supplier, 1 change needs to be made:</span>
+                            <p>Company can't be blank</p>
+                        </div>
+                    </div> -->
+                    <div class="col-12">
+                        <div class="form-input form-group">
+                            <div class="input">
+                                <label>Company</label>
+                                <input name="company" type="text" class="form-control">
+                                <span class="error-txt"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-input form-group">
+                            <label for="">Country/region</label>
+                            <select name="country-select" id="country_select" class="form-control selectpicker">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-input form-group">
+                            <label for="">Address</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-input form-group">
+                            <label for="">Apartment, suite, etc</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-input form-group">
+                            <label for="">City</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-input form-group">
+                            <label for="">Postal code</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-input form-group">
+                            <label for="">Contact name</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-input form-group">
+                            <label for="">Email address</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-input form-group">
+                            <label for="">Phone number</label>
+                            <input class="form-control" type="tel" name="phone" id="phone" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary btn-modal-text">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- product modal start -->
+<div class="modal fade" id="exampleModalOne" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header custom-modal-header">
+                <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Add products</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body custom-modal-body">
+                <div class="add-product-modal-main">
+                    <div
+                        class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full">
+                        <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+                            <button class="cursor" onclick="return false;">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                                        stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65"
+                                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                            <input type="text" id="custom_search_po" placeholder="Searching all products" required="">
+                        </div>
+                    </div>
+                    <a id="ProductItem" data-bs-toggle="modal" data-bs-target="#exampleModalTwo" data-dismiss="modal"
+                        href="" class="d-flex justify-content-between align-items-center product-new-modal-open">
+                        <span>All Products</span>
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"
+                                fill="#000s"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-modal-text d-none">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalTwo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header custom-modal-header">
+                <h5 class="modal-title custom-modal-title" id="exampleModalLabel">All products</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body custom-modal-body purchase-modal">
+                <div class="add-product-modal-main">
+                    <div
+                        class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full">
+                        <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+                            <button class="cursor" onclick="return false;"> 
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                                        stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                                        stroke-linejoin="round"></path>
+                                    <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65"
+                                        stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                            <input type="text" id="custom_search_po" placeholder="Searching all products" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="table-modal-main">
+                    <div class="product-table-head">
+                        <!-- <div class="custom-checkbox-main form-group d-inline-block">
+                    <label class="aiz-checkbox">
+                        <input type="checkbox" class="check-one" name="id[]">
+                        <span class="aiz-square-check"></span>
+                    </label>
+                </div> -->
+                        <div class="product-name">
+                            <span>Product</span>
+                        </div>
+                        <!-- <div class="available-name">
+                            <span>Available at destination</span>
+                        </div> -->
+                        <div class="total-name">
+                            <span>Total available</span>
+                        </div>
+                    </div>
+                    <div id="table_product" class="product-table-body">
+                        <!-- <div class="table-first-item">
+                            <div class="table-row parent">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-name">
+                                    <img src="assets/images/products/product-1.png" alt="Image"
+                                        class="size-50px img-fit">
+                                    <span>Custom High Quality 100% Cotton men's Solid color Bulk Blank T-Shirts Pro Club
+                                        Loose Drop Shoulder Oversized T Shirt AG2800</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="table-row child left-side-item">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-table-item">
+                                    <span class="product-size">L</span>
+                                    <span class="product-color">Gray</span>
+                                    <span class="product-fabric">100% Cotton</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="table-row child left-side-item">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-table-item">
+                                    <span class="product-size">L</span>
+                                    <span class="product-color">Gray</span>
+                                    <span class="product-fabric">100% Cotton</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="table-first-item">
+                            <div class="table-row parent">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-name">
+                                    <img src="assets/images/products/product-1.png" alt="Image"
+                                        class="size-50px img-fit">
+                                    <span>Custom High Quality 100% Cotton men's Solid color Bulk Blank T-Shirts Pro Club
+                                        Loose Drop Shoulder Oversized T Shirt AG2800</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="table-row child left-side-item">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-table-item">
+                                    <span class="product-size">L</span>
+                                    <span class="product-color">Gray</span>
+                                    <span class="product-fabric">100% Cotton</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer custom-modal-footer">
+                <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+                <button id="AddProduct" type="button" class="btn btn-primary btn-modal-text"
+                    data-bs-dismiss="modal">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal End -->

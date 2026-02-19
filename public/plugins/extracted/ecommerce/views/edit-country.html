@@ -1,0 +1,331 @@
+<link rel="stylesheet" href="./assets/css/edit-country.css">
+
+<div class="container-xxl container-p-y">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-md-6">
+        <h3 class="d-flex align-items-center gap-3">
+          <span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span>
+          <span class="country-name">Pakistan</span> <span class="tag d-none edit-country">Primary</span></h3>
+      </div>
+      <div class="col-md-6 d-flex justify-content-start flex-wrap justify-content-md-end align-items-center gap-3">
+        <a href="javascript:;" class="btn btn-secondary d-none">
+          <g-t>Preview</g-t>
+        </a>
+        <div class="dropdown more-actions">
+          <div class="dropdown-toggle btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">More actions</div>
+          <div class="dropdown-menu">
+            <a href="" data-bs-toggle="modal" data-bs-target="#editMarket"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+              <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+              <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+            </svg>Edit market</a>
+            <a href="" class="del">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8e0b21"><path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path><path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path><path fill-rule="evenodd" d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z"></path></svg>
+              Remove market</a>
+          </div>
+        </div>
+        <div class="dropdown active-inactive">
+          <div class="dropdown-toggle btn btn-secondary active" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <span>Active</span>
+            <input type="text" value="Active" hidden />
+          </div>
+          <div class="dropdown-menu">
+            <a href="" val="Active">Active</a>
+            <a href="" val="Inactive">
+              <span>
+                Inactive
+                <p class="d-none">Customers can't check out</p>
+              </span>
+            </a>
+            <!-- <div class="cannot-activated-txt d-none">This market can't be activated because it is missing shipping rates. <a href="">Add rates.</a></div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card border">
+        <div class="card-header p-4 pb-0">
+          <h5>Market settings</h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="market-list-group">
+            <a href="#" class="list-item country-languages">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M5.705 3.494a.75.75 0 0 0-1.41 0l-2 5.5a.75.75 0 0 0 1.409.512l.188-.514a1 1 0 0 0 .108.008h2.111l.184.506a.75.75 0 0 0 1.41-.512zm-.705 2.45.566 1.556h-1.132l.566-1.555Z"></path><path fill-rule="evenodd" d="M13.25 6.25h-.1q-.014.108-.034.235c-.067.42-.2.994-.462 1.605-.189.44-.446.9-.794 1.334.295.164.631.3 1.016.4a.75.75 0 0 1-.377 1.452 5.7 5.7 0 0 1-1.78-.793 5.7 5.7 0 0 1-1.78.793.75.75 0 0 1-.377-1.452c.384-.1.721-.236 1.016-.4a5.8 5.8 0 0 1-.794-1.334 7 7 0 0 1-.496-1.84h-.038a.75.75 0 0 1 0-1.5h1.75v-.75a.75.75 0 0 1 1.5 0v.75h1.75a.75.75 0 0 1 0 1.5m-3.447 0c.053.331.157.779.359 1.248.136.318.316.644.557.952.24-.308.42-.634.557-.952a5.4 5.4 0 0 0 .359-1.248z"></path><path fill-rule="evenodd" d="M12.5 13.75h-3.879l-1.56 1.56a1.5 1.5 0 0 1-2.561-1.06v-.5h-1a3.5 3.5 0 0 1-3.5-3.5v-6a3.5 3.5 0 0 1 3.5-3.5h9a3.5 3.5 0 0 1 3.5 3.5v6a3.5 3.5 0 0 1-3.5 3.5m-6.5.5 2-2h4.5a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-9a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2.5z"></path></svg>
+              </div>
+              <div>
+                <h5>Languages and domains</h5>
+                <p class="d-none">English • <span id="link">nomandigitalgraphiks.myshopify.com</span>languages</p>
+              </div>
+              <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" hieght="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"></path></svg>
+              </div>
+            </a>
+            <a href="#" class="list-item country-pricing">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path d="M11 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path><path fill-rule="evenodd" d="M9.276 1.5c-1.02 0-1.994.415-2.701 1.149l-4.254 4.417a2.75 2.75 0 0 0 .036 3.852l2.898 2.898a2.5 2.5 0 0 0 3.502.033l4.747-4.571a3.25 3.25 0 0 0 .996-2.341v-2.187a3.25 3.25 0 0 0-3.25-3.25zm-1.62 2.19a2.24 2.24 0 0 1 1.62-.69h1.974c.966 0 1.75.784 1.75 1.75v2.187c0 .475-.194.93-.536 1.26l-4.747 4.572a1 1 0 0 1-1.401-.014l-2.898-2.898a1.25 1.25 0 0 1-.016-1.75l4.253-4.418Z"></path></svg>
+              </div>
+              <div>
+                <h5>Products and pricing</h5>
+                <p class="d-none">All products included • Pakistani Rupee (PKR Rs) • Local currencies on</p>
+              </div>
+              <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" hieght="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"></path></svg>
+              </div>
+            </a>
+            <a href="#" class="list-item country-duties d-none">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M5 7a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zm.5 3.5v-2h3v2z"></path><path fill-rule="evenodd" d="M3.315 2.45a2.25 2.25 0 0 1 1.836-.95h5.796c.753 0 1.455.376 1.872 1.002l1.22 1.828c.3.452.461.983.461 1.526v6.894a1.75 1.75 0 0 1-1.75 1.75h-9.5a1.75 1.75 0 0 1-1.75-1.75v-6.863c0-.57.177-1.125.506-1.59l1.309-1.848Zm1.836.55a.75.75 0 0 0-.612.316l-.839 1.184h3.55v-1.5zm3.599 1.5h3.599l-.778-1.166a.75.75 0 0 0-.624-.334h-2.197zm4.25 1.5h-10v6.75c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25z"></path></svg>
+              </div>
+              <div>
+                <h5>Duties and import taxes</h5>
+                <p>Add taxes</p>
+              </div>
+              <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" hieght="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"></path></svg>
+              </div>
+            </a>
+            <a href="#" class="list-item country-shipping d-none">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M2 3.25a.75.75 0 0 1 .75-.75h6.991c1.228 0 2.307.814 2.645 1.995l.427 1.494a.25.25 0 0 0 .18.173l1.681.421a1.75 1.75 0 0 1 1.326 1.698v1.219c0 .71-.424 1.323-1.032 1.597q.031.196.032.403a2.5 2.5 0 1 1-4.988-.25h-3.024q.012.124.012.25a2.5 2.5 0 1 1-4.792-1h-.458a.75.75 0 0 1 0-1.5h2.5q.045 0 .088.005a2.49 2.49 0 0 1 1.947.745h4.43a2.5 2.5 0 0 1 1.785-.75c.698 0 1.33.286 1.783.748a.25.25 0 0 0 .217-.248v-1.22a.25.25 0 0 0-.19-.242l-1.682-.42a1.75 1.75 0 0 1-1.258-1.217l-.427-1.494a1.25 1.25 0 0 0-1.202-.907h-6.991a.75.75 0 0 1-.75-.75m2.5 9.25a1 1 0 1 0 0-2 1 1 0 0 0 0 2m8 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path><path d="M1.25 6a.75.75 0 0 0 0 1.5h5a.75.75 0 0 0 0-1.5z"></path></svg>
+              </div>
+              <div>
+                <h5>Shipping <span class="badge-not-configured">Not configured</span></h5>
+                <p>1 rate • Shipping to Pakistan</p>
+              </div>
+              <div class="arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" hieght="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"></path></svg>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4 d-none">
+        <div class="card-header p-4 pb-0">
+          <h5>Store settings</h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="market-list-group">
+            <div class="list-item">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M7.621 2h5.258c.395 0 .736 0 1.017.023.297.024.592.078.875.222.424.216.768.56.984.984.144.283.198.578.222.875.023.28.023.622.023 1.017v2.258c0 .395 0 .736-.023 1.017a2.3 2.3 0 0 1-.222.875 2.25 2.25 0 0 1-.984.984 2.3 2.3 0 0 1-.875.222c-.28.023-.622.023-1.017.023h-2.58q-.12.125-.265.23l-2.73 1.964c-.565.408-.93.67-1.335.86a4.8 4.8 0 0 1-1.125.363c-.44.083-.889.083-1.586.083h-1.508a.75.75 0 0 1 0-1.5h1.436c.794 0 1.095-.004 1.379-.057q.4-.076.77-.249c.261-.122.508-.295 1.152-.76l2.67-1.922a.423.423 0 0 0-.349-.754l-4.876 1.22a.751.751 0 0 1-.364-1.456l.932-.233v-2.289c-.59.002-.821.012-1.033.062a2.2 2.2 0 0 0-.65.27c-.21.128-.398.31-.943.854l-.594.594a.749.749 0 1 1-1.06-1.06l.654-.655c.46-.46.78-.78 1.16-1.012.335-.206.7-.357 1.083-.45.397-.095.813-.102 1.387-.103q.004-.215.019-.396a2.3 2.3 0 0 1 .222-.875 2.25 2.25 0 0 1 .984-.984 2.3 2.3 0 0 1 .875-.222c.28-.023.622-.023 1.017-.023m5.229 7h-2.024a1.923 1.923 0 0 0-2.382-1.697l-2.444.611v-1.414h8.5v.85c0 .432 0 .712-.018.924-.017.204-.045.28-.064.316a.75.75 0 0 1-.327.328c-.038.02-.113.047-.317.064-.212.017-.492.018-.924.018m1.645-4.5h-8.49q.003-.155.013-.274c.017-.204.045-.28.064-.316a.74.74 0 0 1 .328-.328c.037-.02.112-.047.316-.064.212-.017.492-.018.924-.018h5.2c.432 0 .712 0 .924.018.204.017.28.045.317.064.14.072.255.186.327.328.02.037.047.112.064.316q.01.119.013.274"></path></svg>
+              </div>
+              <div>
+                <h5>Payments</h5>
+                <p>Manage the payment methods you accept worldwide.</p>
+              </div>
+              <div class="arrow">
+                <a href="" class="btn border btn-modal-text text-dark">Manage</a>
+              </div>
+            </div>
+            <div class="list-item">
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path d="M7.25 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path><path d="M10.75 12a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path><path fill-rule="evenodd" d="M10.692 7.308a.625.625 0 0 1 0 .884l-4.5 4.5a.625.625 0 0 1-.884-.884l4.5-4.5a.625.625 0 0 1 .884 0"></path><path fill-rule="evenodd" d="M6.025.5c-.562 0-1.024.467-.914 1.018.19.959.613 1.744 1.172 2.267a5.3 5.3 0 0 0-3.285 3.25l-1.108 3.13c-.922 2.603 1.008 5.335 3.77 5.335h4.68c2.761 0 4.692-2.732 3.77-5.335l-1.108-3.13a5.3 5.3 0 0 0-3.285-3.25c.559-.523.981-1.308 1.172-2.267.11-.551-.352-1.018-.914-1.018zm1.975 2.5c-.295 0-.826-.231-1.176-1h2.352c-.35.769-.88 1-1.176 1m3.588 4.536 1.108 3.13a2.5 2.5 0 0 1-2.356 3.334h-4.68a2.5 2.5 0 0 1-2.356-3.335l1.108-3.13a3.806 3.806 0 0 1 7.176.001"></path></svg>
+              </div>
+              <div>
+                <h5>Taxes</h5>
+                <p>Collecting taxes</p>
+              </div>
+              <div class="arrow">
+                <a href="" class="btn border btn-modal-text text-dark">Manage</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4 d-none">
+        <div class="card-header p-4 pb-0 d-flex justify-content-between align-items-center gap-2">
+          <h5>Market performance</h5>
+          <div>
+            <select id="MarketPerformanceSort">
+              <option value="Today">Today</option>
+              <option value="Last 7 days">Last 7 days</option>
+              <option value="Last 30 days">Last 30 days</option>
+            </select>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="no-sales-range">There were no sales in this date range</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editMarket">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit market</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <h6>Market name</h6>
+        <div class="desc mt-1 mb-3">Customers won’t see this.</div>
+
+        <input type="text" class="form-control md" value="International" placeholder="e.g. North America" />
+
+        <div class="countries-regions-selection my-3">
+          <span class="d-none">Countries/regions</span>
+          <span class="d-none"><span class="countries-regions-total">0</span> of 237 selected</span>
+        </div>
+
+        <div class="edit-country-region-prev">
+          <span>Algeria</span>
+          <a href="#" class="btn border py-1 px-2" id="showCountriesRegions">Edit</a>
+        </div>
+
+        <div class="countries-regions-list d-none" id="countriesRegions">
+          <div class="filter d-none">
+            <div class="filter-links">
+              <a href="" class="active">All</a>
+              <a href="">Not in any market</a>
+            </div>
+            <div>
+              <a href="" class="search-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"></path></svg>
+              </a>
+            </div>
+            <div class="search-bar">
+              <div class="input has-icon">
+                <span class="icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a"><path fill-rule="evenodd" d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"></path></svg>
+                </span>
+                <input type="text" class="form-control" placeholder="Search" />
+              </div>
+              <!-- <a href="">Cancel</a> -->
+            </div>
+          </div>
+          <div class="countries-regions-groups">
+            <div class="countries-group">
+              <div class="head">
+                <div class="name">
+                  <div class="form-check m-0">
+                    <input class="form-check-input" type="checkbox">
+                  </div>
+                  <span>Africa</span>
+                </div>
+                <div class="count">
+                  <span><span class="total">0</span>/62</span>
+                  <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M12.53 10.28a.75.75 0 0 1-1.06 0l-3.47-3.47-3.47 3.47a.749.749 0 1 1-1.06-1.06l4-4a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06"></path></svg></span>
+                </div>
+              </div>
+              <div class="body">
+                <label class="country-item">
+                  <div class="name">
+                    <div class="form-check m-0">
+                      <input class="form-check-input" type="checkbox">
+                    </div>
+                    <span>
+                      <img src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/dz-CP5t3KQfKQHF.svg" width="32" alt="">
+                    </span>
+                    <span>Africa</span>
+                  </div>
+                  <div class="count">in xyz</div>
+                </label>
+                <label class="country-item">
+                  <div class="name">
+                    <div class="form-check m-0">
+                      <input class="form-check-input" type="checkbox">
+                    </div>
+                    <span>
+                      <img src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/ao-Cz4G0ILK1-cI.svg" width="32" alt="">
+                    </span>
+                    <span>Africa</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="countries-group">
+              <div class="head">
+                <div class="name">
+                  <div class="form-check m-0">
+                    <input class="form-check-input" type="checkbox">
+                  </div>
+                  <span>Africa</span>
+                </div>
+                <div class="count">
+                  <span><span class="total">0</span>/62</span>
+                  <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M12.53 10.28a.75.75 0 0 1-1.06 0l-3.47-3.47-3.47 3.47a.749.749 0 1 1-1.06-1.06l4-4a.75.75 0 0 1 1.06 0l4 4a.75.75 0 0 1 0 1.06"></path></svg></span>
+                </div>
+              </div>
+              <div class="body">
+                <label class="country-item">
+                  <div class="name">
+                    <div class="form-check m-0">
+                      <input class="form-check-input" type="checkbox">
+                    </div>
+                    <span>
+                      <img src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/dz-CP5t3KQfKQHF.svg" width="32" alt="">
+                    </span>
+                    <span>Africa</span>
+                  </div>
+                  <div class="count">in xyz</div>
+                </label>
+                <label class="country-item">
+                  <div class="name">
+                    <div class="form-check m-0">
+                      <input class="form-check-input" type="checkbox">
+                    </div>
+                    <span>
+                      <img src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/ao-Cz4G0ILK1-cI.svg" width="32" alt="">
+                    </span>
+                    <span>Africa</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <h6 class="mt-4">Market handle</h6>
+        <div class="desc mt-1 mb-3">Identifies markets for development purposes</div>
+
+        <div class="edit-country-region-prev-handle">
+          <span>xyz</span>
+          <a href="#" class="btn border py-1 px-2" id="showMarketHandleInput">Edit</a>
+        </div>
+
+        <div id="marketHandleInput" class="d-none">
+          <input type="text" class="form-control md" value="xyz" placeholder="e.g. North America" />
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/js/select2.min.js"></script>
+
+<script>
+  $(".country-languages").on("click", function(e) {
+    e.preventDefault();
+    let page = 'country-languages';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+  $(".country-pricing").on("click", function(e) {
+    e.preventDefault();
+    let page = 'country-pricing';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+  $(".country-duties").on("click", function(e) {
+    e.preventDefault();
+    let page = 'country-duties';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+   $(".country-shipping").on("click", function(e) {
+    e.preventDefault();
+    let page = 'country-shipping';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+</script>

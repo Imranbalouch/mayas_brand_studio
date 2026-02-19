@@ -1,0 +1,150 @@
+.collection-table-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.collection-table-info .img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.collection-table-info {
+  font-size: 13px;
+}
+
+.collection-table-info .title {
+  color: #303030;
+  margin-bottom: 2px;
+}
+
+.collection-table-info .title:hover {
+  text-decoration: underline;
+}
+
+.collection-table-info .sub-title {
+  color: #616161;
+}
+
+table th:nth-child(1),
+table td:nth-child(1) {
+  padding-inline-end: 0 !important;
+}
+
+table th::before,
+table th::after {
+  display: none !important;
+}
+
+table thead {
+  position: relative;
+}
+
+table .thead-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 20px;
+  padding-inline-start: 50px;
+  text-transform: none;
+  z-index: 0;
+}
+
+table .thead-filter .actions {
+  display: flex;
+  gap: 6px;
+}
+
+table .thead-filter .actions > a {
+  font-size: 12px;
+  display: inline-flex;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #303030 !important;
+}
+
+table .thead-filter .actions > a:hover {
+  background-color: #eeeeee4b;
+}
+
+table .thead-filter .dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+table .thead-filter .dropdown .dropdown-toggle {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+table .thead-filter .dropdown .dropdown-menu {
+  padding: 5px;
+}
+
+table .thead-filter .dropdown .dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #8e0b21;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+table .thead-filter .dropdown .dropdown-menu a:hover {
+  background-color: #fee1e6;
+}
+
+table .select-all {
+  position: relative;
+  z-index: 1;
+}
+
+.included-excluded {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  padding: 6px !important;
+  margin-inline: -10px;
+}
+
+.included-excluded li {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 5px;
+  margin-bottom: 2px !important;
+  cursor: pointer;
+}
+
+.included-excluded li:hover,
+.included-excluded li.active {
+  background-color: #f1f1f1;
+}
+
+.search-reverse .dataTables_wrapper > .row:nth-child(1) {
+  flex-direction: row-reverse;
+}
+.search-reverse .dataTables_wrapper > .row:nth-child(1) .dataTables_filter {
+  text-align: left;
+}
+.search-reverse .dataTables_wrapper > .row:nth-child(1) .dataTables_length {
+  text-align: right;
+}

@@ -1,0 +1,185 @@
+<link rel="stylesheet" href="./assets/css/add-location.css">
+
+<div class="container-xxl container-p-y">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-12">
+        <h3 class="d-flex align-items-center gap-3">
+          <span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span>
+          <g-t>Add location</g-t></h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card border">
+        <div class="card-header p-4 pb-0 d-flex justify-content-between align-items-center gap-3">
+          <div class="flex-grow-1">
+            <h5 class="mb-1">Location details</h5>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="add-location-card">
+            <div class="add-location-item">
+              <div class="info">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M11.257 1h-6.514c-.384 0-.746.176-.983.478l-2.386 3.037a1.75 1.75 0 0 0-.374 1.08v.655a2.75 2.75 0 0 0 1.5 2.45v4.55c0 .966.784 1.75 1.75 1.75h7.5a1.75 1.75 0 0 0 1.75-1.75v-4.55a2.75 2.75 0 0 0 1.5-2.45v-.481c0-.504-.17-.994-.48-1.39l-2.28-2.901a1.25 1.25 0 0 0-.983-.478m-.257 12.5h.75a.25.25 0 0 0 .25-.25v-4.25a2.74 2.74 0 0 1-2-.863c-.501.532-1.212.863-2 .863s-1.499-.331-2-.863a2.74 2.74 0 0 1-2 .863v4.25c0 .138.112.25.25.25h3.75v-2.5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1zm-7-6h-.25c-.69 0-1.25-.56-1.25-1.25v-.654q.001-.086.053-.155l2.312-2.941h6.27l2.205 2.805c.104.133.16.296.16.464v.481c0 .69-.56 1.25-1.25 1.25h-.25c-.69 0-1.25-.56-1.25-1.25v-.5a.75.75 0 0 0-1.5 0v.5a1.25 1.25 0 0 1-2.5 0v-.5a.75.75 0 0 0-1.5 0v.5c0 .69-.56 1.25-1.25 1.25"></path></svg>
+                </div>
+                <div>
+                  <div class="title">Name</div>
+                  <div class="desc"></div>
+                </div>
+              </div>
+              <div>
+                <a href="" class="btn border border-secondary text-dark bg-white py-1 px-3" data-bs-toggle="modal" data-bs-target="#addLocationName">Add</a>
+              </div>
+            </div>
+            <div class="add-location-item">
+              <div class="info">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M8 9a2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 0 0 5m0-1.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path><path fill-rule="evenodd" d="M6.827 14h-3.077a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-3.077l.07-.061a18 18 0 0 0 1.707-1.758c1.224-1.46 2.55-3.574 2.55-5.954 0-3.167-2.328-5.477-5.5-5.477s-5.5 2.31-5.5 5.477c0 2.38 1.326 4.495 2.55 5.954.623.74 1.243 1.342 1.708 1.758zm1.173-11.75c-2.35 0-4 1.646-4 3.977 0 1.846 1.049 3.618 2.2 4.99a16 16 0 0 0 1.8 1.816q.111-.095.242-.212c.426-.381.993-.931 1.558-1.605 1.151-1.371 2.2-3.143 2.2-4.99 0-2.33-1.65-3.976-4-3.976"></path></svg>
+                </div>
+                <div>
+                  <div class="title">Address</div>
+                  <div class="desc"></div>
+                </div>
+              </div>
+              <div>
+                <a href="" class="btn border border-secondary text-dark bg-white py-1 px-3" data-bs-toggle="modal" data-bs-target="#addLocation">Add</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card border mt-4">
+        <div class="card-header p-4 d-flex justify-content-between align-items-center gap-3">
+          <div class="flex-grow-1">
+            <h5 class="mb-1">Fulfillment</h5>
+            <div>Use inventory at this location to fulfill online orders</div>
+          </div>
+          <div>
+            <div class="squar-checkbox">
+              <input type="checkbox" id="squar-checkbox" class="toggle-checkbox" checked>
+              <label for="squar-checkbox" class="toggle-label"></label>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="col-12 mt-5 d-flex justify-content-end gap-3">
+      <a href="" class="btn border bg-white text-dark disabled">Activate location</a>
+      <a href="" class="btn btn-primary save">Save</a>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="addLocationName">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Add location name</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <p class="desc text-dark">Give this location a short, identifiable name. If this location offers local pickup, this name will be visible to your customers at checkout and in notifications.</p>
+
+        <!-- Warehouse Dropdown -->
+        <label class="form-label"><g-t>Warehouse</g-t></label>
+        <div class="input mb-4">
+          <select id="warehouseSelect" class="form-control"></select>
+        </div>
+
+        <!-- Manager Dropdown -->
+        <label class="form-label"><g-t>Manager</g-t></label>
+        <div class="input mb-4">
+          <select id="managerSelect" class="form-control"></select>
+        </div>
+
+        <!-- Location Name Input -->
+        <label class="form-label"><g-t>Location name</g-t></label>
+        <div class="input">
+          <input type="text" class="form-control md" name="name" placeholder="Paris Warehouse">
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+          id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="addLocation">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit location address</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body p-4">
+
+        <div class="p-4 border rounded">
+          
+          <label class="form-label"><g-t>Country/region</g-t></label>
+          <div class="input mb-4">
+            <select id="countryRegion"></select>
+          </div>
+
+          <label class="form-label"><g-t>Address</g-t></label>
+          <div class="input has-icon mb-4">
+            <span class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a"><path fill-rule="evenodd" d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"></path></svg>
+            </span>
+            <input type="text" class="form-control md" name="address" placeholder="Address">
+          </div>
+          
+          <label class="form-label"><g-t>Apartment, suite, etc</g-t></label>
+          <div class="input mb-4">
+            <input type="text" class="form-control md" name="apartment" placeholder="Apartment, suite, etc">
+          </div>
+
+          <div class="row gx-3 mb-4">
+            <div class="col-md-6">
+              <label class="form-label"><g-t>City</g-t></label>
+              <div class="input">
+                <input type="text" class="form-control md" name="city" placeholder="City">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label"><g-t>Postal code</g-t></label>
+              <div class="input">
+                <input type="text" class="form-control md" name="postalcode" placeholder="Postal code">
+              </div>
+            </div>
+          </div>
+          
+          <label class="form-label"><g-t>Phone</g-t></label>
+          <div class="input custom-tel">
+            <input type="tel" name="phone" id="phone" class="form-control md" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+            <span class="error-txt"></span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+          id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./assets/js/select2.min.js"></script>

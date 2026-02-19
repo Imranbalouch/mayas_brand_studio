@@ -1,0 +1,436 @@
+ 
+<div class="container-xxl container-p-y">
+  <!-- DataTable with Buttons -->
+
+  <form action id="addOrderForm" method="post" enctype="multipart/form-data">
+
+    <input type="text" class="varient_data" style="display: none;">
+    <input type="text" class="varient_data_view" name="varient_data_view" style="display: none;">
+    <div class="spinner-border text-primary d-none" id="img_load" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+    <div class="row" id="topBar">
+      <div class="col-lg-12">
+        <div class="  mb-4">
+          <div class="widget-wrapper">
+            <div><span class="top_heading" id="order_code"></span> <span class="badge bg-warning" id="order_payment_status"></span> <span class="badge bg-secondary" id="order_fulfilled_status"></span></div>
+            <div class=""><span id="order_date"></span> <span id="order_status"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" >
+      <div class="widget-content border">
+        <div class="row">
+          <div class="col-lg-12 form-input mt-3">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="form-group mt-0">
+                  <label for="">Customer</label>
+                  <select name="customer_id" id="customer_id" class="form-control selectpicker"> 
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group mt-0">
+                  <div class="subtitle">Location</div>
+                  <select name="location_id" id="location_id" class="form-control selectpicker"> 
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="form-group mt-0">
+                  <div class="subtitle">Market</div>
+                    <select name="market_id" id="market_id" class="form-control selectpicker"> 
+                    </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+      <div class="col-lg-9" id="item_list">
+        <div class="card">
+          <div class="card-header">
+            <div class="row mb-4">
+              <div class="col-md-12">
+                <h5 class="mb-2">Products</h5>
+                 <div class="form-group row mb-4">
+                    <div class="col-12">
+                      <div class="d-flex align-items-center gap-4">
+                        <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+                          <button class="cursor" onclick="return false;">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                                stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                                stroke-linejoin="round"></path>
+                              <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65"
+                                stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                          </button>
+                          <input type="text" id="custom_search_po2" data-bs-toggle="modal" data-bs-target="#exampleModalOne" placeholder="Searching all products">
+                        </div>
+                        <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#exampleModalOne"
+                          class="custom-button-browse">Browse</a>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div id="product_table_one" class="d-none">
+                    <div class="table-responsive">
+                      <table class="datatables-basic table table" id="Table_View">
+                        <thead>
+                          <tr>
+                            <th width="25%"><g-t>Product</g-t></th> 
+                            <th width="20%"><g-t>Quantity</g-t></th> 
+                            <th width="20%"><g-t>Total</g-t></th>
+                            <th width="10%"><g-t>&nbsp;</g-t></th>
+                          </tr>
+                        </thead>
+      
+                        <tbody>
+      
+                        </tbody>
+      
+                      </table>
+                    </div>
+      
+                    <div class="variant-purchase-main">
+                      <!-- <span> <span id="variantOrdernumber">1</span> variant on order</span> -->
+                    </div>
+                  </div>
+
+
+              </div>
+            </div>
+          </div>
+          </div>
+
+        
+        <div class="card seo mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle"><h5>Payment</h5>
+                 
+              </div>
+              
+              <div class="widget-content border"> 
+                <div class="cost-summary-main">
+                  <span>Subtotal</span>
+                  <span id="variantOrdernumber"></span>
+                  <span id="po-subtotal">AED 0.00</span>
+                  <input id="tax-included-input" type="hidden" value="0">
+                </div>
+                <div class="cost-summary-main">
+                  <span class="disabled-text" id="discount_label">Add discount</span>
+                  <span><a href="javascript:;" id="discount_modal" class="d-none" data-bs-toggle="modal" data-bs-target="#discountModal">Add discount</a></span>
+                  <span  id="discounted_label">AED 0.00</span>
+                </div>
+                <div class="cost-summary-main">
+                    <span class="disabled-text" id="shipping_label">Add shipping or delivery</span>
+                    <span><a href="javascript:;" id="shipping_modal" class="d-none" data-bs-toggle="modal" data-bs-target="#shippingModal">Add shipping or delivery</a></span>
+                    <span   id="shipping_charges_label">AED 0.00</span>
+                  </div>
+                  
+                <div class="cost-summary-main d-none">
+                  <span class="disabled-text">Estimated tax</span>
+                  <!-- <span>Not calculated</span> -->
+                  <span id="shipping-fee">AED 0.00</span>
+                </div>
+                <div class="cost-summary-main">
+                  <h6>Total</h6>
+                  <h6 id="grand-total">AED 0.00</h6>
+                  <input id="grand-total-input" type="hidden" value="100">
+                </div>
+              </div>
+            </div>
+            <div class="variant-purchase-main">
+                <span> <span id="variantOrdernumber"></span> Add a product to calculate total and view payment options</span>
+              </div><br>
+          </div>
+        </div>
+      </div>
+
+
+
+      
+
+
+      <div class="col-lg-3">
+
+
+          <div id="customer_info" class="card  mb-4 d-none">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12">
+                  <div class="subtitle">Customer</div>
+                  <div class="desc md mt-1" id="customer_name"></div>
+
+                  <div class="subtitle mt-4">Contact information</div>
+                  <div class="desc md mt-1" id="customer_email"></div>
+                  <div class="desc md mt-1" id="customer_phone"></div>
+
+                   
+                  <div class="subtitle mt-4">Address</div>
+                  <div class="desc md mt-1" id="customer_billing_name"></div>
+                  <div class="desc md mt-1" id="customer_billing_phone"></div>
+                  <div class="desc md mt-1" id="customer_billing_email"></div>
+                  <div class="desc md mt-1" id="customer_billing_address"></div>
+                  <div class="desc md mt-1" id="customer_billing_city"></div>
+                  <div class="desc md mt-1" id="customer_billing_state"></div>
+                  <div class="desc md mt-1" id="customer_billing_country"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+        
+        <div class="card">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Notes</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <textarea name="note" id="note" class="form-control" row="10"></textarea>
+                  <div class="desc md mt-1 d-none"><span id="noteCount">0</span> of 5000 characters used</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+
+         
+          
+ 
+
+        <div class="card mt-4 d-none">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12">
+                  <div class="subtitle">Tags</div>
+                  <input type="text" class="form-control" name="tag"   placeholder="Enter your tags">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+         
+         
+        
+      </div>
+      <textarea id="variation_data" rows="20"  name="variation_data" class="d-none"></textarea>
+      <div class="col-12 mt-4 text-end">
+        <button type="button" id="dataSave" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+
+<!-- product modal start -->
+<div class="modal fade" id="exampleModalOne" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Add products</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body custom-modal-body">
+          <div class="add-product-modal-main">
+      
+            <a id="ProductItem" data-bs-toggle="modal" data-bs-target="#exampleModalTwo" data-dismiss="modal" href=""
+              class="d-flex justify-content-between align-items-center product-new-modal-open">
+              <span>All Products</span>
+              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"
+                  fill="#000s"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-modal-text d-none">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="exampleModalTwo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">All products</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body custom-modal-body purchase-modal">
+          <div class="add-product-modal-main">
+            <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full">
+              <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+                <button class="cursor" onclick="return false;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                      stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <input type="text" id="custom_search_po" placeholder="Searching all products">
+              </div>
+            </div>
+          </div>
+          <div class="table-modal-main">
+            <div class="product-table-head">
+       
+              <div class="product-name">
+                <span>Product</span>
+              </div>
+              
+              <div class="total-name">
+                <span>Total available</span>
+              </div>
+            </div>
+            <div id="table_product" class="product-table-body">
+            
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button id="AddProduct" type="button" class="btn btn-primary btn-modal-text"
+            data-bs-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal End -->
+
+  <!-- discountModal Modal Start --> 
+  <div class="modal fade" id="discountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Add discount</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <div class="modal-body ">
+          <div class="add-product-modal-main">
+         
+
+
+            <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full"> 
+              
+                    <div class="col-12 row">
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label required" for="discount_type"><g-t>Discount type</g-t></label>
+                        <div class="input mb-2">
+                          <select name="discount_type"   id="discount_type" class="form-control selectpicker">
+                            <option value="amount">Amount</option>
+                            <option value="percentage">Percentage</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label" for="discount_value"><g-t>Value</g-t></label>
+                        <div class="input mb-2">
+                          <input type="number" value="0" class="form-control" id="discount_value" name="discount_value" placeholder="Value" min="0"> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            
+
+           
+        </div>
+        
+
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" onclick="calculateSummary()" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <!-- Modal End -->
+
+
+
+   <!-- shippingModal Modal Start --> 
+   <div class="modal fade" id="shippingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header custom-modal-header">
+          <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Shipping and delivery options</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div> 
+
+        <div class="modal-body ">
+          <div class="add-product-modal-main">
+         
+
+
+            <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full"> 
+              
+                    <div class="col-12 row">
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label required" for="shipping_name"><g-t>Name</g-t></label>
+                        <div class="input mb-2">
+                          <input type="text" value="" class="form-control" id="shipping_name" name="shipping_name" placeholder="Free Shipping" maxlength="255"> 
+                        </div>
+                      </div>
+
+                      <div class="mb-6 fv-row col-6">
+                        <label class="form-label required" for="shipping_charges"><g-t>Price</g-t></label>
+                        <div class="input mb-2">
+                          <input type="number" value="0" class="form-control" id="shipping_charges" name="shipping_charges" placeholder="Value"> 
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            
+
+           
+        </div>
+        
+
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" onclick="calculateSummary()" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <!-- Modal End -->

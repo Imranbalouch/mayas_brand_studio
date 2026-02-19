@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="./assets/css/collections.css">
+<div class="container-xxl container-p-y">
+  
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="custom-table card-datatable pt-0">
+          <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-md-6">
+        <h3 class=""><g-t>Collections Report</g-t></h3>
+      </div>
+      <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-baseline"> 
+      <div id="export_buttons"></div>
+      </div>
+    </div>
+  </div>
+          
+          <div class="table-responsive search-reverse">
+            <table class="datatables-basic table" id="Table_View">
+              <thead>
+                <tr>
+                  <th><g-t>Title</g-t></th>
+                  <th><g-t>Products</g-t></th>
+                  <th><g-t>Product conditions</g-t></th>
+                  <th><g-t>smart</g-t></th>
+                  <th class="d-none">Channel</th>
+                  <th class="position-static">
+                    <div class="thead-filter d-none">
+                      <span class="selected"><span class="selected-count"></span> selected</span>
+                      <div class="actions">
+                        <a href="">Bulk edit</a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#includeInManageSalesChannels">Include in sales channels</a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#excludeInManageSalesChannels">Exclude from sales channels</a>
+                        <div class="dropdown">
+                          <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                              <path d="M4 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                              <path d="M9.5 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                              <path d="M13.5 9.5a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001"></path>
+                            </svg>
+                          </div>
+                          <div class="dropdown-menu publishing-dropdown">
+                            <a href="">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8e0b21"><path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path><path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path><path fill-rule="evenodd" d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z"></path></svg>
+                              Delete collection
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  $(".create-collection").on("click", function(e) {
+    e.preventDefault();
+    let page = 'create-collection';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  $("table").on("click", ".collection-table-info .title", function(e) {
+    e.preventDefault();
+    let currentRow = $(this).closest("tr");
+    let data = $('#Table_View').DataTable().row(currentRow).data();
+    let uuid = data['uuid'];
+    let page = 'edit-collection';
+    window.location.assign('?P=' + page + '&M=' + menu_id + '&id=' + uuid);
+  });
+</script>

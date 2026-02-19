@@ -1,0 +1,415 @@
+.error-top {
+  background: #c70a24;
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 15px 15px 0px 0px;
+  font-size: 18px;
+}
+
+.error-bottom {
+  padding: 15px 20px;
+  border-radius: 0px 0px 15px 15px;
+  font-size: 18px;
+}
+
+#shippingweight {
+  padding: calc(-0.1445rem - 1px) calc(1rem - 1px) !important;
+}
+
+.custom-information span {
+  display: block;
+}
+
+.custom-svg {
+  width: 40px;
+  height: 30px;
+  cursor: pointer;
+  padding: 0px 10px;
+  border-radius: 6px;
+}
+
+.custom-svg:hover {
+  background-color: #eeeeee83;
+}
+
+.publishing-dropdown {
+  padding: 10px !important;
+}
+
+.publishing-dropdown div {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.publishing-dropdown div:hover {
+  background-color: #eeeeee83;
+}
+
+.publishing-box h3 {
+  font-size: 15px;
+  font-weight: 600;
+  padding-bottom: 10px;
+}
+
+.circleBefore {
+  position: relative;
+  display: block;
+  padding-left: 18px;
+  color: #000;
+}
+
+.publishing-box p,
+.publishing-box a {
+  padding-left: 18px;
+  padding-top: 5px;
+  margin-bottom: 10px;
+}
+
+.circleBefore:before {
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 1px solid #000;
+  border-radius: 50px;
+  left: 0;
+  top: 4px;
+}
+
+.sales-checkbox-01.disabled .form-check-input,
+.sales-checkbox-01.disabled span {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.sales-checkbox-01 span {
+  font-size: 13px;
+}
+
+.sales-checkbox-01 p {
+  font-size: 12px;
+}
+
+.sales-checkbox-bottom {
+  background: #f7f7f7;
+  padding: 10px 20px;
+  font-size: 13px;
+  border-top: 1px solid #eee;
+}
+
+.sales-checkbox-bottom p {
+  margin-bottom: 0px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.custom-calender {
+  position: relative;
+  width: 100%;
+}
+
+.custom-calender svg {
+  position: absolute;
+  width: 20px;
+  top: 7px;
+  left: 10px;
+  fill: #c2baba;
+}
+
+span.get-time-name {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+
+.custom-calender select,
+.custom-calender input {
+  padding-left: 35px !important;
+}
+
+.calendar-section {
+  margin-bottom: 20px;
+}
+
+.calendar,
+.calendar_weekdays,
+.calendar_content {
+  max-width: 585px;
+}
+
+.calendar {
+  /*float: left;*/
+  margin: auto;
+  min-width: 320px;
+  font-weight: 400;
+  background: #fff;
+  padding: 10px;
+  -webkit-box-shadow: 0px 4px 26px -22px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow: 0px 4px 26px -22px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 4px 26px -22px rgba(0, 0, 0, 0.14);
+}
+
+.calendar_weekdays {
+  color: #aaa;
+  font-weight: 300;
+}
+
+.calendar_weekdays div {
+  display: inline-block;
+  vertical-align: top;
+  color: #000;
+}
+
+.calendar_content,
+.calendar_weekdays,
+.calendar_header {
+  position: relative;
+}
+
+.calendar_content:after,
+.calendar_weekdays:after,
+.calendar_header:after {
+  content: ' ';
+  display: table;
+  clear: both;
+}
+
+.calendar_weekdays div,
+.calendar_content div {
+  /*border: 1px dotted #999;*/
+  width: 14.28571%;
+  height: 40px;
+  line-height: 40px;
+  overflow: hidden;
+  text-align: center;
+  background-color: transparent;
+}
+
+.calendar_content div {
+  float: left;
+  margin-left: -1px;
+  margin-top: -1px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.calendar_content div:hover {
+  border: 1px solid #ededed;
+  /*line-height: 68px;*/
+  cursor: pointer;
+}
+
+.calendar_content div.blank:hover {
+  cursor: default;
+  border: none;
+}
+
+.calendar_content div.past-date {
+  cursor: initial;
+  color: #d5d5d5;
+}
+
+.calendar_content div.selected {
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  background-color: #303030;
+}
+
+.calendar_header {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  height: 55px;
+  display: table;
+  vertical-align: middle;
+}
+
+.calendar_header h2 {
+  padding: 0;
+  font-size: 16px;
+  color: #000 !important;
+  margin-top: 20px;
+}
+
+button.switch-month {
+  background-color: transparent;
+  padding: 0;
+  outline: none;
+  border: none;
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  color: #cccccc;
+  -webkit-transition: color .2s;
+  -o-transition: color .2s;
+  transition: color .2s;
+}
+
+button.switch-month.switch-left {
+  left: 0;
+}
+
+button.switch-month.switch-right {
+  right: 0;
+}
+
+button.switch-month:hover {
+  color: #bd83ce;
+}
+
+button.switch-month:active {
+  background-color: transparent;
+}
+
+.switch-month svg {
+  fill: #bababa;
+  width: 24px;
+}
+
+.ck.ck-editor__main>.ck-editor__editable {
+  height: 140px;
+}
+
+.seo .subtitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.seo .seoBtn {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.seo .seoBtn:hover {
+  background-color: #cccccc26;
+}
+
+.seo-prev .site-name {
+  font-size: 16px;
+  color: #303030;
+}
+
+.seo-prev .site-link {
+  color: #616161;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.seo-prev .site-title {
+  font-size: 22px;
+  color: #005bd3;
+  margin-bottom: 6px;
+}
+
+.seo-prev .site-desc {
+  font-size: 13px;
+  color: #616161;
+}
+
+#status .form-control {
+  appearance: auto !important;
+}
+
+.bootstrap-select .dropdown-toggle,
+.bootstrap-select .dropdown-toggle.show {
+  padding: calc(0.7rem - 1px) calc(1rem - 1px) !important;
+  padding-inline-end: 30px !important;
+}
+
+.light-style .bootstrap-select .dropdown-toggle:not(.show):hover,
+.light-style .bootstrap-select .dropdown-toggle:hover,
+.light-style .bootstrap-select .dropdown-toggle {
+  border: 1px solid #7d808e !important;
+}
+
+html:not([dir=rtl]) .select2-container--default .select2-selection--multiple .select2-selection__choice {
+  padding-right: 1.3rem !important;
+}
+
+#formError {
+  display: none;
+}
+
+#type .select2-selection__arrow {
+  display: none !important;
+}
+
+.product-organization .select2-container--default .select2-selection--single .select2-selection__rendered {
+  padding-right: 1rem !important;
+}
+
+#current_stock {
+  padding: 10px 20px !important;
+}
+
+.light-style .select2-container--default .select2-selection--multiple,
+.light-style .select2-container--default.select2-container--focus .select2-selection--multiple,
+.light-style .select2-container--default.select2-container--open .select2-selection--multiple {
+  padding: calc(0.8555rem - 1px - 0.3125rem - 1px) calc(0.5rem - 1px) !important;
+}
+
+.file-preview-imgs .preview-card .img .edit {
+  position: absolute;
+  top: -8px;
+  right: 18px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #eee;
+  color: #000000a6;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.file-preview-imgs .preview-card .img .remove {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  background-color: #eee;
+  color: #000000a6;
+  border: 1px solid #eee;
+  cursor: pointer;
+  z-index: 0;
+}
+
+.file-preview-imgs .preview-card .img .remove i {
+  font-size: unset;
+}
+
+#physicalproductshow p {
+  color: #616161;
+}
+#physicalproductshow p a {
+  color: #005bd3;
+  text-decoration: underline;
+}

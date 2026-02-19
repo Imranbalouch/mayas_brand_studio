@@ -1,0 +1,66 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="mb-4"><g-t>Transfer Inventory</g-t></h3>
+                </div>
+                <div class="col-md-6 d-flex justify-content-start justify-content-md-end align-items-baseline">
+                    <a href="javascript:;" id="btn_new" class="btn btn-primary" style="display: none;">
+                        <svg class="me-2" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.00024 2V14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M2 8.00006H14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <g-t>Create Transfer Inventory</g-t>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-datatable pt-0">
+            <table class="datatables-basic table table-bordered" id="Table_View">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th><g-t>Transfer Number</g-t></th>
+                        <th><g-t>Destination Location</g-t></th>
+                        <th><g-t>Status</g-t></th>
+                        <th><g-t>Estimated Date</g-t></th>
+                        <th><g-t>Carrier</g-t></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Data will be populated here via AJAX -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for Viewing Transfer Details -->
+    <div id="edit_Modal" class="modal fade">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="popup_title_add">Transfer Inventory Details</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Product Image</th>
+                                <th>Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transfer_details">
+                            <!-- Content will be dynamically added here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer" style="margin-top: 20px;">
+                    <button id="btn_cls" type="button" value="Close" onclick="discon()" class="btn btn-outline-primary waves-effect" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

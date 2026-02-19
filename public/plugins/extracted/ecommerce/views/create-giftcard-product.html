@@ -1,0 +1,704 @@
+<link rel="stylesheet" href="./assets/css/cropper.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="./assets/css/plugin.css" />
+<link rel="stylesheet" href="./assets/css/edit-product.css">
+<style>
+  .blank{
+    display: none;
+  }
+</style>
+<div class="container-xxl container-p-y create-giftcard-product">
+  <!-- DataTable with Buttons -->
+
+  <form action id="addGiftCardProduct" method="post" enctype="multipart/form-data">
+    <div class="row" id="formError">
+      <div class="col-lg-12">
+        <div class="card mb-4">
+          <div class="widget-wrapper">
+            <div class="error-top">There is 1 error with this product:</div>
+            <div class="error-bottom">Title can't be blank</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h3>
+                  <span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span>
+                  Create Gift Card Product</h3>
+              </div>
+            </div>
+          </div>
+          <div class="widget-wrapper">
+            <div class="spinner-border text-primary d-none" id="img_load" role="status">
+              <span class="visually-hidden"></span>
+            </div>
+
+            <div class="product-content">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-general" role="tabpanel"
+                  aria-labelledby="nav-general-tab">
+                  <div class="row gap-lg-0 gap-5">
+                    <div class="col-lg-12 form-input mt-3">
+
+                      <div class="row">
+
+                        <div class="mb-6 fv-row col-12">
+                          <label class="form-label required" for="name"><g-t>title</g-t></label>
+                          <div class="input mb-2">
+                            <input type="text" class="form-control productTitle" id="name" name="name"
+                              placeholder="Short sleeve t-shirt" maxlength="255">
+                            <!-- <span class="desc"><span id="productTitleCount">0</span> of 255 characters used</span>
+                            <span class="error-txt"></span> -->
+                          </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-6">
+                          <label for="description" class="form-label"><g-t>description</g-t></label>
+                          <textarea class="form-control mb-2" id="editorCk" name="description"></textarea>
+                        </div>
+
+
+                        <div class="mb-6 fv-row col-md-12">
+                          <div class="form-group">
+                            <label class="form-label" for><g-t>product_image</g-t></label>
+                            <div class="input-group custome-filemanager" data-type="media" data-multiple="true">
+                              <div class="input-group-prepend w-100">
+                                <div class="input-group-text bg-soft-secondary font-weight-medium border-0 p-0">
+                                  <div class="media-input w-100">
+                                    <div class="selection">
+                                      <a href="">Upload new</a>
+                                      <a href="">Select existing</a>
+                                    </div>
+                                    <div class="accepts">Accepts images, videos, or 3D models</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-control file-amount">Choose File</div>
+                              <input type="hidden" name="media" class="selected-files" id="logoFile">
+                            </div>
+                            <div class="d-flex flex-wrap gap-4 pt-4 filemanager-image-preview"></div>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                          <label class="form-label"><g-t>Category</g-t></label>
+                          <input type="text" class="form-control productTitle" id="name" name="name"
+                            placeholder="Gift Cards" disabled maxlength="255">
+                          <p class="text-secondary mt-4 mb-0">
+                            Determines tax rates and adds metafields to improve search, filters, and cross-channel sales
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card card-denomination mt-4">
+          <div class="tab-content">
+            <div class="subtitle"><span>Denominations</span></div>
+            <div class="form-group">
+              <div class="form-group-wrapper" id="denomination-container">
+                <div class="input-group-wrapper mb-3">
+                  <input type="text" class="form-control" id="denomination" name="denomination" value="10.00" placeholder="RS 10.00"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <button class="btn btn-secondary delete-btn ms-5" type="button" id="button-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                      <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path>
+                      <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path>
+                      <path fill-rule="evenodd"
+                        d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 
+                        0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5
+                         0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5
+                          0 0
+                           1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+                <div class="input-group-wrapper mb-3">
+                  <input type="text" class="form-control" id="denomination" name="denomination" value="25.00" placeholder="RS 25.00"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <button class="btn btn-secondary delete-btn ms-5" type="button" id="button-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                      <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path>
+                      <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path>
+                      <path fill-rule="evenodd"
+                        d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 
+                        0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5
+                         0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5
+                          0 0
+                           1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+                <div class="input-group-wrapper mb-3">
+                  <input type="text" class="form-control" id="denomination" name="denomination" value="50.00" placeholder="RS 50.00"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <button class="btn btn-secondary delete-btn ms-5" type="button" id="button-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                      <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path>
+                      <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path>
+                      <path fill-rule="evenodd"
+                        d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 
+                        0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5
+                         0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5
+                          0 0
+                           1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+                <div class="input-group-wrapper mb-3">
+                  <input type="text" class="form-control" id="denomination" name="denomination" value="100.00" placeholder="RS 100.00"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <button class="btn btn-secondary delete-btn ms-5" type="button" id="button-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                      <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path>
+                      <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path>
+                      <path fill-rule="evenodd"
+                        d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 
+                        0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5
+                         0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5
+                          0 0
+                           1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="add-denomination">
+                <button class="btn btn-secondary" type="button" id="add-denomination-btn">
+                  Add denomination
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="card seo mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle"><span>Search engine listing</span>
+                <span class="seoBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z">
+                    </path>
+                  </svg>
+                </span>
+              </div>
+              <p class="desc" id="seoMainDesc">Add a title and description to see how this product might appear in a
+                search engine listing</p>
+              <div class="seo-prev" style="display: none;">
+                <div class="site-name">Insta Manage</div>
+                <div class="site-link">https://nomandigitalgraphiks.myshopify.com > products > <span></span></div>
+                <div class="site-title">Title</div>
+                <div class="site-desc">Desc</div>
+              </div>
+            </div>
+            <div id="seoTab" style="display: none;">
+              <hr class="m-0" />
+              <div class="tab-content">
+                <div class="mb-6 fv-row">
+                  <label class="form-label" for="seoTitle"><g-t>Page title</g-t></label>
+                  <input type="text" class="form-control" id="seoTitle" name="meta_title">
+                  <span class="desc"><span id="seoTitleCount">0</span> of 70 characters used</span>
+                </div>
+                <div class="col-lg-12 mb-6">
+                  <label for="seoDesc" class="form-label"><g-t>Meta description</g-t></label>
+                  <textarea name="meta_description" id="seoDesc" class="form-control" row="10"></textarea>
+                  <span class="desc"><span id="seoDescCount">0</span> of 160 characters used</span>
+                </div>
+                <div class="mb-6 fv-row">
+                  <label class="form-label"><g-t>URL handle</g-t></label>
+                  <div class="input has-prefix mb-2">
+                    <div class="prefix">products/</div>
+                    <input type="text" id="seoLink" class="form-control" name="slug">
+                  </div>
+                  <span class="desc site-link">https://nomandigitalgraphiks.myshopify.com/products/<span></span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Status</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row" id="status">
+                    <select name="status" class="form-control selectpicker">
+                      <option value="1">Active</option>
+                      <option value="0">Draft</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <input type="hidden" name="sale_channel_id" id="channel_uuid" />
+              <input type="hidden" name="published_datetime" />
+              
+              <div class="row">
+                <div class="col-12">
+                  <div class="d-flex justify-content-between">
+                    <div class="subtitle">Publishing</div>
+                    <div data-bs-toggle="dropdown" aria-expanded="false">
+                      <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="M4 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                        <path d="M9.5 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                        <path d="M13.5 9.5a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001"></path>
+                      </svg>
+                    </div>
+                    <div class="dropdown-menu publishing-dropdown">
+                      <div data-bs-toggle="modal" data-bs-target="#manageSalesChannels">Manage sales channels</div>
+                      <div data-bs-toggle="modal" data-bs-target="#manageMarkets">Manage markets</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="publishing-box">
+                  <h3>Sales channels</h3>
+                  <div id="sales-channels">
+                    <!-- Will be populated by JavaScript -->
+                  </div>
+                  <br>
+                  <div class="publishing-box" id="marketNamesBox">
+                    <h3>Markets</h3>
+                    <div class="col-12" id="marketNames">
+                        <div class="mb-3 fv-row"></div>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle d-flex gap-2">
+                    Product organization
+                    <div class="main-tooltip main-tooltip-1">
+                      <a href="https://help.shopify.com/en/manual/products/details#product-organization"
+                        target="_blank">
+                        <svg class="custom-tooltip" style="width:15px" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16">
+                          <path d="M8 12a.75.75 0 0 1-.75-.75v-3.5a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75"></path>
+                          <path d="M7 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"></path>
+                          <path fill-rule="evenodd"
+                            d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0">
+                          </path>
+                        </svg>
+                      </a>
+                      <div class="tooltip-text">Learn More</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Type</g-t></label>
+                    <input type="text" name="type" id="type" class="form-control" placeholder="Product Type">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label for="vendor" class="form-label">Vendor</label>
+                    <input type="text" name="vendor" id="vendor" class="form-control" placeholder="Product Vendor">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Collections</g-t></label>
+                    <select name="collection" id="collection" class="form-control" multiple></select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Tags</g-t></label>
+                    <select name="tags" id="tags" class="form-control" multiple>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12">
+                  <div class="subtitle">Theme template</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <select name="template_product" id="template_product" class="form-control selectpicker">
+                      <option value="Default Product">Default Product</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="subtitle">Gift card template</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <select name="template_product" id="template_product" class="form-control selectpicker">
+                      <option value="Default Product">gift_card</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 mt-4 text-end">
+        <button class="btn btn-primary">Save Gift Card Product</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<div class="modal" id="manageSalesChannels">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Manage sales channels</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="d-flex justify-content-between pb-5">
+          <div class="manage-sales-text">Select all</div>
+          <div class="manage-sales-select">
+            <checkednumber>0</checkednumber> selected
+          </div>
+        </div>
+        
+        <div class="sales-checkbox" id="sales-checkboxs">
+          <!-- Will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal" id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="manageMarkets">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Manage markets</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="sales-checkbox-01 disabled mb-3">
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="online-store" id="online-store">
+            <label class="form-check-label">
+              <span>International</span>
+              <p class="my-2">Australia, Austria, and 25 more</p>
+              <div class="d-flex">
+                <svg style="width:18px;margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path d="M8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path>
+                  <path d="M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path>
+                  <path fill-rule="evenodd"
+                    d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+                </svg>
+                <p class="mb-0">To make changes to this market, you need to first save the product.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="sales-checkbox-01 disabled mb-3">
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="online-store" id="online-store">
+            <label class="form-check-label">
+              <span>International</span>
+              <p class="my-2">Australia, Austria, and 25 more</p>
+              <div class="d-flex">
+                <svg style="width:18px;margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path d="M8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path>
+                  <path d="M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path>
+                  <path fill-rule="evenodd"
+                    d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+                </svg>
+                <p class="mb-0">To make changes to this market, you need to first save the product.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="sales-checkbox-01 disabled mb-3">
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="online-store" id="online-store">
+            <label class="form-check-label">
+              <span>International</span>
+              <p class="my-2">Australia, Austria, and 25 more</p>
+              <div class="d-flex">
+                <svg style="width:18px;margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path d="M8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path>
+                  <path d="M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path>
+                  <path fill-rule="evenodd"
+                    d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+                </svg>
+                <p class="mb-0">To make changes to this market, you need to first save the product.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+        <div class="sales-checkbox-01 disabled mb-3">
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="online-store" id="online-store">
+            <label class="form-check-label">
+              <span>International</span>
+              <p class="my-2">Australia, Austria, and 25 more</p>
+              <div class="d-flex">
+                <svg style="width:18px;margin-right: 10px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path d="M8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path>
+                  <path d="M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path>
+                  <path fill-rule="evenodd"
+                    d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+                </svg>
+                <p class="mb-0">To make changes to this market, you need to first save the product.</p>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="sales-checkbox-bottom">
+        <p>Changes you make in markets will apply only to your <b>Online Store.</b></p>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="manageCalender">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Schedule Online Store publishing</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-0">Schedule product to be published on this date and time:</p>
+        <div class="publishing-store-date">
+          <div class="d-flex gap-3 my-3">
+            <div class="custom-calender">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M5.75 1.5a.75.75 0 0 0-1.5 0v.407a3 3 0 0 0-.702.252c-.706.36-1.28.933-1.64 1.639-.226.444-.32.924-.365 1.47-.043.531-.043 1.187-.043 2v1.464c0 .813 0 1.469.043 2 .045.546.14 1.026.366 1.47.36.706.933 1.28 1.639 1.64.444.226.924.32 1.47.365.531.043 1.187.043 2 .043h3.383c.323 0 .542 0 .735-.02a3.75 3.75 0 0 0 3.344-3.344c.02-.193.02-.412.02-.735v-2.883c0-.813 0-1.469-.043-2-.045-.546-.14-1.026-.366-1.47a3.76 3.76 0 0 0-1.638-1.64 3 3 0 0 0-.703-.251v-.407a.75.75 0 0 0-1.5 0v.259c-.373-.009-.794-.009-1.268-.009h-1.964c-.474 0-.895 0-1.268.009zm-1.521 1.995c.197-.1.458-.17.912-.207.462-.037 1.057-.038 1.909-.038h1.9c.852 0 1.447 0 1.91.038.453.037.714.107.912.207.423.216.767.56.983.984.1.197.17.458.207.912.014.18.024.38.029.609h-9.982q.008-.34.03-.61c.036-.453.106-.714.206-.911a2.25 2.25 0 0 1 .984-.984m-1.229 4.005v1.2c0 .852 0 1.447.038 1.91.037.453.107.714.207.912.216.423.56.767.984.983.197.1.458.17.912.207.462.037 1.057.038 1.909.038h3.306c.385 0 .52-.001.626-.012a2.25 2.25 0 0 0 2.006-2.006c.011-.106.012-.241.012-.626v-2.606z"></path>
+              </svg>
+              <input type="text" class="form-control" id="putdate" />
+            </div>
+            <div class="custom-calender">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M8.75 4a.75.75 0 0 0-1.5 0v4c0 .199.079.39.22.53l2 2a.749.749 0 1 0 1.06-1.06l-1.78-1.78z"></path>
+                <path fill-rule="evenodd" d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+              </svg>
+              <select class="form-control" id="putTime">
+                <!-- AM Times -->
+                <option value="12:00 AM">12:00 AM</option>
+                <option value="12:15 AM">12:15 AM</option>
+                <option value="12:30 AM">12:30 AM</option>
+                <option value="12:45 AM">12:45 AM</option>
+                <option value="01:00 AM">01:00 AM</option>
+                <option value="01:15 AM">01:15 AM</option>
+                <option value="01:30 AM">01:30 AM</option>
+                <option value="01:45 AM">01:45 AM</option>
+                <option value="02:00 AM">02:00 AM</option>
+                <option value="02:15 AM">02:15 AM</option>
+                <option value="02:30 AM">02:30 AM</option>
+                <option value="02:45 AM">02:45 AM</option>
+                <option value="03:00 AM">03:00 AM</option>
+                <option value="03:15 AM">03:15 AM</option>
+                <option value="03:30 AM">03:30 AM</option>
+                <option value="03:45 AM">03:45 AM</option>
+                <option value="04:00 AM">04:00 AM</option>
+                <option value="04:15 AM">04:15 AM</option>
+                <option value="04:30 AM">04:30 AM</option>
+                <option value="04:45 AM">04:45 AM</option>
+                <option value="05:00 AM">05:00 AM</option>
+                <option value="05:15 AM">05:15 AM</option>
+                <option value="05:30 AM">05:30 AM</option>
+                <option value="05:45 AM">05:45 AM</option>
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="06:15 AM">06:15 AM</option>
+                <option value="06:30 AM">06:30 AM</option>
+                <option value="06:45 AM">06:45 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="07:15 AM">07:15 AM</option>
+                <option value="07:30 AM">07:30 AM</option>
+                <option value="07:45 AM">07:45 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="08:15 AM">08:15 AM</option>
+                <option value="08:30 AM">08:30 AM</option>
+                <option value="08:45 AM">08:45 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="09:15 AM">09:15 AM</option>
+                <option value="09:30 AM">09:30 AM</option>
+                <option value="09:45 AM">09:45 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="10:15 AM">10:15 AM</option>
+                <option value="10:30 AM">10:30 AM</option>
+                <option value="10:45 AM">10:45 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="11:15 AM">11:15 AM</option>
+                <option value="11:30 AM">11:30 AM</option>
+                <option value="11:45 AM">11:45 AM</option>
+                <!-- PM Times -->
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="12:15 PM">12:15 PM</option>
+                <option value="12:30 PM">12:30 PM</option>
+                <option value="12:45 PM">12:45 PM</option>
+                <option value="01:00 PM">01:00 PM</option>
+                <option value="01:15 PM">01:15 PM</option>
+                <option value="01:30 PM">01:30 PM</option>
+                <option value="01:45 PM">01:45 PM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="02:15 PM">02:15 PM</option>
+                <option value="02:30 PM">02:30 PM</option>
+                <option value="02:45 PM">02:45 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="03:15 PM">03:15 PM</option>
+                <option value="03:30 PM">03:30 PM</option>
+                <option value="03:45 PM">03:45 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+                <option value="04:15 PM">04:15 PM</option>
+                <option value="04:30 PM">04:30 PM</option>
+                <option value="04:45 PM">04:45 PM</option>
+                <option value="05:00 PM">05:00 PM</option>
+                <option value="05:15 PM">05:15 PM</option>
+                <option value="05:30 PM">05:30 PM</option>
+                <option value="05:45 PM">05:45 PM</option>
+                <option value="06:00 PM">06:00 PM</option>
+                <option value="06:15 PM">06:15 PM</option>
+                <option value="06:30 PM">06:30 PM</option>
+                <option value="06:45 PM">06:45 PM</option>
+                <option value="07:00 PM">07:00 PM</option>
+                <option value="07:15 PM">07:15 PM</option>
+                <option value="07:30 PM">07:30 PM</option>
+                <option value="07:45 PM">07:45 PM</option>
+                <option value="08:00 PM">08:00 PM</option>
+                <option value="08:15 PM">08:15 PM</option>
+                <option value="08:30 PM">08:30 PM</option>
+                <option value="08:45 PM">08:45 PM</option>
+                <option value="09:00 PM">09:00 PM</option>
+                <option value="09:15 PM">09:15 PM</option>
+                <option value="09:30 PM">09:30 PM</option>
+                <option value="09:45 PM">09:45 PM</option>
+                <option value="10:00 PM">10:00 PM</option>
+                <option value="10:15 PM">10:15 PM</option>
+                <option value="10:30 PM">10:30 PM</option>
+                <option value="10:45 PM">10:45 PM</option>
+                <option value="11:00 PM">11:00 PM</option>
+                <option value="11:15 PM">11:15 PM</option>
+                <option value="11:30 PM">11:30 PM</option>
+                <option value="11:45 PM">11:45 PM</option>
+              </select>
+              <span class="get-time-name">EST</span>
+            </div>
+          </div>
+
+          
+          <div class="show-calender">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="calendar-section">
+                  <div class="row no-gutters">
+                    <div class="col-md-6">
+                      <div class="calendar calendar-first" id="calendar_first">
+                        <div class="calendar_header">
+                          <button class="switch-month switch-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path>
+                            </svg>
+                          </button>
+                          <h2></h2>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="calendar calendar-second" id="calendar_second">
+                        <div class="calendar_header">
+                          <h2></h2>
+                          <button class="switch-month switch-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M1.5 8a.75.75 0 0 1 .75-.75h9.69l-2.72-2.72a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.749.749 0 1 1-1.06-1.06l2.72-2.72h-9.69a.75.75 0 0 1-.75-.75"></path>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="publishing-store-time"></div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+            data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+            id="schedulePublish">Schedule
+            publishing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Treeview js -->
+<script src="./assets/js/custom-calender.js"></script>
+<script src="./assets/js/short-code.js"></script>
+
+<script src="./assets/js/select2.min.js"></script>
+<script src="./assets/js/MultiFileUpload.js"></script>
+<script src="./assets/js/cropper.js"></script>

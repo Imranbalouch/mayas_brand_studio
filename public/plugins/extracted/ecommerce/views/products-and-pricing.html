@@ -1,0 +1,508 @@
+<link rel="stylesheet" href="./assets/css/products-and-pricing.css">
+
+<div class="container-xxl container-p-y">
+    <div class="card-header mb-5">
+        <div class="row gap-4 gap-lg-0">
+            <div class="col-md-6">
+                <h3 class="create-title d-flex flex-wrap gap-2">
+                    <span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span>
+                    <!-- <svg style="width: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg> -->
+                    <div>Products and pricing
+                      </br>
+                      <span>HussainCate</span>                    
+                    </div>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="widget-wrapper">
+                    <div class="tab-content">
+                      <div class="row">
+                        <div class="col-12 product-price">
+                          <div class="d-flex flex-wrap gap-2 product-price-main-box product-price-main-box-01">
+                            <div>
+                                <span class="mb-4">Included products</span>
+                                <h2>8</h2>
+                            </div>
+                            <div>
+                                <span class="mb-4">Overall adjustment</span>
+                                <div class="d-flex gap-2 custom-select">
+                                    <select class="form-control selectpicker">
+                                        <option value="Price increase">Price increase</option>
+                                        <option value="Price decrease">Price decrease</option>
+                                    </select>
+                                    <div class="overall-adjustment">
+                                        <div class="input currency-input currency-input2">
+                                            <span class="currency-txt" style="top: 8px;">-</span>
+                                            <input type="number" class="form-control md" value="1">
+                                            <span class="currency-txt-1" style="top: 8px;">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="mb-4">Price overrides</span>
+                                <div class="d-flex gap-13 justify-content-between">
+                                  <p class="mb-2">Fixed pricing</p>
+                                  <p class="mb-2">None</p>
+                                </div>
+                                <div class="d-flex gap-13 justify-content-between">
+                                  <p class="mb-2">Volume pricing</p>
+                                  <p class="mb-2">None</p>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                    </div>
+                    <div class="product-bottom-area">
+                        <label>
+                            <input class="form-check-input" type="checkbox" checked>
+                            Automatically include new products in this catalog
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card border mt-4">
+          <div class="pricing-table">
+            <div class="pricing-table-filters d-flex gap-2 position-relative">
+              <div class="d-flex gap-2 flex-grow-1">
+                <div class="filter-btns flex-grow-1">
+                  <a href="" class="active">All</a>
+                  <a href="">Included</a>
+                  <a href="">Excluded</a>
+                </div>
+                <div class="search-filter-btn">
+                  <span class="searchopen" id="searchOpen">
+                    <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a">
+                      <path fill-rule="evenodd"
+                        d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                      </path>
+                    </svg>
+                    <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a">
+                      <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75"></path>
+                      <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75"></path>
+                      <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z"></path>
+                    </svg>
+                  </span>
+                </div>
+                <div class="filter-search d-flex d-none gap-2">
+                  <div class="input has-icon flex-grow-1">
+                    <span class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a">
+                        <path fill-rule="evenodd"
+                          d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                        </path>
+                      </svg>
+                    </span>
+                    <input type="text" placeholder="Searching in All" class="form-control md" />
+                  </div>
+                  <a href="" id="searchClose" class="btn border border-secondary">Cancel</a>
+                </div>
+              </div>
+              <div>
+                <div class="custom-dropdown-main">
+                  <div class="droupdown-head open-inventory-droupdown">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a">
+                      <path
+                        d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z">
+                      </path>
+                      <path
+                        d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul class="px-3">
+                      <h6>Sort by</h6>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" value="1"> Product title
+                        </label>
+                      </li>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" value="2"> Created
+                        </label>
+                      </li>
+                    </ul>
+                    <div class="hr"></div>
+                    <div class="lodest-first">
+                      <a href="" id="sortAZ"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 14.5a.75.75 0 0 1-.75-.75v-9.69l-2.72 2.72a.749.749 0 1 1-1.06-1.06l4-4a.747.747 0 0 1 1.06 0l4 4a.749.749 0 1 1-1.06 1.06l-2.72-2.72v9.69a.75.75 0 0 1-.75.75">
+                          </path>
+                        </svg> A-Z</a>
+                      <a href="" id="sortZA"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75">
+                          </path>
+                        </svg> Z-A</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="selectDropdown d-none">
+              <div class="card-header d-flex border-bottom rounded-0 flex-wrap p-2 tabs-search-sorting select-sorting">
+                <div class="select-dropdown status">
+                  <div class="droupdown-head one">
+                    <span>Status</span>
+                    <span class="clear-drop d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-checkbox"><input type="checkbox" name="status" value="Active"> Active</label>
+                      </li>
+                      <li>
+                        <label class="custom-checkbox"><input type="checkbox" name="status" value="Draft"> Draft</label>
+                      </li>
+                    </ul>
+                    <a href="#">Clear</a>
+                  </div>
+                </div>
+                <div class="select-dropdown">
+                  <div class="droupdown-head one">
+                    <span>Product vendor <span></span></span>
+                    <span class="clear-drop d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-vendor" value="Acme"> Acme</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-vendor" value="Company 123"> Company 123</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-vendor" value="NomanDigitalGraphiks"> NomanDigitalGraphiks</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-vendor" value="partners-demo"> partners-demo</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-vendor" value="Sterling Ltd"> Sterling Ltd</label>
+                      </li>
+                    </ul>
+                    <a href="#">Clear</a>
+                  </div>
+                </div>
+                <div class="select-dropdown">
+                  <div class="droupdown-head one">
+                    <span>Tagged with <span></span></span>
+                    <span class="clear-drop d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body p-2">
+                    <input type="text" class="form-control md mb-1" />
+                    <a href="#">Clear</a>
+                  </div>
+                </div>
+                <div class="select-dropdown">
+                  <div class="droupdown-head one">
+                    <span>Product type <span></span></span>
+                    <span class="clear-drop d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="boxer"> boxer</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="Bracelet"> Bracelet</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="Earrings"> Earrings</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="Hat"> Hat</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value=""> Necklace</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="Pants"> Pants</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="Shirts"> Shirts</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="product-type" value="sock"> sock</label>
+                      </li>
+                    </ul>
+                    <a href="#">Clear</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="datatables-basic table table-borderless" id="Table_View">
+                <thead>
+                  <tr>
+                    <th style="width: 1px;">
+                      <div class="form-check m-0">
+                        <input class="form-check-input select-all" type="checkbox">
+                      </div>
+                    </th>
+                    <th style="width: 30%;"><g-t>Product</g-t></th>
+                    <th><g-t>Publishing</g-t></th>
+                    <th><g-t>Price</g-t></th>
+                    <th><g-t>Quantity rules</g-t></th>
+                    <th><g-t>Volume pricing</g-t></th>
+                    <th>
+                      <div class="thead-filter d-none">
+                        <span class="selected"><span class="selected-count"></span> selected</span>
+                        <div class="actions">
+                          <a href="" data-bs-toggle="modal" data-bs-target="#includeInCatalog">Include in catalog</a>
+                          <a href="" data-bs-toggle="modal" data-bs-target="#excludeInCatalog">Exclude from catalog</a>
+                        </div>
+                      </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="width: 1px;">
+                      <div class="form-check m-0">
+                        <input class="form-check-input" type="checkbox">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="collection-table-info">
+                        <div class="img">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a"><path d="M10.5 7a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001"></path><path fill-rule="evenodd" d="M7.018 1.5h1.964c.813 0 1.469 0 2 .043.546.045 1.026.14 1.47.366.706.36 1.28.933 1.64 1.639.226.444.32.924.365 1.47.043.531.043 1.187.043 2v1.964c0 .813 0 1.469-.043 2-.045.546-.14 1.026-.366 1.47a3.76 3.76 0 0 1-1.638 1.64c-.445.226-.925.32-1.471.365-.531.043-1.187.043-2 .043h-1.964c-.813 0-1.469 0-2-.043-.546-.045-1.026-.14-1.47-.366a3.76 3.76 0 0 1-1.64-1.638c-.226-.445-.32-.925-.365-1.471-.043-.531-.043-1.187-.043-2v-1.964c0-.813 0-1.469.043-2 .045-.546.14-1.026.366-1.47.36-.706.933-1.28 1.639-1.64.444-.226.924-.32 1.47-.365.531-.043 1.187-.043 2-.043m-1.877 1.538c-.454.037-.715.107-.912.207a2.25 2.25 0 0 0-.984.984c-.1.197-.17.458-.207.912-.037.462-.038 1.057-.038 1.909v1.429l.723-.868a1.75 1.75 0 0 1 2.582-.117l2.695 2.695 1.18-1.18a1.75 1.75 0 0 1 2.604.145l.216.27v-2.374c0-.852 0-1.447-.038-1.91-.037-.453-.107-.714-.207-.911a2.25 2.25 0 0 0-.984-.984c-.197-.1-.458-.17-.912-.207-.462-.037-1.057-.038-1.909-.038h-1.9c-.852 0-1.447 0-1.91.038Zm-2.103 7.821-.006-.08.044-.049 1.8-2.159a.25.25 0 0 1 .368-.016l3.226 3.225a.75.75 0 0 0 1.06 0l1.71-1.71a.25.25 0 0 1 .372.021l1.213 1.516q-.032.09-.07.165c-.216.423-.56.767-.984.983-.197.1-.458.17-.912.207-.462.037-1.057.038-1.909.038h-1.9c-.852 0-1.447 0-1.91-.038-.453-.037-.714-.107-.911-.207a2.25 2.25 0 0 1-.984-.984c-.1-.197-.17-.458-.207-.912"></path></svg>
+                        </div>
+                        <div>
+                          <a href="#" class="title">New smart collection</a>
+                          <div class="sub-title"><a href="#" class="country-attribute-pricing open-varaint">1 variant</a> </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>Included</td>
+                    <td>
+                      <div class="input currency-input currency-input3">
+                        <span class="currency-txt">Rs</span>
+                        <input type="number" class="form-control" id="Price" required placeholder="42.99">
+                        <a href="#">Reset</a>
+                        <span class="applied-variant">Applies to 2 variants</span>
+                      </div>
+                      <div></div>
+                    </td>
+                    <td  data-bs-toggle="modal" data-bs-target="#quantityRules">
+                      <div class="plus-add">
+                        <span>+</span>
+                        Add
+                      </div>
+                    </td>
+                    <td  data-bs-toggle="modal" data-bs-target="#quantityRules">
+                      <div class="plus-add">
+                        <span>+</span>
+                        Add
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="quantityRules" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <form id="nameForm" action="javascript:void(0);" class="modal-content">
+        <div class="modal-header justify-content-between custom-modal-header">
+          <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Edit quantity rules and volume pricing</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Applies to each a variant independently.</p>
+          <div class="duplicate-main">
+            <div class="manage-company-location">
+                <h3>Quantity rules</h3>                
+            </div>
+            <div class="d-flex justify-content-between gap-2 mt-3">
+              <div class="quantity_box">
+                <span>Increment</span>
+                <input type="number" class="form-control" value="1">
+              </div>
+              <div class="quantity_box">
+                <span>Minimum</span>
+                <input type="number" class="form-control" value="1">
+              </div>
+              <div class="quantity_box">
+                <span>Maximum</span>
+                <input type="number" class="form-control" value="1">
+              </div>
+            </div>
+            <div class="manage-company-location mt-5">
+              <h3>Volume pricing</h3>
+              <button type="button" class="add-quantity btn border btn-modal-text waves-effect waves-light mt-3 py-1">
+                <span style="font-size: 20px;margin-right: 10px;">+</span>
+                Add quantity price breaks
+              </button>
+
+              <div class="volume-pricing-box" style="display: none;">
+                <div class="d-flex justify-content-between gap-2">
+                  <div>
+                    <span class="space-custom">Quantity</span>
+                    <div class="input start-box">                    
+                      <span class="currency-txt">Minimum</span>
+                      <input type="number" class="form-control" id="Price" required="" placeholder="" value="1">
+                    </div>
+                  </div>
+                  <div>
+                    <span class="space-custom">Price</span>
+                    <div class="input">
+                      <span class="currency-txt">Rs</span>
+                      <input type="number" class="form-control" id="Price" required="" placeholder="">
+                    </div>
+                  </div>
+                  <div class="delete-icon" style="visibility: hidden;">
+                    <div>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path><path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path><path fill-rule="evenodd" d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z"></path></svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="main-break-section">
+                  <div class="add-break">
+                    <div class="d-flex justify-content-between align-items-center gap-2 mt-4">
+                      <div>
+                        <div class="input start-box">
+                          <span class="currency-txt">Break <number>1</number></span>
+                          <input type="number" class="form-control" id="Price" required="" placeholder="">
+                        </div>
+                      </div>
+                      <div>
+                        <div class="input">
+                          <span class="currency-txt">Rs</span>
+                          <input type="number" class="form-control" id="Price" required="" placeholder="">
+                        </div>
+                      </div>
+                      <div  class="delete-icon" style="display: none;">
+                        <div>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path><path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path><path fill-rule="evenodd" d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z"></path></svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                  <a href="javascript:;" class="break-btn">Add break</a>
+                  <a href="javascript:;" class="delete-btn">Delete break</a>
+                </div>
+
+              </div>
+          </div>
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn border btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+        </div>
+      </form>
+    </div>
+</div>
+
+<div class="modal fade" id="includeInCatalog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Include 1 products in this catalog?</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <p>The products you include will be made visible to the B2B customers you've assigned to this catalog.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary waves-effect waves-light" data-bs-dismiss="modal">Include products</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="excludeInCatalog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Exclude 1 products in this catalog?</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <p>The products you exclude will not be visible to the B2B customers you've assigned to this catalog.</p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary waves-effect waves-light" data-bs-dismiss="modal">Exclude products</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  
+  $(".create-catalogs-btn").on("click", function(e) {
+    e.preventDefault();
+    let page = 'create-catalogs';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  $(".open-varaint").on("click", function(e) {
+    e.preventDefault();
+    let page = 'catalogs-variant';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+</script>

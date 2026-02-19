@@ -1,0 +1,63 @@
+.market-country-footer {
+  background-color: #f7f7f7;
+  color: #616161;
+}
+
+.market-country-footer a {
+  color: #005bd3;
+}
+
+.market-country-footer a:hover {
+  text-decoration: underline;
+}
+
+.primary-txt {
+  font-size: 13px;
+  color: #616161;
+}
+
+.languages-list-table {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+}
+
+.languages-list-table table {
+  table-layout: fixed;
+}
+
+.languages-list-table table thead {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.languages-list-table table th:nth-child(1) {
+  width: 35%;
+}
+
+.languages-list-table table th,
+.languages-list-table table td {
+  padding: 8px 16px !important;
+  color: #303030;
+  font-weight: 500;
+}
+
+.languages-list-table table td .default {
+  display: inline-block;
+  padding: 2px 8px;
+  color: #616161;
+  background-color: #0000000f;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.languages-list-table table td .url {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}

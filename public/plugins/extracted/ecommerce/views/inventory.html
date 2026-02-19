@@ -1,0 +1,771 @@
+<style>
+  /* Table Heading Css Start */
+  span.text-muted.text-truncate-2.custom-width {
+    max-width: 300px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+
+  .inventory-dropdown .dropdown-menu.show {
+    overflow: visible;
+  }
+
+  /* button.btn.border.dropdown-toggle.border-custom-droupdown {
+  border: solid 1px #ccc !important;
+  padding: 3px 5px !important;
+  width: 50px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-dropdown.inventory .dropdown-menu {
+  padding: 0;
+  border-radius: 12px !important;
+  min-width: 250px !important;
+  overflow: hidden;
+}
+
+.table-dropdown.inventory .dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: solid 1px #ccc;
+}
+
+.table-dropdown.inventory .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item span {
+  color: #000;
+  font-weight: 500;
+}
+
+.dropdown.mb-2.mb-md-0.table-dropdown.inventory.show h6 {
+  font-weight: 600;
+  padding: 5px 5px 0 7px;
+} */
+
+  .inventory-main .dataTables_wrapper  {
+    overflow: auto;
+  }
+
+  .custom-droupdown-one,
+  .custom-dropdown-main {
+    position: relative;
+  }
+
+  .custom-droupdown-one.show,
+  .custom-dropdown-main.show {
+    z-index: 100;
+  }
+
+  .custom-dropdown-main.show>.droupdown-body {
+    display: block !important;
+  }
+
+  .droupdown-body-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 5px;
+    align-items: center;
+  }
+
+
+  .droupdown-body.one {
+    background: #fff;
+    padding: 10px 5px;
+    border: solid 1px #ccc;
+    width: 200px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 99;
+    display: none;
+  }
+
+  .droupdown-body-item-one {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 5px;
+  }
+
+
+  .droupdown-body-item-one span {
+    color: #000;
+    font-weight: 400;
+  }
+
+  .add-damaged-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .quantity-main {
+    margin-top: 10px;
+  }
+
+  .quantity-main span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .quantity-main input {
+    border: solid 1px #ccc;
+    padding: 10px 5px;
+    border-radius: 5px;
+  }
+
+  .add-damaged {
+    padding: 0 5px;
+    display: none;
+  }
+
+  .droupdown-body-item span {
+    color: #000;
+  }
+
+  .order-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+  }
+
+  .order-num-main {
+    padding: 0 5px;
+  }
+
+  .order-main span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #a3a0a0d9;
+  }
+
+  .order-main a {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .available-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .available-input {
+    border: solid 1px #ccc;
+    padding: 10px 5px;
+    border-radius: 5px;
+    width: 100px;
+    height: 30px;
+  }
+
+  .droupdown-head.available {
+    position: relative;
+    position: relative;
+    width: 120px;
+    padding: 0;
+    border: none;
+  }
+
+  .select-input-main {
+    padding: 0 5px;
+  }
+
+  .droupdown-body.right {
+    right: 0;
+  }
+
+  .move-available {
+    padding: 0 5px;
+    display: none;
+  }
+
+  .delete-control {
+    padding: 0 5px;
+    display: none;
+  }
+
+  /* select custom css start */
+
+  .droupdown-head.open-inventory-droupdown.customize-slect {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .droupdown-body.right.select-body {
+    background: #fff;
+    padding: 0;
+    border: solid 1px #ccc;
+    border-top: none;
+    width: 228px;
+    border-radius: 5px;
+    position: absolute;
+    margin-top: 0;
+    z-index: 99;
+    display: none;
+    text-align: start;
+  }
+
+  .droupdown-head.open-inventory-droupdown.customize-slect {
+    width: 100%;
+    padding: 8px;
+  }
+
+  .droupdown-head.open-inventory-droupdown.customize-slect span {
+    color: #000;
+    cursor: pointer;
+  }
+
+  ul.select-width {
+    margin-bottom: 0;
+  }
+
+  ul.select-width li {
+    padding: 10px;
+    border-bottom: solid 1px #ccc;
+    color: #000;
+    cursor: pointer;
+  }
+
+  ul.select-width li:last-child {
+    border-bottom: none;
+  }
+
+  ul.select-width li:hover {
+    background-color: #9C845E;
+    color: #fff;
+    border-bottom: none;
+  }
+
+  .img_custom {
+    height: 60px;
+    width: 60px;
+    object-fit: contain;
+    /* border: 1px solid #000; */
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .disable {
+    opacity: 0.4;
+    pointer-events: none
+  }
+
+  .inventory-dropdown .dropdown-toggle {
+    color: #303030 !important;
+  }
+
+  table thead {
+    position: relative;
+  }
+
+  table .thead-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 20px;
+    padding-inline-start: 50px;
+    text-transform: none;
+    z-index: 0;
+  }
+
+  table .thead-filter .actions {
+    display: flex;
+    gap: 6px;
+  }
+
+  table .thead-filter .actions>a {
+    font-size: 12px;
+    display: inline-flex;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: #303030 !important;
+  }
+
+  table .thead-filter .actions>a:hover {
+    background-color: #eeeeee4b;
+  }
+
+  table .thead-filter .dropdown .dropdown-toggle::after {
+    display: none;
+  }
+
+  table .thead-filter .dropdown .dropdown-toggle {
+    cursor: pointer;
+    display: inline-flex;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  table .thead-filter .dropdown .dropdown-menu {
+    padding: 5px;
+  }
+
+  table .thead-filter .dropdown .dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    color: #8e0b21;
+    padding: 6px 8px;
+    border-radius: 6px;
+  }
+
+  table .thead-filter .dropdown .dropdown-menu a:hover {
+    background-color: #fee1e6;
+  }
+
+  table .select-all {
+    position: relative;
+    z-index: 1;
+  }
+
+
+  .custom-dropdown-main .custom-sort ul {
+    padding-left: 15px;
+  }
+</style>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+  <!-- DataTable with Buttons -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="d-flex gap-4">
+        <h3 class="mb-4">Inventory:</h3>
+        <!--  -->
+        <select class="form-control select2 selectpicker mb-2" id="warehouse_location_id" name="warehouse_location_id">
+
+        </select>
+      </div>
+    </div>
+    <!-- <div class="col-lg-6 d-flex justify-content-start flex-wrap justify-content-md-end align-items-center gap-2">
+      <a data-bs-toggle="modal" href="#ExportModal" class="btn btn-secondary">
+        <g-t>Export</g-t>
+      </a>
+      <a data-bs-toggle="modal" href="#ImportModal" class="btn btn-secondary">
+        <g-t>Import</g-t>
+      </a>
+    </div> -->
+
+  </div>
+  <div class="card inventory-main">
+    <div class="card-header p-0">
+      <div class="row">
+        <div  class="col-12">
+          <div class="">
+            <div class="card-header d-flex border-top rounded-0 flex-wrap pb-4 pt-4 tabs-search-sorting">
+               
+              <div id="Table_View_filter" class="table-search-main dataTables_filter">
+                <button class="cursor" onclick="return false;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                      stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <input type="text" id="custom_search" placeholder="Searching" required="">
+              </div>
+              <div class="search-icon-button">
+                <span class="cancel">
+                  Cancel
+                </span> 
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="searchopen" id="searchOpen">
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                    </path>
+                  </svg>
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75">
+                    </path>
+                    <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75">
+                    </path>
+                    <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z"></path>
+                  </svg>
+                </span>
+                 
+              </div>
+            </div>
+            <div class="selectDropdown">
+              <div
+                class="card-header d-flex border-top rounded-0 flex-wrap pb-4 pt-4 tabs-search-sorting select-sorting">
+                <!-- Add Filter Dropdown -->
+                  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-datatable pt-0">
+      <table class="datatables-basic table" id="Table_View">
+        <thead>
+          <tr>
+            <th width="5%"></th>
+            <th width="25%" data-breakpoints="lg">Product Details</th>
+            <th width="10%" data-breakpoints="md">SKU</th>
+            <th width="10%" data-breakpoints="md">Unavailable</th>
+            <th width="10%" data-breakpoints="md">Committed</th>
+            <th width="10%" data-breakpoints="md">Available</th>
+            <th width="10%" data-breakpoints="md">OnHand</th>
+            <th width="1%" class="d-none" style="visibility: hidden;" data-breakpoints="md">InComing</th>
+            <th width="1%" class="d-none" style="visibility: hidden;" data-breakpoints="md">Vendor</th>
+            <th width="1%" class="d-none" style="visibility: hidden;" data-breakpoints="md">Type</th>
+            <th width="1%" class="d-none" style="visibility: hidden;" data-breakpoints="md">Sales Channel</th>
+            <th width="1%" class="d-none" style="visibility: hidden;" data-breakpoints="md">Tags</th>
+            <th class="position-static d-none">
+              <div class="thead-filter d-none">
+                <span class="selected"><span class="selected-count"></span>selected</span>
+                <div class="actions">
+                  <a href="">Bulk edit</a>
+                  <a data-bs-toggle="modal" href="#Updatequantities">Update quantities</a>
+                  <a href="#" class="create-transfer">Create transfer</a>
+                  <a href="" class="create-purchase-order">Create purchase order</a>
+                  <div class="dropdown">
+                    <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                      <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16"
+                        height="16">
+                        <path d="M4 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                        <path d="M9.5 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001">
+                        </path>
+                        <path d="M13.5 9.5a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001">
+                        </path>
+                      </svg>
+                    </div>
+                    <div class="dropdown-menu publishing-dropdown">
+                      <a href="">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"
+                          fill="#8e0b21">
+                          <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75">
+                          </path>
+                          <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z">
+                          </path>
+                          <path fill-rule="evenodd"
+                            d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                          </path>
+                        </svg>
+                        Delete collection
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- Data will be populated here via AJAX -->
+        </tbody>
+
+      </table>
+      <div id="inventory_count" class="dataTables_info" style="display: none;margin-left: 25px;
+    font-size: medium;"></div>
+      <div id="pagination"></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Maximum Charactor Modal Start -->
+<div class="modal fade" id="MaximumCharactor" aria-hidden="true" aria-labelledby="MaximumCharactorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Duplicate
+          view</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <label for="nameInput">Name</label>
+            <div class="input">
+              <input type="text" id="search_type" style="display: none;" />
+              <input type="text" id="duplicateModalInput" maxlength="40" name="text" placeholder="Enter name" required>
+              <div class="count-input" id="the-count">
+                <span id="current">0</span>
+                <span id="maximum">/ 40</span>
+              </div>
+              <span class="error-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-dark btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Create
+          View</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Maximum Charactor Modal Start -->
+<div class="modal fade" id="Updatequantities" aria-hidden="true" aria-labelledby="UpdatequantitiesLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Update On
+          hand quantities</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <div class="update-qty-main">
+          <div class="row">
+            <div class="col-8">
+              <div class="radio-input-main">
+                <div class="add-radio">
+                  <label>
+                    <input style="display: none;" name="add-set" type="radio">
+                    <span>Add</span>
+                  </label>
+                  <label>
+                    <input style="display: none;" name="add-set" type="radio">
+                    <span>Set</span>
+                  </label>
+                </div>
+                <input class="form-control" type="number">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="variant-text-main">
+          <span>2 variants will be changed:</span>
+          <ul>
+            <li>LED High Tops Shirt - XL / Green <span>0</span></li>
+            <li>LED High Tops Shirt - XL / Blue <span>0</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-dark btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Export Modal Start -->
+<div class="modal fade" id="ExportModal" aria-hidden="true" aria-labelledby="ExportModalLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header justify-content-between">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Export
+          Product</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="export-main">
+          <p>This CSV file can update all product information. To update just inventory quantities use the
+            <a href="">CSV file for inventory.</a>
+          </p>
+          <div class="export-button">
+            <span>Export</span>
+            <label>
+              <input type="radio" name="all" value="current"> Current Page
+            </label>
+            <label>
+              <input type="radio" name="all" value="all"> All product
+            </label>
+            <label disabled>
+              <input type="radio"> Selected: 0 products
+            </label>
+            <label disabled>
+              <input type="radio"> 2 products matching your search
+            </label>
+          </div>
+          <div class="export-button">
+            <span>Export as</span>
+            <label>
+              <input type="radio" name="excel" value="excel"> CSV for Excel, Numbers, or other spreadsheet
+              programs
+            </label>
+            <label>
+              <input type="radio" name="csv" value="csv"> Plain CSV file
+            </label>
+          </div>
+          <p>Learn more about <a href="">exporting products to CSV file</a> or the <a href="">bulk
+              editor.</a></p>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-dark btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" id="export-product" class="btn btn-primary btn-modal-text">Export
+          products</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Export Modal End -->
+
+<!-- Import Modal Start -->
+<div class="modal fade" id="ImportModal" aria-hidden="true" aria-labelledby="ImportModalLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="import-form" class="modal-content">
+      <div class="modal-header custom-modal-header justify-content-between">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Import
+          products by CSV</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="import-main">
+          <label>
+            <input hidden type="file" id="import-file">
+            <span>Add File</span>
+          </label>
+        </div>
+        <div>
+          <div class="import-flex-main">
+            <div class="file-name-icon">
+              <div class="icon">
+                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M4.75 2c-.69 0-1.25.56-1.25 1.25v9.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25v-9a.75.75 0 0 1 1.5 0v9a2.75 2.75 0 0 1-2.75 2.75h-6.5a2.75 2.75 0 0 1-2.75-2.75v-9.5a2.75 2.75 0 0 1 2.75-2.75h3a2.75 2.75 0 0 1 2.75 2.75v6.25a2.5 2.5 0 0 1-5 0v-5.5a.75.75 0 0 1 1.5 0v5.5a1 1 0 0 0 2 0v-6.25c0-.69-.56-1.25-1.25-1.25z">
+                  </path>
+                </svg>
+              </div>
+              <span></span>
+            </div>
+            <label>
+              <input hidden type="file">
+              <span>Replace File</span>
+            </label>
+          </div>
+          <div class="custom-checkbox-main">
+            <!-- <label class="custom-checkbox">
+          <input name="checkbox" type="checkbox" />
+          Overwrite products with matching handles.
+          </label>
+          <span>Existing values will be replaced for all columns included in the CSV.</span>
+          <label class="custom-checkbox">
+          <input name="checkbox" type="checkbox" />
+          Publish new products to all sales channels.
+          </label> -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-dark btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-modal-text">Import</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Import Modal End -->
+<script src="./assets/js/select2.min.js"></script>
+
+<script>
+
+  $(".create-transfer").on("click", function (e) {
+    e.preventDefault();
+    let page = 'create-transfer';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  $(".create-purchase-order").on("click", function (e) {
+    e.preventDefault();
+    let page = 'create-purchase-order';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  $(document).ready(function () {
+    $("#incoming_list .tab-value").on("click", function () {
+      // Pehle sabhi tabs se active class hatao
+      $("#incoming_list .tab-value").removeClass("active");
+      $(".droupdown-body > div").removeClass("active");
+
+      // Jo clicked tab hai usko active karo
+      $(this).addClass("active");
+
+      // Check karo konsa tab click hua hai
+      if ($(this).attr("id") === "Exactvalue") {
+        $(".tab-item-one").addClass("active").show();
+        $(".tab-item-two").removeClass("active").hide();
+      } else if ($(this).attr("id") === "Range") {
+        $(".tab-item-two").addClass("active").show();
+        $(".tab-item-one").removeClass("active").hide();
+      }
+    });
+
+    // Default state ke liye ensure karein ke sirf tab-item-one visible ho
+    $(".tab-item-two").hide();
+  });
+
+
+  // $("#Table_View .select-all").on("change", function () {
+  //     if ($(this).prop("checked") === true) {
+  //         $("#Table_View .thead-filter").removeClass("d-none");
+  //         $("#Table_View .form-check-input:not(.select-all)").prop("checked", true);
+  //     } else {
+  //         $("#Table_View .thead-filter").addClass("d-none");
+  //         $("#Table_View .form-check-input:not(.select-all)").prop("checked", false);
+  //     }
+  //     isAnyChecked();
+  // });
+
+  // $("#Table_View .form-check-input:not(.select-all)").on("change", function () {
+  //     isAnyChecked();
+  // });
+
+  // function isAnyChecked() {
+  //     let anyChecked = false;
+  //     let totalCheckedCount = 0;
+
+  //     $("#Table_View .form-check-input:not(.select-all)").each((i, element) => {
+  //         if ($(element).prop("checked")) {
+  //             totalCheckedCount++;
+  //             if (!anyChecked) {
+  //                 anyChecked = true;
+  //             }
+  //         }
+  //     });
+
+  //     $("#Table_View .thead-filter .selected-count").html(totalCheckedCount);
+
+  //     if (parseInt(totalCheckedCount) > 0) {
+  //         $("#Table_View .thead-filter").removeClass("d-none");
+  //     } else {
+  //         $("#Table_View .thead-filter").addClass("d-none");
+  //     }
+
+  //     if (anyChecked) {
+  //         $("#Table_View .select-all").prop("checked", true);
+  //     } else {
+  //         $("#Table_View .select-all").prop("checked", false);
+  //     }
+  // }
+</script>

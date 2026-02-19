@@ -1,0 +1,255 @@
+
+<!-- <form action id="addgiftCard" method="post" enctype="multipart/form-data"> -->
+  <div class="container-xxl container-p-y gift-card giftcard-create-container">
+    <div class="card-header mb-5">
+      <div class="row gap-4 gap-lg-0">
+        <div class="col-md-6">
+          <h3 class="">
+            <span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span>
+            Create Gift Card</h3>
+        </div>
+      </div>
+    </div>
+  <form action id="addgiftCard" method="post" enctype="multipart/form-data">
+    
+    <input type="hidden" id="getCustomerId" value="">
+    <input type="hidden" id="getCustomerName" value="">
+    <input type="hidden" id="getCustomerEmail" value="">
+    <input type="hidden" id="giftcard" value="">
+    <input type="hidden" id="note" value="" name="note" >
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card border">
+          <div class="card-body p-4">
+            <label class="form-label required" for="name"><g-t>Gift card code</g-t></label>
+            <div class="input mb-4">
+              
+              <input type="text" class="form-control md" name="code" placeholder="Enter Code" value="">
+              <span class="error-txt"></span>
+            </div>
+
+            <label class="form-label required" for="name"><g-t>Initial value</g-t></label>
+            <div class="input mb-4">
+              <input type="text" class="form-control md" name="value" value="10.00" placeholder="AED 10.00">
+              <span class="error-txt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card border mt-5">
+          <div class="card-body p-4">
+            <label class="form-label" for="name"><g-t>Expiration date</g-t></label>
+            <p>
+              Countries have different laws for gift card expiry dates. Check the laws for your country before changing
+              this date.
+            </p>
+
+            <div class="input-radio mb-4">
+              <label class="custom-radio flex-nowrap">
+                <input type="radio" name="expiration-date" value="no-expiration-date" checked>
+                No Expiration Date
+              </label>
+            </div>
+            <div class="input-radio mb-4">
+              <label class="custom-radio flex-nowrap">
+                <input type="radio" name="expiration-date" value="expiration-date-set">
+                Set Expiration Date
+              </label>
+            </div>
+            <div class="expires-input">
+              <label class="form-label" for="date"><g-t>Expires On</g-t></label>
+              <div class="input mb-4">
+                <input type="date" class="form-control md" id="dateInput">
+                <span class="error-txt"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end gap-3 align-items-center mt-4">
+          <button class="btn btn-primary waves-effect waves-light">Submit</button>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card border">
+          <div class="widget-wrapper">
+            <div class="card-body p-4">
+              <label class="form-label" for="name"><g-t>Customer</g-t></label>
+
+              <div class="dropdown customer-dropdown">
+                <div class="input has-icon" data-bs-toggle="dropdown" aria-expanded="false"
+                  data-bs-auto-close="outside">
+                  <span class="icon" style="top: 7px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a">
+                      <path fill-rule="evenodd"
+                        d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                      </path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control md dropdown-toggle" id="searchInput"
+                    placeholder="Search customers" autocomplete="off" />
+                </div>
+                <div class="dropdown-menu">
+                  <div class="btn-wrapper">
+                    <a data-bs-toggle="modal" href="#create-customer" class="btn btn-secondary" style="text-transform: none;">
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                          stroke="#303030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="16" />
+                          <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                      </span>
+                      Create a new customer
+                    </a>
+                  </div>
+                  <div class="customer-list">
+                    <ul>
+                      <!-- <li>
+                        <a href="">abc@fif.com</a>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="selected-customer justify-content-between align-items-center pt-2" style="display: none !important;">
+                <a href="#">
+                </a>
+                <button class="btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                    <path d="M10.72 11.78a.75.75 0 1 0 1.06-1.06l-2.72-2.72 2.72-2.72a.75.75 0 0 0-1.06-1.06l-2.72
+                     2.72-2.72-2.72a.75.75 0 0 0-1.06 1.06l2.72 2.72-2.72 2.72a.75.75 0 1 0 1.06 1.06l2.72-2.72z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card border mt-5">
+          <div class="widget-wrapper">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="name"><g-t>Notes</g-t></label>
+
+                <a class="btn" href="#add-note" data-bs-toggle="modal">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000000" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z">
+                      </path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+
+              <div class="description mt-4">
+                <p class="mb-0">
+                  No notes
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+  </div>
+
+  <div class="modal fade custom-modal-create-customer" id="create-customer" aria-hidden="true"
+    aria-labelledby="create-customer" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <form id="createCustomer" method="post" action="javascript:void(0);" class="modal-content">
+        <div class="modal-header justify-content-between custom-modal-header">
+          <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Create New Customer
+          </h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="duplicate-main row">
+            <div class="col-lg-6">
+              <label for="nameInput" class="form-label">First Name</label>
+              <div class="input">
+                <input type="text" id="search_type" style="display: none;" />
+                <input type="text" id="first_name" maxlength="40" name="first_name" placeholder="Enter first name"
+                  required>
+                <span class="error-text"></span>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <label for="nameInput" class="form-label">Last Name</label>
+              <div class="input">
+                <input type="text" id="search_type" style="display: none;" />
+                <input type="text" id="last_name" maxlength="40" name="last_name" placeholder="Enter last name"
+                  required>
+                <span class="error-text"></span>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <label for="nameInput" class="form-label">Email</label>
+              <div class="input">
+                <input type="email" id="search_type" style="display: none;" />
+                <input type="email" id="email" maxlength="40" name="email" placeholder="Enter email"
+                  required>
+                <span class="error-text"></span>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <label class="form-label"><g-t>Phone</g-t></label>
+              <div class="input custom-tel">
+                <input type="tel" name="phone" id="phone" class="form-control md" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+                <span class="error-txt"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary btn-modal-text">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal fade custom-add-note-modal" id="add-note" aria-hidden="true" aria-labelledby="add-note" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <form id="nameForm" action="javascript:void(0);" class="modal-content">
+        <div class="modal-header justify-content-between custom-modal-header">
+          <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Add Note</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="duplicate-main">
+            <div>
+              <div class="input">
+                <textarea id="search_type" style="display: none;"></textarea>
+                <textarea rows="4" id="noteModalInput" maxlength="5000" name="dummynote" class="custom-textarea" required></textarea>
+                <div class="count-input-main" id="the-count">
+                  <span id="current">0</span>
+                  <span id="maximum">/ 5000</span>
+                </div>
+                <span class="error-text"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary btn-modal-text" id="noteData" data-bs-dismiss="modal">Done</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<!-- </form> -->

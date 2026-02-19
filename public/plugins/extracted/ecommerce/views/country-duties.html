@@ -1,0 +1,146 @@
+<link rel="stylesheet" href="./assets/css/country-duties.css">
+
+<div class="container-xxl container-p-y">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-12">
+        <h3 class="d-flex align-items-center gap-3">
+          <span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span>
+          <g-t>Duties and taxes</g-t>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card border">
+        <div class="card-header p-4 pb-0">
+          <h5>Storefront and checkout pricing</h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="add-taxes">
+            <span>Add taxes</span>
+            <div class="dropdown taxes-dropdown">
+              <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a"><path fill-rule="evenodd" d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z"></path></svg>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end">
+                <div class="body">
+                  <h6 class="mb-4 mt-1">Duties and taxes</h6>
+                  <div class="add-international-nonte">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#003a5a"><path d="M8 12a.75.75 0 0 1-.75-.75v-3.5a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75"></path><path d="M7 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"></path><path fill-rule="evenodd" d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path></svg>
+                    Add international regions to collect duties
+                  </div>
+                  <div class="domestic-box mt-3">
+                    <div class="domestic-head">
+                      <span>Domestic taxes</span>
+                      <span class="collecting">Collecting</span>
+                    </div>
+                    <div class="domestic-body">
+                      <div class="add-tax-tag">
+                        <span class="tag">Add taxes</span>
+                        <span id="showTaxes">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a"><path fill-rule="evenodd" d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z"></path></svg>
+                        </span>
+                      </div>
+                      <div class="d-none" id="Taxes">
+                        <label class="form-label">Taxes</label>
+                        <div class="custom-select-group">
+                          <div class="selected-btn">
+                            <span>Add taxes</span>
+                            <input type="text" value="Add taxes" hidden />
+                          </div>
+                          <div class="custom-select-dropdown border">
+                            <div class="custom-select-option">
+                              <div class="name">Dynamic</div>
+                              <div class="desctiption">Add taxes to total at checkout</div>
+                            </div>
+                            <div class="custom-select-option">
+                              <div class="name">Don’t add taxes</div>
+                              <div class="desctiption">Total won’t include taxes</div>
+                            </div>
+                            <div class="custom-select-option active">
+                              <div class="name">Add taxes</div>
+                              <div class="desctiption">Will be added to total at checkout</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="checkout-preview-box mt-3">
+                    <div class="checkout-head">
+                      <span>Checkout preview</span>
+                      <span>Pakistan</span>
+                    </div>
+                    <div class="checkout-body">
+                      <div class="product-item">
+                        <div class="img">
+                          <img src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/product-bag-DJPfX1MC7Jw-.svg" width="38" alt="">
+                        </div>
+                        <div class="name">
+                          <div class="txt-placeholder mb-2" style="width: 80%;"></div>
+                          <div class="txt-placeholder" style="width: 60%;"></div>
+                        </div>
+                        <div class="price">Rs 100.00</div>
+                      </div>
+                      <div class="shipping-area mt-4">
+                        <div>
+                          <span>Shipping</span>
+                          <span>Rs 10.00</span>
+                        </div>
+                        <div class="total">
+                          <span>Taxes</span>
+                          <span>Rs 110.00</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="footer">
+                  <button type="button" onclick="document.body.click()" class="btn border text-dark">Cancel</button>
+                  <button type="button" class="btn btn-primary">Done</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4">
+        <div class="card-header p-4 pb-0">
+          <h5>Collect duties and import taxes
+            <span class="res-tooltip bottom-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="17" height="17" fill="#8a8a8a"><path d="M8 12a.75.75 0 0 1-.75-.75v-3.5a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75"></path><path d="M7 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"></path><path fill-rule="evenodd" d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path></svg>
+              <div class="res-tooltip-txt">View report</div>
+            </span>
+          </h5>
+        </div>
+        <div class="card-body p-4">
+          <div class="market-country-card disabled">
+            <div class="head d-flex gap-1 align-items-center">
+              <div class="form-check m-0">
+                <input class="form-check-input" type="checkbox" disabled>
+              </div>
+              <span class="total">0</span> selected
+            </div>
+            <div class="body">
+              <a href="#" class="market-country-item">
+                <div class="name">
+                  <div class="form-check m-0">
+                    <input class="form-check-input" type="checkbox" disabled>
+                  </div>
+                  <div>
+                    <img src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/pk-C6GKfae7SBqL.svg" width="32" alt="">
+                  </div>
+                  <div>
+                    <h5 class="m-0">Pakistan</h5>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

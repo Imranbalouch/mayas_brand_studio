@@ -1,0 +1,477 @@
+<link rel="stylesheet" href="./assets/css/edit-giftcard.css">
+
+<form action id="editgiftCard" method="post" enctype="multipart/form-data">
+  <input type="hidden" id="note" value="" name="note" >
+  <input type="hidden" id="dateInputHide">
+  <input type="hidden" id="getCustomerId" value="">
+  <input type="hidden" id="getCustomerName" value="">
+  <input type="hidden" id="getCustomerEmail" value="">
+  <input type="hidden" id="getStatus" value="">
+
+  <div class="container-xxl container-p-y gift-card edit-card-container">
+    <div class="card-header mb-5">
+      <div class="row gap-4 gap-lg-0">
+        <div class="col-md-4">
+          <h3><span class="page-back-btn" onclick="window.history.back();"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75"></path></svg></span><text>{{Code}}</text>
+            <span id="getStatusText" class="text-capitalize page-title">
+              Active
+            </span>
+          </h3>
+        </div>
+        <div class="col-md-4">
+          <div class="d-flex justify-content-end gap-3 align-items-center">
+            <a href="javascript:;" id="getStatusGiftCard" class="btn btn-secondary waves-effect waves-light">Deactivate</a>
+            <button class="btn btn-primary waves-effect waves-light">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card border">
+          <div class="card-body p-4">
+            <div class="code-wrapper d-flex justify-content-between align-items-center">
+              <span>•••• •••• •••• <span class="codeText">wjd6</span></span>
+
+              <a href="#edit-expiration" id="edit-expiration-date" data-bs-toggle="modal" class="btn pe-0">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000000" width="16" height="16">
+                  <path fill-rule="evenodd"
+                    d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z">
+                  </path>
+                </svg>
+              </a>
+            </div>
+
+            <div class="expiration-wrapper row">
+              <div class="expiration-title-wrapper col-lg-6">
+                <div class="expiration-title">
+                  <h5>Expiration date</h5>
+                  <span class="expiryData"></span>
+                </div>
+                <div class="recipient-title d-none">
+                  <h5>Recipient</h5>
+                  <span>None</span>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="image-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="86" height="57" viewBox="0 0 86 57" fill="none">
+                    <g clip-path="url(#clip0_3867_4783)">
+                      <path
+                        d="M3.58026 0H82.4196C84.3952 0 86 1.59539 86 3.55952V53.4405C86 55.4047 84.3953 57 82.4196 57H3.58026C1.60469 57.0081 0 55.4127 0 53.4405V3.55952C0 1.59529 1.60469 0 3.58026 0Z"
+                        fill="#E9AF58" />
+                      <path d="M86 20.4248H0V29.45H86V20.4248Z" fill="#CD5747" />
+                      <path
+                        d="M47.1894 19.9502H38.7096C27.957 23.5696 20.1787 33.8629 20.1787 45.9706V50.1697H20.3181L24.7718 46.5739L29.0381 50.0225V45.9706C29.0381 37.2972 34.9765 30.0012 42.9519 28.0585C50.9274 30.0012 56.8656 37.2972 56.8656 45.9706V50.0225L61.1322 46.5739L65.5858 50.1697H65.725V45.9706C65.7155 33.8629 57.9371 23.5696 47.1894 19.9502Z"
+                        fill="#EC856F" />
+                      <path d="M48.0447 0H37.9553V57H48.0447V0Z" fill="#CD5747" />
+                      <path
+                        d="M63.1894 9.67692L46.6033 20.4249L64.8603 19.8333V10.5566C64.8603 9.71587 63.9053 9.21285 63.1894 9.67692ZM22.3741 9.67692L39.3966 20.425L20.6592 19.8334V10.5566C20.6592 9.71587 21.6394 9.21285 22.3741 9.67692Z"
+                        fill="#CD5747" />
+                      <path
+                        d="M68.8006 11.5228L47.5642 20.0572V29.4499H71.1062V13.0791C71.1062 11.8909 69.9039 11.0794 68.8006 11.5228ZM16.7662 11.5228L38.4358 20.0572V29.4499H14.4136V13.0791C14.4136 11.8909 15.6403 11.0794 16.7662 11.5228Z"
+                        fill="#EC856F" />
+                      <path
+                        d="M69.0242 35.097L47.5643 29.4502H71.1062V33.3615C71.1062 34.5227 70.083 35.3756 69.0242 35.097ZM16.5378 35.097L38.4358 29.4502H14.4136V33.3615C14.4136 34.5227 15.4576 35.3756 16.5378 35.097Z"
+                        fill="#CD5747" />
+                      <path
+                        d="M47.3119 30.4H38.688C38.0195 30.4 37.4749 29.8704 37.4749 29.2201V20.6549C37.4749 20.0048 38.0195 19.4751 38.688 19.4751H47.3119C47.9804 19.4751 48.525 20.0047 48.525 20.655V29.228C48.525 29.8783 47.9886 30.4 47.3119 30.4Z"
+                        fill="#DE6A5A" />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_3867_4783">
+                        <rect width="86" height="57" rx="8" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card border mt-5">
+          <div class="card-body p-4">
+            <div class="expiration-wrapper row mt-3">
+              <div class="expiration-title-wrapper bottom">
+                <div class="expiration-title col-lg-6">
+                  <span>Current Balance</span>
+                  <h5>AED <price></price> </h5>
+                </div>
+                <div class="recipient-title col-lg-6">
+                  <span>Initial balance</span>
+                  <h5>AED <price></price> </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="card-body p-4">
+            <label class="form-label" for="name"><g-t>Expiration date</g-t></label>
+            <p>
+              Countries have different laws for gift card expiry dates. Check the laws for your country before changing
+              this date.
+            </p>
+
+            <div class="input-radio mb-4">
+              <label class="custom-radio flex-nowrap">
+                <input type="radio" name="expiration-date" value="no-expiration-date">
+                No Expiration Date
+              </label>
+            </div>
+            <div class="input-radio mb-4">
+              <label class="custom-radio flex-nowrap">
+                <input type="radio" name="expiration-date" value="expiration-date-set">
+                Set Expiration Date
+              </label>
+            </div>
+            <div class="expires-input">
+              <label class="form-label" for="date"><g-t>Expires On</g-t></label>
+              <div class="input mb-4">
+                <input type="date" class="form-control md" name="date" id="dateInput">
+                <span class="error-txt"></span>
+              </div>
+            </div>
+          </div> -->
+        </div>
+
+        <!-- <div class="time-line-main">
+          <span>Timeline</span>
+          <div class="comment-profile-main mt-4">
+            <div class="comment-header-main">
+              <span>NI</span>
+              <input placeholder="Leave a comment...." type="text">
+            </div>
+            <div class="comment-footer-main">
+              <div class="d-flex align-items-center gap-4">
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M9.5 5a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5a.75.75 0 0 0-.75-.75">
+                    </path>
+                    <path d="M5.75 5.75a.75.75 0 0 1 1.5 0v1.5a.75.75 0 0 1-1.5 0z"></path>
+                    <path
+                      d="M9.522 9.983a2.5 2.5 0 0 1-3.044 0 2.5 2.5 0 0 1-.893-1.336.75.75 0 1 0-1.448.388 3.999 3.999 0 0 0 7.727 0 .75.75 0 1 0-1.45-.388 2.5 2.5 0 0 1-.892 1.336">
+                    </path>
+                    <path fill-rule="evenodd"
+                      d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0">
+                    </path>
+                  </svg>
+                </a>
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M5.738 2.987a5.498 5.498 0 0 1 7.762 5.013c0 .874-.227 1.44-.5 1.773a1.26 1.26 0 0 1-1 .477c-.639 0-.96-.222-1.162-.523-.236-.355-.374-.93-.374-1.727v-2.571a.749.749 0 0 0-1.28-.531c-.437-.3-1.012-.505-1.755-.505-1.159 0-1.952.6-2.422 1.352-.45.72-.614 1.58-.614 2.255s.164 1.536.614 2.255c.47.752 1.263 1.352 2.422 1.352.95 0 1.655-.468 2.119-.937l.069-.072c.515.745 1.326 1.152 2.383 1.152.824 0 1.6-.347 2.157-1.024.55-.667.843-1.6.843-2.726a7 7 0 1 0-3.009 5.751.75.75 0 0 0-.855-1.232 5.51 5.51 0 0 1-6.776-.395 5.503 5.503 0 0 1 1.378-9.137m3.276 5.877a7 7 0 0 1-.05-.864v-.976l-.033-.075c-.09-.204-.173-.392-.352-.598-.2-.228-.522-.458-1.15-.458-.556 0-.906.256-1.15.647-.265.424-.386.991-.386 1.46s.121 1.036.386 1.46c.244.39.594.647 1.15.647.42 0 .763-.199 1.052-.491a3.2 3.2 0 0 0 .534-.752Z">
+                    </path>
+                  </svg>
+                </a>
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M12.239 2.379a.751.751 0 0 0-1.478-.258l-.457 2.629h-3.478l.413-2.371a.751.751 0 0 0-1.478-.258l-.457 2.629h-2.804a.75.75 0 0 0 0 1.5h2.543l-.609 3.5h-2.434a.75.75 0 0 0 0 1.5h2.174l-.413 2.372a.75.75 0 0 0 1.478.257l.457-2.629h3.478l-.413 2.372a.75.75 0 0 0 1.478.257l.457-2.629h2.804a.75.75 0 0 0 0-1.5h-2.543l.609-3.5h2.434a.75.75 0 0 0 0-1.5h-2.174zm-6.282 7.371h3.477l.61-3.5h-3.478z">
+                    </path>
+                  </svg>
+                </a>
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M2.843 7.854a3.75 3.75 0 0 0 0 5.303l.147.147a3.543 3.543 0 0 0 5.01 0 .75.75 0 0 0-1.06-1.061 2.044 2.044 0 0 1-2.89 0l-.146-.146a2.25 2.25 0 0 1 0-3.182l5.015-5.015a2.242 2.242 0 1 1 3.173 3.172l-2.286 2.286a.815.815 0 0 1-1.155 0 .815.815 0 0 1 0-1.155l2.25-2.25a.75.75 0 0 0-1.06-1.061l-2.25 2.25a2.315 2.315 0 0 0 0 3.277c.904.905 2.37.905 3.275 0l2.286-2.286a3.743 3.743 0 1 0-5.294-5.294z">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+              <button type="submit">Post</button>
+            </div>
+          </div>
+          <div class="border-after">
+            <p>Only you and other staff can see comments</p>
+            <span class="comment-text">Today</span>
+            <ul>
+              <li>
+                <div class="d-flex gap-4"><span></span>You changed the expiration date from never to Mar 21, 2030.</div>
+                <p>3:47 AM</p>
+              </li>
+              <li>
+                <div class="d-flex gap-4"><span></span>You created a new AED10.00 gift card.</div>
+                <p>3:47 AM</p>
+              </li>
+            </ul>
+          </div>
+          <div class="comment-box-main">
+            <div class="comment-box-child">
+              <span class="profile-text">NI</span>
+              <div class="comment-text">
+                <div class="d-flex align-items-center gap-2">
+                  <h6>Nomi Imran</h6>
+                  <p>36 minutes ago</p>
+                </div>
+                <span>noman</span>
+              </div>
+            </div>
+            <a href="">
+              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75">
+                </path>
+                <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path>
+                <path fill-rule="evenodd"
+                  d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div> -->
+
+        
+        <div class="card seo mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle"><h5>Timeline</h5>
+                 
+              </div>
+              
+              <div class="widget-content timeline-list" id="time_line"> 
+                 
+              </div>
+            </div>
+             
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-4">
+        <div class="card border">
+          <div class="widget-wrapper">
+            <div class="card-body p-4">
+              <div class="created-label">
+                <label class="form-label" for="name"><g-t>Created By</g-t></label>
+                <p class="mt-2" id="created-by-name">
+                  
+                </p>
+              </div>
+
+              <label class="form-label" for="name"><g-t>Customer</g-t></label>
+
+              <div class="dropdown customer-dropdown" style="display: none;">
+                <div class="input has-icon" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                  <span class="icon" style="top: 7px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a">
+                      <path fill-rule="evenodd"
+                        d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                      </path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control md dropdown-toggle" id="searchInput"
+                    placeholder="Search customers" autocomplete="off" />
+                </div>
+                <div class="dropdown-menu" style="width: 100%;">
+                  <div class="btn-wrapper">
+                    <a data-bs-toggle="modal" href="#create-customer" class="btn btn-secondary" style="text-transform: none;">
+                      <span class="me-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                          stroke="#303030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="16" />
+                          <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                      </span>
+                      Create a new customer
+                    </a>
+                  </div>
+                  <div class="customer-list">
+                    <ul>
+                      <!-- <li>
+                        <a href="">abc@fif.com</a>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="customer_name"></div>
+              <div class="selected-customer justify-content-between align-items-center" style="display: none !important;">
+                <a href="#">
+                </a>
+                <button class="btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                    <path d="M10.72 11.78a.75.75 0 1 0 1.06-1.06l-2.72-2.72 2.72-2.72a.75.75 0 0 0-1.06-1.06l-2.72
+                      2.72-2.72-2.72a.75.75 0 0 0-1.06 1.06l2.72 2.72-2.72 2.72a.75.75 0 1 0 1.06 1.06l2.72-2.72z">
+                    </path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card border mt-5">
+          <div class="widget-wrapper">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between">
+                <label class="form-label" for="name"><g-t>Notes</g-t></label>
+
+                <a class="btn pe-0" href="#add-note" data-bs-toggle="modal">
+                  <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#000000" width="16" height="16">
+                      <path fill-rule="evenodd"
+                        d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z">
+                      </path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+
+
+              <div class="description mt-4">
+                <p class="mb-0">
+                  No notes
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="modal fade custom-modal-create-customer" id="edit-expiration" aria-hidden="true"
+  aria-labelledby="create-customer" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="dateTimeEdit" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Edit expiration date
+        </h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label class="form-label" for="name"><g-t>Expiration date</g-t></label>
+        <p>
+          Countries have different laws for gift card expiry dates. Check the laws for your country before changing
+          this date.
+        </p>
+        <div class="input-radio mb-4">
+          <label class="custom-radio flex-nowrap">
+            <input type="radio" name="expiration-date" value="no-expiration-date">
+            No Expiration Date
+          </label>
+        </div>
+        <div class="input-radio mb-4">
+          <label class="custom-radio flex-nowrap">
+            <input type="radio" name="expiration-date" value="expiration-date-set">
+            Set Expiration Date
+          </label>
+        </div>
+        <div class="expires-input">
+          <label class="form-label" for="date"><g-t>Expires On</g-t></label>
+          <div class="input mb-4">
+            <input type="date" class="form-control md" name="date" id="dateInput">
+            <span class="error-txt"></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal fade custom-modal-create-customer" id="create-customer" aria-hidden="true"
+  aria-labelledby="create-customer" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="createCustomer" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Create New Customer
+        </h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main row">
+          <div class="col-lg-6">
+            <label for="nameInput" class="form-label">First Name</label>
+            <div class="input">
+              <input type="text" id="search_type" style="display: none;" />
+              <input type="text" id="duplicateModalInput" name="first_name" maxlength="40" name="text" placeholder="Enter first name" required>
+              <span class="error-text"></span>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <label for="nameInput" class="form-label">Last Name</label>
+            <div class="input">
+              <input type="text" id="search_type" style="display: none;" />
+              <input type="text" id="duplicateModalInput" name="last_name" maxlength="40" name="text" placeholder="Enter last name" required>
+              <span class="error-text"></span>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <label for="nameInput" class="form-label">Email</label>
+            <div class="input">
+              <input type="email" id="search_type" style="display: none;" />
+              <input type="email" id="duplicateModalInput" name="email" maxlength="40" name="text" placeholder="Enter email" required>
+              <span class="error-text"></span>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <label class="form-label"><g-t>Phone</g-t></label>
+            <div class="input custom-tel">
+              <input type="tel" name="phone" id="phone" class="form-control md" oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+              <span class="error-txt"></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary btn-modal-text">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="modal fade custom-add-note-modal" id="add-note" aria-hidden="true" aria-labelledby="add-note" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Add Note</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <div class="input">
+              <textarea rows="4" id="noteModalInput" maxlength="5000" name="dummynote" class="custom-textarea" required></textarea>
+              <div class="count-input-main" id="the-count">
+                <span id="current">0</span>
+                <span id="maximum">/ 5000</span>
+              </div>
+              <span class="error-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary btn-modal-text" id="noteData" data-bs-dismiss="modal">Done</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function toggleCollapse(element) {
+    let collapseBody = element.nextElementSibling;
+    collapseBody.style.display = (collapseBody.style.display === "none" || collapseBody.style.display === "") ? "block" : "none";
+  }
+</script>

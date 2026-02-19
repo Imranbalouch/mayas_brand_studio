@@ -21,7 +21,6 @@ use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Services\PermissionService;
 use App\Traits\MessageTrait;
-use DeepCopy\f001\B;
 
 class BrandController extends Controller
 {
@@ -64,14 +63,10 @@ class BrandController extends Controller
             ],200);
 
         }catch (\Exception $e) { 
-            // Handle general exceptions
             return response()->json([
-
                 'status_code' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $this->get_message('server_error'),
-                
-
-            ], Response::HTTP_INTERNAL_SERVER_ERROR); // 500 Internal Server Error
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         } 
 
     }
@@ -103,6 +98,10 @@ class BrandController extends Controller
         }
 
         try {
+            $lang = $request->language ?? getConfigValue('default_lang');
+            $langId = getLanguage($lang);
+            $all_languages = all_languages();
+
             // Create Brand
             $brand = new Brand();
             $brand->uuid = Str::uuid();
@@ -125,34 +124,34 @@ class BrandController extends Controller
             } else {
                 $brand->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->brand)) . '-' . Str::random(5);
             }
-        
+            
             $brand->save();
+            // Create translations for all languages
+            $this->updateBrandTranslation($brand, $lang, $langId->uuid, $request, $all_languages);
         
             return response()->json([
                 'status_code' => 200,
-                'message' => $this->get_message('update'),
+                'message' => $this->get_message('add'),
             ], 200);
         
         }catch (\Illuminate\Database\QueryException $e) {
             
-            if ($e->errorInfo[1] == 1062) { // Error code for duplicate entry
+            if ($e->errorInfo[1] == 1062) {
                 return response()->json([
                     'status_code' => 409,
                     'message' => 'Duplicate entry: The brand already exists.',
                 ], 409);
             }
-
+            dd($e);
             return response()->json([
                 'status_code' => 500,
-                // 'message' => $e->getMessage(),
                 'message' => $this->get_message('server_error'),
             ], 500);
 
         } catch (\Throwable $th) {
-
+            dd($th);
             return response()->json([
                 'status_code' => 500,
-                // 'message' => $th->getMessage(),
                 'message' => $this->get_message('server_error'),
             ], 500);
 
@@ -161,11 +160,14 @@ class BrandController extends Controller
     }
 
 
-    public function edit_brand($uuid){
+    public function edit_brand($uuid, Request $request){
 
         try {
+            $lang = $request->get('language') ?? getConfigValue('default_lang');
             
-            $edit_brand_by_id = Brand::where('uuid', $uuid)->first();
+            $edit_brand_by_id = Brand::with(['brand_translations' => function ($query) use ($lang) {
+                $query->where('lang', $lang);
+            }])->where('uuid', $uuid)->first();
 
             if(!$edit_brand_by_id)
             {
@@ -174,80 +176,41 @@ class BrandController extends Controller
                     'message' => $this->get_message('not_found'),
                 ], Response::HTTP_NOT_FOUND);
             }
-            
-            $get_active_language = Language::where('status', '1')->get();
 
-            $now = Carbon::now();
-            $auth_id = Auth::user()->uuid;
+            // Get all translations for tab creation
+            $all_translations = Brand_translation::where('brand_id', $uuid)
+                ->join('languages', 'brand_translations.language_id', '=', 'languages.uuid')
+                ->get();
 
-            if(count($get_active_language) > 0){
+            $brand_data = [
+                'uuid' => $edit_brand_by_id->uuid,
+                'brand' => $edit_brand_by_id->getTranslation('brand', $lang),
+                'slug' => $edit_brand_by_id->slug,
+                'logo' => $edit_brand_by_id->logo,
+                'order_level' => $edit_brand_by_id->order_level,
+                'description' => $edit_brand_by_id->getTranslation('description', $lang),
+                'meta_title' => $edit_brand_by_id->meta_title,
+                'meta_description' => $edit_brand_by_id->meta_description,
+                'og_title' => $edit_brand_by_id->og_title,
+                'og_description' => $edit_brand_by_id->og_description,
+                'og_image' => $edit_brand_by_id->og_image,
+                'x_title' => $edit_brand_by_id->x_title,
+                'x_description' => $edit_brand_by_id->x_description,
+                'x_image' => $edit_brand_by_id->x_image,
+                'translations' => $all_translations,
+            ];
 
-                foreach($get_active_language as $key => $language){
-                    
-                    $check_brand_translation = Brand_translation::where('brand_id', $edit_brand_by_id->id)
-                    ->where('language_id', $language->id)
-                    ->where('status', '1')->first();
-
-                    if($check_brand_translation)
-                    {
-                        
-                       
-
-                    }
-                    else{
-
-                        $save_brand_translation = Brand_translation::insert([
-                            ['uuid' => Str::uuid(), 'brand_id' => $edit_brand_by_id->id, 'brand' => $edit_brand_by_id->brand , 'language_id' => $language->id , 'lang' => $language->app_language_code , 'auth_id' => $auth_id , 'created_at' => $now, 'updated_at' => $now],
-                        ]);
-
-                    }
-
-
-                }
-
-
-            }
-
-            $brand_translations = Brand_translation::where('brand_id', $edit_brand_by_id->id)
-            ->where('brand_translations.status', '1')
-            ->join('languages', 'brand_translations.language_id', '=', 'languages.id')
-            ->select('languages.code as language_code', 'languages.name as language_name' , 'languages.flag as flag' , 'languages.rtl as dir', 'brand_translations.*')
-            ->get();
-
-            
-            if ($edit_brand_by_id) {
-
-                $edit_brand_by_id->translations = $brand_translations;
-       
-                return response()->json([
-
-                    'status_code' => Response::HTTP_OK,
-                    'data' => $edit_brand_by_id,
-
-                ], Response::HTTP_OK);
-
-
-            }else{
-
-                return response()->json([
-
-                    'status_code' => Response::HTTP_NOT_FOUND,
-                    'message' => $this->get_message('not_found'),
-
-                ], Response::HTTP_NOT_FOUND);
-
-            }
+            return response()->json([
+                'status_code' => Response::HTTP_OK,
+                'data' => $brand_data,
+            ], Response::HTTP_OK);
 
 
         }catch(\Exception $e) { 
-            // Handle general exceptions
             return response()->json([
-
                 'status_code' => Response::HTTP_INTERNAL_SERVER_ERROR,
-                // 'message' => $this->get_message('server_error'),
                 'message' => $e->getMessage(),
-
-            ], Response::HTTP_INTERNAL_SERVER_ERROR); // 500 Internal Server Error
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
 
     }
@@ -255,17 +218,30 @@ class BrandController extends Controller
 
     public function update_brand(Request $request)
     {
-
         $uuid = request()->header('uuid');
+        $lang = $request->language ?? getConfigValue('default_lang');
+        $langId = getLanguage($lang);
 
         try {
             // Find the brand
             $brand = Brand::where('uuid', $uuid)->first();
-            // Update brand fields
-            $brand->brand = $request->brand;
-            $brand->logo = $request->logo;
-            $brand->order_level = $request->order_level;
-            $brand->description = $request->description;
+
+            if (!$brand) {
+                return response()->json([
+                    'status_code' => Response::HTTP_NOT_FOUND,
+                    'message' => $this->get_message('not_found'),
+                ], Response::HTTP_NOT_FOUND);
+            }
+
+            // Update brand fields (only update base fields if default language)
+            if ($lang == getConfigValue('default_lang')) {
+                $brand->brand = $request->brand;
+                $brand->logo = $request->logo;
+                $brand->order_level = $request->order_level;
+                $brand->description = $request->description;
+                // dd($brand);
+            }
+
             $brand->meta_title = $request->meta_title;
             $brand->meta_description = $request->meta_description;
             $brand->og_title = $request->og_title;
@@ -274,7 +250,7 @@ class BrandController extends Controller
             $brand->x_title = $request->x_title;
             $brand->x_description = $request->x_description;
             $brand->x_image = $request->x_image;
-        
+            // dd($brand);
 
             if ($request->slug) {
                 $brand->slug = preg_replace('/[^A-Za-z0-9\-]/', '', str_replace(' ', '-', $request->slug));
@@ -284,103 +260,12 @@ class BrandController extends Controller
 
             $brand->save();
 
-            $updatedTranslations = false;
-
-            foreach ($request->all() as $key => $value) {
-                
-                if (strpos($key, 'name_') === 0) {
-                    
-                    $languageCode = substr($key, 5);
-            
-                    $languageId = DB::table('languages')->where('code', $languageCode)->value('id');
-            
-                    if($languageId){
-                        
-                        Brand_translation::where('language_id', $languageId)
-                        ->where('brand_id', $brand->id)
-                        ->update(['brand' => $value]);
-
-                        $updatedTranslations = true;
-                    }
-
-                }
-
-            }
-
-
-            foreach ($request->all() as $key => $value) {
-                
-                if ($request->hasFile($key)) {
-
-                    if (strpos($key, 'logo_') === 0) {
-                        $languageCode = substr($key, 5);
-                        $languageId = DB::table('languages')->where('code', $languageCode)->value('id');
-            
-                        if ($languageId) {
-                            $file = $request->file($key);
-                            $fileName = time() . '_' . $file->getClientOriginalName();
-                            $folderName = '/upload_files/logo/';
-                            $destinationPath = public_path() . $folderName;
-            
-                            if (!file_exists($destinationPath)) {
-                                mkdir($destinationPath, 0755, true);
-                            }
-            
-                            $file->move($destinationPath, $fileName);
-            
-                            Brand_translation::where('language_id', $languageId)
-                            ->where('brand_id', $brand->id)
-                            ->update(['logo' => $folderName . $fileName]);
-
-                            $updatedTranslations = true;
-                        }
-                    }
-
-                }
-
-            }
-
-
-            foreach ($request->all() as $key => $value) {
-                
-                if (strpos($key, 'description_') === 0) {
-                    
-                    $languageCode = substr($key, 12);
-            
-                    $languageId = DB::table('languages')->where('code', $languageCode)->value('id');
-            
-                    if($languageId){
-                        
-                        Brand_translation::where('language_id', $languageId)
-                        ->where('brand_id', $brand->id)
-                        ->update(['description' => $value]);
-
-                        $updatedTranslations = true;
-                    }
-
-                }
-
-            }
-
-
-            if ($updatedTranslations) {
-               
-                $get_active_language = Language::where('status', '1')->where('is_default', '1')->first();
-                $get_role_trans_by_def_lang = Brand_translation::where('brand_id', $brand->id)
-                ->where('language_id', $get_active_language->id)
-                ->first();
-    
-                $upd_brand2 = DB::table('brands')
-                ->where('id', $brand->id)
-                ->update([
-                    'brand' => $get_role_trans_by_def_lang->brand,
-                ]);
-
-            }
+            // Update translation
+            $this->updateBrandTranslation($brand, $lang, $langId->uuid, $request);
 
             return response()->json([
                 'status_code' => 200,
-                'message' => 'Brand has been updated',
+                'message' => $this->get_message('update'),
             ], 200);
 
         } catch (\Throwable $th) {
@@ -388,6 +273,42 @@ class BrandController extends Controller
                 'status_code' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $th->getMessage(),
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Update brand translations.
+     */
+    private function updateBrandTranslation(Brand $brand, string $lang, string $langUuid, Request $request, $languages = []): void
+    {
+        if ($languages) {
+            foreach ($languages as $language) {
+                $translation = Brand_translation::firstOrNew([
+                    'lang' => $language->app_language_code,
+                    'language_id' => $language->uuid,
+                    'brand_id' => $brand->uuid
+                ]);
+                $translation->brand = $request->brand;
+                $translation->description = $request->description;
+                $translation->logo = $request->logo;
+                $translation->meta_title = $request->meta_title;
+                $translation->meta_description = $request->meta_description;
+                $translation->auth_id = Auth::user()->uuid;
+                $translation->save();
+            }
+        } else {
+            $translation = Brand_translation::firstOrNew([
+                'lang' => $lang,
+                'language_id' => $langUuid,
+                'brand_id' => $brand->uuid
+            ]);
+            $translation->brand = $request->brand;
+            $translation->description = $request->description;
+            $translation->logo = $request->logo;
+            $translation->meta_title = $request->meta_title;
+            $translation->meta_description = $request->meta_description;
+            $translation->auth_id = Auth::user()->uuid;
+            $translation->save();
         }
     }
 
@@ -402,21 +323,21 @@ class BrandController extends Controller
             {
                 
                 return response()->json([
-
                     'status_code' => Response::HTTP_NOT_FOUND,
                     'message' => $this->get_message('not_found'),
-
                 ], Response::HTTP_NOT_FOUND);
 
 
             }else{
 
+                // Delete translations first
+                $del_brand->brand_translations()->delete();
+                
+                // Delete brand
                 $delete_brand = Brand::destroy($del_brand->id);
 
                 if($delete_brand){
                     
-                    $del_brand_translation = Brand_translation::where('brand_id', $del_brand->id)->delete();
-
                     return response()->json([
                         
                         'status_code' => Response::HTTP_OK,
@@ -430,14 +351,10 @@ class BrandController extends Controller
 
 
         }catch (\Exception $e) { 
-            // Handle general exceptions
             return response()->json([
-
                 'status_code' => Response::HTTP_INTERNAL_SERVER_ERROR,
                 'message' => $this->get_message('server_error'),
-                
-
-            ], Response::HTTP_INTERNAL_SERVER_ERROR); // 500 Internal Server Error
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         } 
         
     }
@@ -446,15 +363,13 @@ class BrandController extends Controller
     public function updateCategoryStatus(Request $request, string $id)
     {
         $request->validate([
-            'status' => 'required|in:0,1', // Ensure status is either 0 or 1
+            'status' => 'required|in:0,1',
         ]);
 
         try {
-            // Find the category by UUID and active status
             $brand = Brand::where('uuid', $id)->first();
 
             if ($brand) {
-                // Update the status
                 $brand->status = $request->status;
                 $brand->save();
 
@@ -485,11 +400,9 @@ class BrandController extends Controller
         ]);
 
         try {
-            // Find the category by UUID and active featured
             $brand = Brand::where('uuid', $id)->first();
 
             if ($brand) {
-                // Update the featured
                 $brand->featured = $request->featured;
                 $brand->save();
 

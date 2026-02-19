@@ -1,0 +1,317 @@
+<link rel="stylesheet" href="./assets/css/collections.css">
+<style>
+  .dataTables_filter, .dataTables_info { display: none; }
+  .dt-action-buttons{ display: none !important; }
+</style>
+<div class="container-xxl container-p-y">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-md-6">
+        <h3 class=""><g-t>Collections</g-t></h3>
+      </div>
+      <div class="col-md-6 d-flex justify-content-start flex-wrap justify-content-md-end align-items-center gap-2">
+
+        <a href="javascript:;" class="btn btn-primary create-collection">
+          <g-t>Create collection</g-t>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="custom-table card-datatable pt-0">
+          <div class="">
+            <div class="card-header d-flex border-top rounded-0 flex-wrap pb-4 pt-4 tabs-search-sorting">
+              <ul style="border: 0; width: auto;" class="nav nav-tabs custom-tab-order" id="navList" role="tablist">
+
+                <!-- <li class="nav-item nav-link active" data-filter="all">
+                  All
+                  <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal" href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill="#000" d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75"> </path> <path fill-rule="evenodd" fill="#000" d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z"> </path> </svg>
+                        Duplicate View
+                      </a>
+                    </li>
+                  </ul>
+                </li> -->
+    
+                <!-- <li>
+                  <a style="padding: 0;" class="" data-bs-toggle="modal" href="#MaximumCharactor">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5z"> </path> </svg>
+                  </a>
+                </li> -->
+              </ul>
+              <div id="Table_View_filter" class="table-search-main dataTables_filter">
+                <button class="cursor" onclick="return false;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> </svg>
+                </button>
+                <input type="text" id="custom_search" placeholder="Searching all products" required="">
+              </div>
+              <div class="search-icon-button">
+                <span class="cancel">Cancel</span>
+                <a data-bs-toggle="modal" href="#SaveAs" class="save d-none">Save as</a>
+              </div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="searchopen" id="searchOpen">
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"> </path> </svg>
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75"> </path> <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75"> </path> <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z"></path> </svg>
+                </span>
+                <div class="custom-dropdown-main">
+                  <div class="droupdown-head open-inventory-droupdown">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z"> </path> <path d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z"> </path> </svg>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul class="px-3">
+                      <h6>Sort by</h6>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" value="1" checked> Collection title
+                        </label>
+                      </li>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" value="2"> Updated
+                        </label>
+                      </li>
+                    </ul>
+                    <div class="hr"></div>
+                    <div class="lodest-first">
+                      <a href="" id="sortAZ">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 14.5a.75.75 0 0 1-.75-.75v-9.69l-2.72 2.72a.749.749 0 1 1-1.06-1.06l4-4a.747.747 0 0 1 1.06 0l4 4a.749.749 0 1 1-1.06 1.06l-2.72-2.72v9.69a.75.75 0 0 1-.75.75"> </path> </svg> 
+                        A-Z
+                      </a>
+                      <a href="" id="sortZA">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75"> </path></svg> 
+                        Z-A
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="selectDropdown">
+              <div class="card-header d-flex border-top rounded-0 flex-wrap py-2 tabs-search-sorting select-sorting gap-2">
+                
+                <div class="select-dropdown filter-dropdown typeDropdown">
+                  <div class="droupdown-head one">
+                    <span>Type <span></span></span>
+                    <span class="clear-drop d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" value="Smart" name="type">
+                          Smart
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" value="Manual" name="type">
+                          Manual
+                        </label>
+                      </li>
+                    </ul>
+                    <a href="#">Clear</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="datatables-basic table" id="Table_View">
+              <thead>
+                <tr>
+                  <!-- <th style="width: 1px;">
+                    <div class="form-check m-0">
+                      <input class="form-check-input select-all" type="checkbox">
+                    </div>
+                  </th> -->
+                  <th><g-t>Title</g-t></th>
+                  <th><g-t>Products</g-t></th>
+                  <th><g-t>Product conditions</g-t></th>
+                  <th><g-t>smart</g-t></th>
+                  <th class="d-none">Channel</th>
+                  <th class="position-static">
+                    <div class="thead-filter d-none">
+                      <span class="selected"><span class="selected-count"></span> selected</span>
+                      <div class="actions">
+                        <a href="">Bulk edit</a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#includeInManageSalesChannels">Include in sales channels</a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#excludeInManageSalesChannels">Exclude from sales channels</a>
+                        <div class="dropdown">
+                          <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                              <path d="M4 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                              <path d="M9.5 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                              <path d="M13.5 9.5a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001"></path>
+                            </svg>
+                          </div>
+                          <div class="dropdown-menu publishing-dropdown">
+                            <a href="">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8e0b21"><path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path><path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path><path fill-rule="evenodd" d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z"></path></svg>
+                              Delete collection
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="MaximumCharactor" aria-hidden="true" aria-labelledby="MaximumCharactorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Duplicate view</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <label for="nameInput" class="form-label">Name</label>
+            <div class="input">
+              <input type="text" id="search_type" style="display: none;" />
+              <input type="text" id="duplicateModalInput" maxlength="40" name="text" placeholder="Enter name" required>
+              <div class="count-input" id="the-count">
+                <span id="current">0</span>
+                <span id="maximum">/ 40</span>
+              </div>
+              <span class="error-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Create View</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="includeInManageSalesChannels" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Include in sales channels</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="d-flex justify-content-between pb-5">
+          <div class="manage-sales-text deselect">Deselect all</div>
+          <div class="manage-sales-select">
+            <checkedNumber>0</checkedNumber> of 2 selected
+          </div>
+        </div>
+
+        <div class="sales-checkbox" id="sales-checkboxs">
+          <!-- <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="de784a53-09bc-424b-98f7-ca902a14ed1c"
+              id="online-store" name="getChannelId[]">
+            <label class="form-check-label" for="online-store">
+              <span>Online Store</span>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="e8d7763e-2fb7-4edc-953d-f2e65f2b4dd5" id="pos"
+              name="getChannelId[]">
+            <label class="form-check-label" for="pos">
+              <span>Point of sale</span>
+            </label>
+          </div> -->
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal" id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="excludeInManageSalesChannels" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Exclude from sales channels</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="d-flex justify-content-between pb-5">
+          <div class="manage-sales-text">Select all</div>
+          <div class="manage-sales-select">
+            <checkedNumber>0</checkedNumber> of 2 selected
+          </div>
+        </div>
+
+        <div class="sales-checkbox" id="sales-checkboxs">
+          <!-- <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="de784a53-09bc-424b-98f7-ca902a14ed1c"
+              id="online-store" name="getChannelId[]">
+            <label class="form-check-label" for="online-store">
+              <span>Online Store</span>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="e8d7763e-2fb7-4edc-953d-f2e65f2b4dd5" id="pos"
+              name="getChannelId[]">
+            <label class="form-check-label" for="pos">
+              <span>Point of sale</span>
+            </label>
+          </div> -->
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal" id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".create-collection").on("click", function(e) {
+    e.preventDefault();
+    let page = 'create-collection';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  $("table").on("click", ".collection-table-info .title", function(e) {
+    e.preventDefault();
+    let currentRow = $(this).closest("tr");
+    let data = $('#Table_View').DataTable().row(currentRow).data();
+    let uuid = data['uuid'];
+    let page = 'edit-collection';
+    window.location.assign('?P=' + page + '&M=' + menu_id + '&id=' + uuid);
+  });
+</script>

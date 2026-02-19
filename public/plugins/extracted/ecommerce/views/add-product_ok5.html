@@ -1,0 +1,1451 @@
+<!-- <link rel="stylesheet" href="https://sslootahtrading.com/assets/css/select2.css"> -->
+<!-- <link rel="stylesheet" href="https://sslootahtrading.com/assets/css/select2-bootstrap-5-theme.css"> -->
+<link rel="stylesheet" href="./assets/css/cropper.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<link rel="stylesheet" href="./assets/css/plugin.css" />
+
+<link rel="stylesheet" href="./assets/css/add-product.css">
+<link rel="stylesheet" href="./assets/css/add-product-variants.css">
+
+<div class="container-xxl container-p-y">
+  <!-- DataTable with Buttons -->
+
+  <form action id="addProductFrom" method="post" enctype="multipart/form-data">
+
+    <input type="text" class="varient_data" style="display: none;">
+    <input type="text" class="varient_data_view" name="varient_data_view" style="display: none;">
+
+    <div class="row" id="formError">
+      <div class="col-lg-12">
+        <div class="card mb-4">
+          <div class="widget-wrapper">
+            <div class="error-top">There is 1 error with this product:</div>
+            <div class="error-bottom">Title can’t be blank</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-6">
+                <h3>Add Product</h3>
+              </div>
+            </div>
+          </div>
+          <div class="widget-wrapper">
+            <div class="spinner-border text-primary d-none" id="img_load" role="status">
+              <span class="visually-hidden"></span>
+            </div>
+
+            <div class="product-content">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-general" role="tabpanel"
+                  aria-labelledby="nav-general-tab">
+                  <div class="row gap-lg-0 gap-5">
+                    <div class="col-lg-12 form-input mt-3">
+
+                      <div class="row">
+
+                        <div class="mb-6 fv-row col-12">
+                          <label class="form-label required" for="name"><g-t>title</g-t></label>
+                          <div class="input mb-2">
+                            <input type="text" class="form-control productTitle" id="name" name="name"
+                              placeholder="Short sleeve t-shirt" maxlength="255">
+                            <div class="desc md mt-1"><span id="productTitleCount">0</span> of 255 characters used</div>
+                            <span class="error-txt"></span>
+                          </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-6">
+                          <label for="description" class="form-label"><g-t>description</g-t></label>
+                          <textarea class="form-control mb-2" id="editorCk"></textarea>
+                        </div>
+
+                        <!-- <div class="mb-6 fv-row col-12">
+                          <div class="form-group">
+                            <label class="form-label" for><g-t>Media</g-t></label>
+                            <div class="input-group">
+                              <div class="input-group-prepend w-100">
+                                <div class="media-input">
+                                  <div class="selection">
+                                    <a href="" class="custome-filemanager" data-type="image"  data-multiple="true">Upload new</a>
+                                    <a href="" class="custome-filemanager" data-type="image" data-multiple="true">Select existing</a>
+                                  </div>
+                                  <div class="accepts">Accepts images, videos, or 3D models</div>
+                                </div>
+                              </div>
+                              <div class="form-control file-amount">Choose File</div>
+                              <input type="hidden" name="thumbnail_img" class="selected-files" id="logoFile">
+                            </div>
+                            <div class="d-flex flex-wrap gap-4 pt-4 filemanager-image-preview"></div>
+                          </div>
+                        </div> -->
+
+                        <div class="mb-6 fv-row col-md-12">
+                          <div class="form-group">
+                            <label class="form-label" for><g-t>product_image</g-t></label>
+                            <div class="input-group custome-filemanager" data-type="image" data-multiple="true">
+                              <div class="input-group-prepend w-100">
+                                <div class="input-group-text bg-soft-secondary font-weight-medium border-0 p-0">
+                                  <div class="media-input w-100">
+                                    <div class="selection">
+                                      <a href="" class="custome-filemanager" data-type="image"
+                                        data-multiple="true">Upload new</a>
+                                      <a href="" class="custome-filemanager" data-type="image"
+                                        data-multiple="true">Select existing</a>
+                                    </div>
+                                    <div class="accepts">Accepts images, videos, or 3D models</div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="form-control file-amount">Choose File</div>
+                              <input type="hidden" name="images" class="selected-files" id="logoFile">
+                            </div>
+                            <div class="d-flex flex-wrap gap-4 pt-4 filemanager-image-preview"></div>
+                          </div>
+                        </div>
+
+
+                        <div class="col-lg-12 mb-6">
+                          <label class="form-label"><g-t>Category</g-t></label>
+                          <select name="category_id[]" id="category_id" class="form-control" multiple>
+                          </select>
+                          <span class="desc">Determines tax rates and adds metafields to improve search, filters, and cross-channel sales</span>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle">Pricing</div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="mb-6 fv-row col-12">
+                    <label class="form-label">Price</label>
+                    <div class="input mb-2 currency-input">
+                      <span class="currency-txt">Rs</span>
+                      <input type="number" class="form-control" id="Price" value="0.00" name="unit_price">
+                      <span class="error-txt"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-6 fv-row col-12">
+                    <label class="form-label">Compare-at price</label>
+                    <div class="input mb-2 currency-input">
+                      <span class="currency-txt">Rs</span>
+                      <input type="text" class="form-control" id="compare_price" value="0.00" name="compare_price">
+                      <div class="main-tooltip">
+                        <svg class="custom-tooltip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 5.25c-.69 0-1.25.56-1.25 1.25a.75.75 0 0 1-1.5 0 2.75 2.75 0 1 1 3.758 2.56.6.6 0 0 0-.226.147.2.2 0 0 0-.032.046.75.75 0 0 1-1.5-.003c0-.865.696-1.385 1.208-1.586a1.251 1.251 0 0 0-.458-2.414">
+                          </path>
+                          <path d="M8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                          <path fill-rule="evenodd"
+                            d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+                        </svg>
+                        <div class="tooltip-text">To display a markdown, enter a value higher than your price.
+                          Often shown with a strikethrough.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-check mb-4">
+                    <input class="form-check-input tax_enabled" type="checkbox" id="tax" checked>
+                    <label class="form-check-label" for="tax">
+                      <span><g-t>Charge tax on this product</g-t></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr class="m-0">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label" for="Costper">Cost per item</label>
+                    <div class="input mb-2 currency-input">
+                      <span class="currency-txt">Rs</span>
+                      <input type="number" class="form-control" id="cost_per_item" value="0.00" name="cost_per_item">
+                      <div class="main-tooltip main-tooltip-02">
+                        <svg class="custom-tooltip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 5.25c-.69 0-1.25.56-1.25 1.25a.75.75 0 0 1-1.5 0 2.75 2.75 0 1 1 3.758 2.56.6.6 0 0 0-.226.147.2.2 0 0 0-.032.046.75.75 0 0 1-1.5-.003c0-.865.696-1.385 1.208-1.586a1.251 1.251 0 0 0-.458-2.414">
+                          </path>
+                          <path d="M8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                          <path fill-rule="evenodd"
+                            d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+                        </svg>
+                        <div class="tooltip-text">Customers won’t see this.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label" for="ComparePrice">Profit</label>
+                    <div class="input mb-2 currency-input">
+                      <span class="currency-txt">Rs</span>
+                      <input type="number" class="form-control" id="profit_price" value="0.00" name="profit_price" readonly>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label" for="Margin">Margin (%)</label>
+                    <div class="input mb-2">
+                      <input type="text" class="form-control" id="margin_price" value="0.00" name="margin_price" readonly>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Inventory</div>
+                </div>
+                <div class="mb-6 fv-row col-12">
+                  <div class="form-check mb-4">
+                    <input class="form-check-input inventory_track_enabled" type="checkbox" value="Trackquantity" id="Trackquantity">
+                    <label class="form-check-label" for="Trackquantity">
+                      <span><g-t>Track quantity</g-t></span>
+                    </label>
+                  </div>
+                </div>
+                <!-- <div class="col-lg-12 mb-6">
+                  <label class="form-label"><g-t>Warehouse Location</g-t></label>
+                  <select name="warehouse_location_id" id="warehouse_location_id" class="form-control selectpicker"
+                    multiple data-selected-text-format="count" data-live-search="true" title="Select Location">
+                  </select>
+                </div> -->
+                <div class="col-12">
+                  <div class="mb-0 subtitle d-flex justify-content-between align-items-center">
+                    Quantity
+                    <div data-bs-toggle="modal" data-bs-target="#manageeditlocation" class="edit-location">Edit
+                      locations</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <hr>
+                </div>
+                <div class="main-add-location">
+                  <!-- <div class="col-12 mb-5 d-flex justify-content-between align-items-center">
+                    <label class="form-label mb-0"><g-t>Shop location</g-t></label>
+                    <div class="not-tracked">Not tracked</div>
+                    <input type="number" class="tracked form-control w-25" min="0" value="0" name="current_stock"
+                      id="current_stock" style="display: none;">
+                  </div> -->
+                </div>
+                <div class="col-12 out-of-stock" style="display: none;">
+                  <div class="form-check mb-4 align-items-start">
+                    <input class="form-check-input selling_stock_enabled" type="checkbox" value="Continueselling" id="Continueselling">
+                    <label class="form-check-label" for="Continueselling">
+                      <span><g-t>Continue selling when out of stock</g-t></span>
+                      <p class="desc md mt-2 d-none">This won't affect <a href="">Insta POS</a>. Staff will see a warning, but can complete sales when available inventory reaches zero and below.</p>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12 mb-3">
+                  <div class="form-check mb-4">
+                    <input class="form-check-input sku_barcode_enabled" type="checkbox" value="productsku" id="productsku">
+                    <label class="form-check-label" for="productsku">
+                      <span><g-t>This product has a SKU or barcode</g-t></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="openSKU row">
+                  <div class="col-md-6">
+                    <div class="mb-6 fv-row">
+                      <label class="form-label" for="sku"><g-t>SKU (Stock Keeping Unit)</g-t></label>
+                      <input type="text" class="form-control mb-2" id="ComparePrice" name="sku">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-6 fv-row">
+                      <label class="form-label" for="barcode"><g-t>Barcode (ISBN, UPC, GTIN, etc.)</g-t></label>
+                      <input type="text" class="form-control mb-2" id="ComparePrice" name="barcode">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Shipping</div>
+                </div>
+                <div class="mb-2 fv-row col-12">
+                  <div class="form-check mb-4">
+                    <input class="form-check-input physical_product_enabled" type="checkbox" value="physicalproduct" id="physicalproduct">
+                    <label class="form-check-label" for="physicalproduct">
+                      <span><g-t>This is a physical product</g-t></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12" id="physicalproductHide">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Weight</g-t></label>
+                    <div class="d-flex gap-1">
+                      <input type="number" class="form-control w-20" placeholder="0.0" id="shippingweight"
+                        name="weight">
+                      <div style="width: 80px !important">
+                        <select name="weight_unit" class="form-control selectpicker">
+                          <option value="lb">lb</option>
+                          <option value="oz">oz</option>
+                          <option value="kg">kg</option>
+                          <option value="g">g</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="col-12" id="physicalproductHide">
+                  <div class="my-2">
+                    <a href="javascript:;" class="add-option-btn" id="AddCustomInformation">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20">
+                        <path
+                          d="M4.25 8a.75.75 0 0 1 .75-.75h2.25v-2.25a.75.75 0 0 1 1.5 0v2.25h2.25a.75.75 0 0 1 0 1.5h-2.25v2.25a.75.75 0 0 1-1.5 0v-2.25h-2.25a.75.75 0 0 1-.75-.75">
+                        </path>
+                        <path fill-rule="evenodd"
+                          d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+                      </svg>
+                      Add customs information
+                    </a>
+                    <div class="custom-information-main mt-2">
+                      <div class="custom-information">
+                        <span class="form-label mb-2 d-flex gap-2">
+                          Country/Region of origin
+                          <div class="main-tooltip main-tooltip-03">
+                            <svg class="custom-tooltip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd"
+                                d="M8 5.25c-.69 0-1.25.56-1.25 1.25a.75.75 0 0 1-1.5 0 2.75 2.75 0 1 1 3.758 2.56.6.6 0 0 0-.226.147.2.2 0 0 0-.032.046.75.75 0 0 1-1.5-.003c0-.865.696-1.385 1.208-1.586a1.251 1.251 0 0 0-.458-2.414">
+                              </path>
+                              <path d="M8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                              <path fill-rule="evenodd"
+                                d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11">
+                              </path>
+                            </svg>
+                            <div class="tooltip-text">In most cases, where the product was manufactured or assembled.
+                            </div>
+                          </div>
+                        </span>
+                        <select name="country_id" id="country_id" class="form-control selectpicker"
+                          data-selected-text-format="count" data-live-search="true" title="Select Country"></select>
+                      </div>
+                      <div class="custom-information mt-5">
+                        <span class="form-label mb-2">Harmonized System (HS) code</span>
+                        <select class="form-control select2 mb-2" id="mySelect" name="hs_code">
+                          <option value="1">Option 1</option>
+                          <option value="2">Option 2</option>
+                          <option value="3">Option 3</option>
+                          <option value="4">Option 4</option>
+                        </select>
+                        <div class="mt-2">Learn more about <a href="">adding HS codes</a></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12" id="physicalproductshow">
+                  <div class="my-2">
+                    <p>Customers won’t enter shipping details at checkout. Learn how to set up your store for <a href="">digital products or services</a>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="d-flex justify-content-between gap-2 align-items-center mb-3">
+                <div class="subtitle mb-4">Variants</div>
+              </div>
+
+              <a href="javascript:;" class="add-option-btn" id="AddVariants" onclick="addVarientCard()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20">
+                  <path
+                    d="M4.25 8a.75.75 0 0 1 .75-.75h2.25v-2.25a.75.75 0 0 1 1.5 0v2.25h2.25a.75.75 0 0 1 0 1.5h-2.25v2.25a.75.75 0 0 1-1.5 0v-2.25h-2.25a.75.75 0 0 1-.75-.75">
+                  </path>
+                  <path fill-rule="evenodd"
+                    d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+                </svg>
+                Add options like size or color
+              </a>
+
+              <div class="variants-option-cards d-none" id="VariantsOptionCards">
+                <div class="cards">
+                </div>
+                <a href="javascript:;" class="add-another-option-btn" id="AddAnotherOption" onclick="addVarientCard()">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20">
+                    <path
+                      d="M4.25 8a.75.75 0 0 1 .75-.75h2.25v-2.25a.75.75 0 0 1 1.5 0v2.25h2.25a.75.75 0 0 1 0 1.5h-2.25v2.25a.75.75 0 0 1-1.5 0v-2.25h-2.25a.75.75 0 0 1-.75-.75">
+                    </path>
+                    <path fill-rule="evenodd"
+                      d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+                  </svg>
+                  Add another option
+                </a>
+              </div>
+
+              <div class="variants-table d-none">
+                <div class="head">
+                  <div>
+                    <div class="group-by d-none">
+                      <span>Group by</span>
+                      <select id="GroupBy">
+                        <option value="Size">Size</option>
+                        <option value="Color">Color</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-2 align-items-center">
+                    <a href="" class="search-filter-btn">
+                      <span>Cancel</span>
+                      <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a" width="20"
+                          height="20">
+                          <path fill-rule="evenodd"
+                            d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                          </path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a" width="20"
+                          height="20">
+                          <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75"></path>
+                          <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75"></path>
+                          <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z"></path>
+                        </svg>
+                      </span>
+                    </a>
+                    <div class="filter-location">
+                      <select id="v_locations" name="varient_market_location"></select>
+                    </div>
+                  </div>
+                </div>
+                <div class="variants-search-filter" style="display: none;">
+                  <div class="mt-3">
+                    <div class="input currency-input">
+                      <span class="currency-txt">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"
+                          style="fill: #4a4a4a;">
+                          <path fill-rule="evenodd"
+                            d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                          </path>
+                        </svg>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                  </div>
+                  <div class="mt-2 d-flex gap-2" id="variatonTableFilters">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="variants-table d-none m-0">
+              <div class="body">
+                <div class="v_table">
+                  <div class="thead">
+                    <div class="tr">
+                      <div class="th">
+                        <div class="form-check m-0">
+                          <input class="form-check-input" id="toggleAllVarientCheck" type="checkbox" />
+                        </div>
+                      </div>
+                      <div class="th">Variant · <a href="" class="collapse-all">Expand all</a></div>
+                      <div class="th">Price</div>
+                      <div class="th"><span class="v_tooltip">Available <div class="top-center">Inventory at your store that can be sold</div></span></div>
+                    </div>
+                    <div class="selected-options d-none">
+                      <span><span class="selected-options-count">0</span> selected</span>
+
+                      <div class="dropdown">
+                        <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="18" height="18"><path d="M4 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path><path d="M9.5 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path><path d="M13.5 9.5a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001"></path></svg>
+                        </div>
+                        <div class="dropdown-menu dropdown-menu-end">
+                          <a href="" id="editPrice">Edit price</a>
+                          <a href="" id="editQuantity">Edit quantity</a>
+                          <a href="" id="editSKU">Edit SKU</a>
+                          <a href="" id="editBarcode">Edit barcode</a>
+                          <a href="" id="editWeight">Edit weight</a>
+                          <a href="" id="editHSCode">Edit HS code</a>
+                          <a href="" id="editCountryRegion">Edit country/region of origin</a>
+                          <a href="" id="addImage">Add image</a>
+                          <a href="" id="removeImage">Remove image</a>
+                          <a href="" id="deleteVariant">Delete variant</a>
+                          <a href="" id="continueSellingWhenOutStock">Continue selling when out of stock</a>
+                          <a href="" id="stopSellingWhenOutStock">Stop selling when out of stock</a>
+                          <a href="" id="editLocations">Edit locations</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tbody">
+                  </div>
+                </div>
+                <div class="available-locations">Total inventory at Shop location: <span>0</span> available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card seo mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="subtitle"><span>Search engine listing</span>
+                <span class="seoBtn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M13.655 2.344a2.694 2.694 0 0 0-3.81 0l-.599.599-.009-.009-1.06 1.06.009.01-5.88 5.88a2.75 2.75 0 0 0-.806 1.944v1.922a.75.75 0 0 0 .75.75h1.922a2.75 2.75 0 0 0 1.944-.806l7.54-7.54a2.694 2.694 0 0 0 0-3.81Zm-4.409 2.72-5.88 5.88a1.25 1.25 0 0 0-.366.884v1.172h1.172c.331 0 .65-.132.883-.366l5.88-5.88zm2.75.629.599-.599a1.196 1.196 0 0 0-1.69-1.69l-.598.6z">
+                    </path>
+                  </svg>
+                </span>
+              </div>
+              <p class="desc" id="seoMainDesc">Add a title and description to see how this product might appear in a
+                search engine listing</p>
+              <div class="seo-prev" style="display: none;">
+                <div class="site-name">Insta Manage</div>
+                <div class="site-link">https://nomandigitalgraphiks.myshopify.com > products > <span></span></div>
+                <div class="site-title">Title</div>
+                <div class="site-desc">Desc</div>
+              </div>
+            </div>
+            <div id="seoTab" style="display: none;">
+              <hr class="m-0" />
+              <div class="tab-content">
+                <div class="mb-6 fv-row">
+                  <label class="form-label" for="seoTitle"><g-t>Page title</g-t></label>
+                  <input type="text" class="form-control" id="seoTitle" name="meta_title">
+                  <span class="desc"><span id="seoTitleCount">0</span> of 70 characters used</span>
+                </div>
+                <div class="col-lg-12 mb-6">
+                  <label for="seoDesc" class="form-label"><g-t>Meta description</g-t></label>
+                  <textarea name="meta_description" id="seoDesc" class="form-control" row="10"></textarea>
+                  <div class="desc"><span id="seoDescCount">0</span> of 160 characters used</div>
+                </div>
+                <div class="mb-6 fv-row">
+                  <label class="form-label"><g-t>URL handle</g-t></label>
+                  <div class="input has-prefix mb-2">
+                    <div class="prefix">products/</div>
+                    <input type="text" id="seoLink" class="form-control" name="slug">
+                  </div>
+                  <div class="desc site-link">https://nomandigitalgraphiks.myshopify.com/products/<span></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="card">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Status</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row" id="status">
+                    <select name="" class="form-control selectpicker">
+                      <option value="1">Active</option>
+                      <option value="0">Draft</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <!-- <input type="text" name="sale_channel_id" style="display: none;" /> -->
+              <select name="sale_channel_id[]" id="sale_channel_id" style="display: none;" multiple></select>
+              <input type="text" name="warehouse_location_id" style="display: none;" />
+              <!-- <input type="text" name="published_date" style="display: none;" />
+              <input type="text" name="published_time" style="display: none;" /> -->
+              <input type="text" name="published_date_time" style="display: none;" />
+              <div class="row">
+                <div class="col-12">
+                  <div class="d-flex justify-content-between">
+                    <div class="subtitle">Publishing</div><br>
+                    <div data-bs-toggle="dropdown" aria-expanded="false">
+                      <svg class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path d="M4 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                        <path d="M9.5 8a1.5 1.5 0 1 1-3.001-.001 1.5 1.5 0 0 1 3.001.001"></path>
+                        <path d="M13.5 9.5a1.5 1.5 0 1 0-.001-3.001 1.5 1.5 0 0 0 .001 3.001"></path>
+                      </svg>
+                    </div>
+                    <div class="dropdown-menu publishing-dropdown">
+                      <div data-bs-toggle="modal" data-bs-target="#manageSalesChannels">Manage sales channels</div>
+                      <div data-bs-toggle="modal" data-bs-target="#manageMarkets">Manage markets</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="publishing-box">
+                  <h3>Sales channels</h3>
+                  <div id="sales-channels" class="mb-4">
+                    <!-- <div class="col-12 mb-3">
+                      <div class="d-flex justify-content-between">
+                        <span class="circleBefore">Online Store</span>
+                        <svg data-bs-toggle="modal" data-bs-target="#manageCalender" class="custom-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4 .25a.75.75 0 0 1 .75.75v.528c.487-.028 1.07-.028 1.768-.028h2.482v-.5a.75.75 0 0 1 1.5 0v.604a3.04 3.04 0 0 1 2.25 2.936c0 .835-.678 1.513-1.513 1.513h-8.733c-.004.288-.004.617-.004.997v2.468c0 1.233 1 2.232 2.232 2.232a.75.75 0 0 1 0 1.5 3.73 3.73 0 0 1-3.732-3.732v-2.5c0-.813 0-1.469.043-2 .045-.546.14-1.026.366-1.47a3.75 3.75 0 0 1 1.841-1.733v-.815a.75.75 0 0 1 .75-.75m7.237 4.303h-8.61c.033-.13.072-.234.118-.324a2.25 2.25 0 0 1 .984-.984c.197-.1.458-.17.912-.207.462-.037 1.057-.038 1.909-.038h3.16c.85 0 1.54.69 1.54 1.54v.005l-.004.004-.004.003z"> </path> <path d="M12.25 10a.75.75 0 0 0-1.5 0v1.293c0 .331.132.65.366.884l.854.853a.749.749 0 1 0 1.06-1.06l-.78-.78z"> </path> <path fill-rule="evenodd" d="M11.5 16a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9m0-1.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path> </svg>
+                      </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                      <span class="circleBefore">Point of Sale</span>
+                      <p>Point of Sale has not been set up. Finish the remaining steps to start selling in person.</p>
+                      <a href="#" class="pt-0 text-decoration-underline">Learn more</a>
+                    </div> -->
+                  </div>
+                </div>
+                <div class="publishing-box d-none" id="marketNamesBox">
+                  <h3>Markets</h3>
+                  <div class="col-12" id="marketNames">
+                    <div class="mb-6 fv-row"><span class="circleBefore" id="marketNames"></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle d-flex gap-2">
+                    Product organization
+                    <div class="main-tooltip main-tooltip-1">
+                      <a href="https://help.shopify.com/en/manual/products/details#product-organization"
+                        target="_blank">
+                        <svg class="custom-tooltip" style="width:15px" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16">
+                          <path d="M8 12a.75.75 0 0 1-.75-.75v-3.5a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75"></path>
+                          <path d="M7 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"></path>
+                          <path fill-rule="evenodd"
+                            d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+                        </svg>
+                      </a>
+                      <div class="tooltip-text">Learn More</div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Type</g-t></label>
+                    <select name="type" id="type" class="form-control" data-placeholder="">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label for="vendor" class="form-label">Vendor</label>
+                    <select name="vendor" id="vendor" class="form-control" data-placeholder="">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Collections</g-t></label>
+                    <select name="collection_id[]" id="collection" class="form-control" multiple data-placeholder="">
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <label class="form-label"><g-t>Tags</g-t></label>
+                    <select name="tags[]" id="tags" class="form-control" multiple data-placeholder="">
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt-4">
+          <div class="widget-wrapper">
+            <div class="tab-content">
+              <div class="row">
+                <div class="col-12 mb-4">
+                  <div class="subtitle">Theme template</div>
+                </div>
+                <div class="col-12">
+                  <div class="mb-6 fv-row">
+                    <select name="template_product" id="template_product" class="form-control selectpicker">
+                      <option value="Default Product">Default Product</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <textarea id="variation_data" rows="20"  name="variation_data"></textarea>
+      <div class="col-12 mt-4 text-end">
+        <button class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+<div class="modal" id="manageSalesChannels">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Manage sales channels</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="d-flex justify-content-between pb-5">
+          <div class="manage-sales-text">Select all</div>
+          <div class="manage-sales-select">
+            <checkedNumber>0</checkedNumber> of 2 selected
+          </div>
+        </div>
+
+        <div class="sales-checkbox" id="sales-checkboxs">
+          <!-- <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="de784a53-09bc-424b-98f7-ca902a14ed1c"
+              id="online-store" name="getChannelId[]">
+            <label class="form-check-label" for="online-store">
+              <span>Online Store</span>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="e8d7763e-2fb7-4edc-953d-f2e65f2b4dd5" id="pos"
+              name="getChannelId[]">
+            <label class="form-check-label" for="pos">
+              <span>Point of sale</span>
+            </label>
+          </div> -->
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+          id="salesChannel">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="manageMarkets">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Manage markets</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body"></div>
+
+      <div class="sales-checkbox-bottom">
+        <p>Changes you make in markets will apply only to your <b>Online Store.</b></p>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" disabled>Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="manageCalender">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Schedule Online Store publishing</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p class="mb-0">Schedule product to be published on this date and time:</p>
+        <div class="publishing-store-date">
+          <div class="d-flex gap-3 my-3">
+            <div class="custom-calender">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                  d="M5.75 1.5a.75.75 0 0 0-1.5 0v.407a3 3 0 0 0-.702.252c-.706.36-1.28.933-1.64 1.639-.226.444-.32.924-.365 1.47-.043.531-.043 1.187-.043 2v1.464c0 .813 0 1.469.043 2 .045.546.14 1.026.366 1.47.36.706.933 1.28 1.639 1.64.444.226.924.32 1.47.365.531.043 1.187.043 2 .043h3.383c.323 0 .542 0 .735-.02a3.75 3.75 0 0 0 3.344-3.344c.02-.193.02-.412.02-.735v-2.883c0-.813 0-1.469-.043-2-.045-.546-.14-1.026-.366-1.47a3.76 3.76 0 0 0-1.638-1.64 3 3 0 0 0-.703-.251v-.407a.75.75 0 0 0-1.5 0v.259c-.373-.009-.794-.009-1.268-.009h-1.964c-.474 0-.895 0-1.268.009zm-1.521 1.995c.197-.1.458-.17.912-.207.462-.037 1.057-.038 1.909-.038h1.9c.852 0 1.447 0 1.91.038.453.037.714.107.912.207.423.216.767.56.983.984.1.197.17.458.207.912.014.18.024.38.029.609h-9.982q.008-.34.03-.61c.036-.453.106-.714.206-.911a2.25 2.25 0 0 1 .984-.984m-1.229 4.005v1.2c0 .852 0 1.447.038 1.91.037.453.107.714.207.912.216.423.56.767.984.983.197.1.458.17.912.207.462.037 1.057.038 1.909.038h3.306c.385 0 .52-.001.626-.012a2.25 2.25 0 0 0 2.006-2.006c.011-.106.012-.241.012-.626v-2.606z">
+                </path>
+              </svg>
+              <input type="text" class="form-control" id="putdate" />
+            </div>
+            <div class="custom-calender">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M8.75 4a.75.75 0 0 0-1.5 0v4c0 .199.079.39.22.53l2 2a.749.749 0 1 0 1.06-1.06l-1.78-1.78z">
+                </path>
+                <path fill-rule="evenodd"
+                  d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+              </svg>
+
+              <!-- Time Dropdown -->
+              <select class="form-control" id="putTime">
+                <option value="12:00 AM">12:00 AM</option>
+                <option value="12:15 AM">12:15 AM</option>
+                <option value="12:30 AM">12:30 AM</option>
+                <option value="12:45 AM">12:45 AM</option>
+                <option value="01:00 AM">01:00 AM</option>
+                <option value="01:15 AM">01:15 AM</option>
+                <option value="01:30 AM">01:30 AM</option>
+                <option value="01:45 AM">01:45 AM</option>
+                <option value="02:00 AM">02:00 AM</option>
+                <option value="02:15 AM">02:15 AM</option>
+                <option value="02:30 AM">02:30 AM</option>
+                <option value="02:45 AM">02:45 AM</option>
+                <option value="03:00 AM">03:00 AM</option>
+                <option value="03:15 AM">03:15 AM</option>
+                <option value="03:30 AM">03:30 AM</option>
+                <option value="03:45 AM">03:45 AM</option>
+                <option value="04:00 AM">04:00 AM</option>
+                <option value="04:15 AM">04:15 AM</option>
+                <option value="04:30 AM">04:30 AM</option>
+                <option value="04:45 AM">04:45 AM</option>
+                <option value="05:00 AM">05:00 AM</option>
+                <option value="05:15 AM">05:15 AM</option>
+                <option value="05:30 AM">05:30 AM</option>
+                <option value="05:45 AM">05:45 AM</option>
+                <option value="06:00 AM">06:00 AM</option>
+                <option value="06:15 AM">06:15 AM</option>
+                <option value="06:30 AM">06:30 AM</option>
+                <option value="06:45 AM">06:45 AM</option>
+                <option value="07:00 AM">07:00 AM</option>
+                <option value="07:15 AM">07:15 AM</option>
+                <option value="07:30 AM">07:30 AM</option>
+                <option value="07:45 AM">07:45 AM</option>
+                <option value="08:00 AM">08:00 AM</option>
+                <option value="08:15 AM">08:15 AM</option>
+                <option value="08:30 AM">08:30 AM</option>
+                <option value="08:45 AM">08:45 AM</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="09:15 AM">09:15 AM</option>
+                <option value="09:30 AM">09:30 AM</option>
+                <option value="09:45 AM">09:45 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="10:15 AM">10:15 AM</option>
+                <option value="10:30 AM">10:30 AM</option>
+                <option value="10:45 AM">10:45 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="11:15 AM">11:15 AM</option>
+                <option value="11:30 AM">11:30 AM</option>
+                <option value="11:45 AM">11:45 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+              </select>
+              <span class="get-time-name">EST</span>
+            </div>
+          </div>
+
+          <div class="show-calender">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="calendar-section">
+                  <div class="row no-gutters">
+                    <div class="col-md-6">
+                      <div class="calendar calendar-first" id="calendar_first">
+                        <div class="calendar_header">
+                          <button class="switch-month switch-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd"
+                                d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75">
+                              </path>
+                            </svg>
+                          </button>
+                          <h2></h2>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-6">
+                      <div class="calendar calendar-second" id="calendar_second">
+                        <div class="calendar_header">
+                          <h2></h2>
+                          <button class="switch-month switch-right">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd"
+                                d="M1.5 8a.75.75 0 0 1 .75-.75h9.69l-2.72-2.72a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.749.749 0 1 1-1.06-1.06l2.72-2.72h-9.69a.75.75 0 0 1-.75-.75">
+                              </path>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="calendar_weekdays"></div>
+                        <div class="calendar_content"></div>
+                      </div>
+
+                    </div>
+
+                  </div> <!-- End Row -->
+
+                </div> <!-- End Calendar -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="publishing-store-time"></div>
+        <div class="modal-footer custom-modal-footer">
+          <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+            data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+            id="schedulePublish">Schedule
+            publishing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="manageeditlocation" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit locations</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="edit-location-warning mb-4 d-none" id="location-checkboxs-error">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#5e4200"><path d="M8 4.75a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path><path d="M9 11.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path><path fill-rule="evenodd" d="M8 1.5c-1.045 0-1.784.702-2.152 1.447a449 449 0 0 1-2.005 3.847l-.028.052c-.892 1.703-1.798 3.432-2.008 3.856-.372.752-.478 1.75.093 2.614.57.863 1.542 1.184 2.464 1.184h7.272c.922 0 1.895-.32 2.465-1.184s.464-1.862.092-2.614c-.21-.424-1.113-2.147-2.004-3.847l-.032-.061a449 449 0 0 1-2.005-3.847c-.368-.745-1.107-1.447-2.152-1.447m-.808 2.112c.404-.816 1.212-.816 1.616 0 .202.409 1.112 2.145 2.022 3.88.908 1.734 1.817 3.467 2.018 3.875.404.817 0 1.633-1.212 1.633h-7.272c-1.212 0-1.617-.816-1.212-1.633.202-.408 1.113-2.147 2.023-3.883.908-1.733 1.815-3.464 2.017-3.872"></path></svg>
+          <span>You must select at least one location for your variant.</span>
+        </div>
+        <div class="desc mb-3">Select locations that stock the selected variants.</div>
+        <div class="d-flex justify-content-between pb-5">
+          <div class="manage-sales-text deselect">Deselect all</div>
+          <div class="manage-sales-select">
+            <checkedNumber id="manage-sales-total-checked">0</checkedNumber> of <span id="manage-sales-total"></span> selected
+          </div>
+        </div>
+
+        <div class="sales-checkbox" id="location-checkboxs">
+          <!-- <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="de784a53-09bc-424b-98f7-ca902a14ed1c"
+              id="online-store" name="getChannelId[]">
+            <label class="form-check-label" for="online-store">
+              <span>Online Store</span>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" value="e8d7763e-2fb7-4edc-953d-f2e65f2b4dd5" id="pos"
+              name="getChannelId[]">
+            <label class="form-check-label" for="pos">
+              <span>Point of sale</span>
+            </label>
+          </div> -->
+        </div>
+
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+          id="locationDone1">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="cropAvatarmodalMulti" data-bs-backdrop="static" aria-labelledby="cropAvatarmodalMultiLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cropAvatarmodalMultiLabel">Select Area to Crop</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="img-container">
+          <img id="uploadedAvatarMulti" src="">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" id="CancleCropMulti"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="cropMulti">Apply</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editVariantValue">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit <span id="variant_edit_sku"></span></h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="form-check m-0">
+          <input class="form-check-input" type="checkbox" value="tax" id="createtThisVariant" checked>
+          <label class="form-check-label" for="createtThisVariant">
+            <span><g-t>Create this variant</g-t></span>
+          </label>
+        </div>
+      </div>
+      <hr class="m-0">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-4 fv-row col-12">
+              <label class="form-label">Price</label>
+              <div class="input mb-2 currency-input">
+                <span class="currency-txt">AED</span>
+                <input type="number" class="form-control" id="edit_variant_price" value="0.00" name="edit_variant_price">
+                <span class="error-txt"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-8"></div>
+          <div class="col-md-4">
+            <div class="mb-4 fv-row">
+              <label class="form-label" for="Costper">Cost per item</label>
+              <div class="input mb-2 currency-input">
+                <span class="currency-txt">AED</span>
+                <input type="number" class="form-control" id="edit_variant_cost_per_item" value="0.00" name="edit_variant_cost_per_item">
+                <div class="main-tooltip main-tooltip-02">
+                  <svg class="custom-tooltip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M8 5.25c-.69 0-1.25.56-1.25 1.25a.75.75 0 0 1-1.5 0 2.75 2.75 0 1 1 3.758 2.56.6.6 0 0 0-.226.147.2.2 0 0 0-.032.046.75.75 0 0 1-1.5-.003c0-.865.696-1.385 1.208-1.586a1.251 1.251 0 0 0-.458-2.414">
+                    </path>
+                    <path d="M8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                    <path fill-rule="evenodd"
+                      d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+                  </svg>
+                  <div class="tooltip-text">Customers won’t see this.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-4 fv-row">
+              <label class="form-label" for="ComparePrice">Profit</label>
+              <div class="input mb-2 currency-input">
+                <span class="currency-txt">AED</span>
+                <input type="number" class="form-control" id="edit_variant_profit_price" value="0.00" name="edit_variant_profit_price" readonly>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="mb-4 fv-row">
+              <label class="form-label" for="Margin">Margin</label>
+              <div class="input mb-2">
+                <input type="text" class="form-control" id="edit_variant_margin_price" value="0.00" name="edit_variant_margin_price" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="m-0">
+      <div class="modal-body">
+        <h5 class="mb-5">Inventory</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-6 fv-row">
+              <label class="form-label" for="sku1"><g-t>SKU (Stock Keeping Unit)</g-t></label>
+              <input type="text" class="form-control mb-2" id="edit_variant_sku" name="edit_variant_sku">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-6 fv-row">
+              <label class="form-label" for="barcode"><g-t>Barcode (ISBN, UPC, GTIN, etc.)</g-t></label>
+              <input type="text" class="form-control mb-2" id="edit_variant_barcode" name="edit_variant_barcode">
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="m-0">
+      <div class="modal-body">
+        <h5 class="mb-5">Customs information</h5>
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-6 fv-row">
+              <label class="form-label"><g-t>Harmonized System (HS) code</g-t></label>
+              <div class="input has-icon">
+                <span class="icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </span>
+                <input type="text" class="form-control mb-2" id="edit_variant_hscode" name="edit_variant_hscode" placeholder="Search or enter a HS code">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal"
+          id="edit_variant_done">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="editPriceModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit prices</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="fv-row col-12">
+          <label class="form-label">Apply a price to all selected variants</label>
+          <div class="input currency-input">
+            <span class="currency-txt">Rs</span>
+            <input type="number" class="form-control toFixed" placeholder="0.00">
+            <span class="error-txt"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editQuantityModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit quantities</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <span>Note : if no any Market</span> <br>
+        <div class="fv-row col-12">
+          <label class="form-label">Apply available quantity to all selected variants</label>
+          <div class="input">
+            <input type="number" class="form-control" placeholder="0">
+            <span class="error-txt"></span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <span>Note : with Market</span> <br>
+        <div class="fv-row col-12 qty-links">
+          <label class="form-label mb-4">Choose a location where you want to edit quantities.</label>
+          <div class="links">
+            <a href="" locationName="Karachi">Karachi
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"></path></svg>
+            </a>
+            <a href="" locationName="Shop location">Shop location
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"></path></svg>
+            </a>
+          </div>
+        </div>
+        <div class="fv-row col-12 d-none qty-input">
+          <label class="form-label mb-4 location-name">Editing quantities at <strong></strong>.</label>
+          <label class="form-label">Apply available quantity to all selected variants</label>
+          <div class="input">
+            <input type="number" class="form-control" placeholder="0">
+            <span class="error-txt"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editSKUModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit SKUs</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <div class="sku-list">
+          <div class="sku-item">
+            <div class="name">Large</div>
+            <div class="input">
+              <input class="form-control md" type="text" />
+            </div>
+          </div>
+          <div class="sku-item">
+            <div class="name">small</div>
+            <div class="input">
+              <input class="form-control md" type="text" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editBarcodeModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit barcodes</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body p-0">
+        <div class="barcode-list">
+          <div class="barcode-item">
+            <div class="name">Large</div>
+            <div class="input">
+              <input class="form-control md" type="text" />
+            </div>
+          </div>
+          <div class="barcode-item">
+            <div class="name">small</div>
+            <div class="input">
+              <input class="form-control md" type="text" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editWeightModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit weight</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="fv-row">
+          <label class="form-label"><g-t>Weight</g-t></label>
+          <div class="d-flex gap-2">
+            <input type="number" class="form-control" placeholder="0.0">
+            <div style="width: 80px;">
+              <select name="weight_unit" class="form-control selectpicker">
+                <option value="lb">lb</option>
+                <option value="oz">oz</option>
+                <option value="kg">kg</option>
+                <option value="g">g</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editHSCodeModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit HS codes</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editCountryRegionModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit country/region of origin</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="fv-row">
+          <label class="form-label d-flex gap-2"><g-t>Apply country/region of origin to all selected variants</g-t>
+            <div class="main-tooltip position-relative" style="inset: unset;">
+              <svg class="custom-tooltip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 5.25c-.69 0-1.25.56-1.25 1.25a.75.75 0 0 1-1.5 0 2.75 2.75 0 1 1 3.758 2.56.6.6 0 0 0-.226.147.2.2 0 0 0-.032.046.75.75 0 0 1-1.5-.003c0-.865.696-1.385 1.208-1.586a1.251 1.251 0 0 0-.458-2.414">
+                </path>
+                <path d="M8 12.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                <path fill-rule="evenodd" d="M8 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14m0-1.5a5.5 5.5 0 1 0 0-11 5.5 5.5 0 1 0 0 11"></path>
+              </svg>
+              <div class="tooltip-text">In most cases, where the product was manufactured or assembled.</div>
+            </div>
+          </label>
+          <select id="countryRegion" class="form-control" data-placeholder="Select">
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="editLocationsModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title">Edit locations</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <div class="edit-location-warning mb-4 d-none">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#5e4200"><path d="M8 4.75a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75"></path><path d="M9 11.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"></path><path fill-rule="evenodd" d="M8 1.5c-1.045 0-1.784.702-2.152 1.447a449 449 0 0 1-2.005 3.847l-.028.052c-.892 1.703-1.798 3.432-2.008 3.856-.372.752-.478 1.75.093 2.614.57.863 1.542 1.184 2.464 1.184h7.272c.922 0 1.895-.32 2.465-1.184s.464-1.862.092-2.614c-.21-.424-1.113-2.147-2.004-3.847l-.032-.061a449 449 0 0 1-2.005-3.847c-.368-.745-1.107-1.447-2.152-1.447m-.808 2.112c.404-.816 1.212-.816 1.616 0 .202.409 1.112 2.145 2.022 3.88.908 1.734 1.817 3.467 2.018 3.875.404.817 0 1.633-1.212 1.633h-7.272c-1.212 0-1.617-.816-1.212-1.633.202-.408 1.113-2.147 2.023-3.883.908-1.733 1.815-3.464 2.017-3.872"></path></svg>
+          <span>You must select at least one location for your variant.</span>
+        </div>
+        <div class="mb-3 form-label">Select locations that stock the selected variants.</div>
+        <div class="d-flex justify-content-between pb-5">
+          <div class="edit-location-text deselect">Deselect all</div>
+          <div class="edit-location-select">
+            <checkedNumber>0</checkedNumber> of 2 selected
+          </div>
+        </div>
+
+        <div class="edit-location-checkbox" id="edit-location-checkboxs">
+          <div class="form-check mb-4">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="" checked>
+              <span>Karachi</span>
+            </label>
+          </div>
+          <div class="form-check mb-4">
+            <label class="form-check-label">
+              <input class="form-check-input" type="checkbox" value="" checked>
+              <span>Shop location</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text waves-effect waves-light"
+          data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text waves-effect waves-light" id="editLocationsDone" data-bs-dismiss="modal">Done</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Treeview js -->
+
+
+<!-- Varient Options Card Template -->
+<template id="addVarientCardTemp">
+  <div class="variants-option-card" data-index="__INDEX__">
+    <div class="drag drag-card"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M5.5 2.5a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path><path d="M5.5 6.75a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path><path d="M4.5 12a1 1 0 0 1 1-1h.5a1 1 0 0 1 1 1v.5a1 1 0 0 1-1 1h-.5a1 1 0 0 1-1-1z"></path><path d="M10 2.5a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path><path d="M9 7.75a1 1 0 0 1 1-1h.5a1 1 0 0 1 1 1v.5a1 1 0 0 1-1 1h-.5a1 1 0 0 1-1-1z"></path><path d="M10 11a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path></svg></div>
+    <div class="variants-option-prev" style="display: none;">
+      <div class="option-prev-name"></div>
+      <div class="option-prev-values"></div>
+    </div>
+    <div class="variants-option-inputs">
+      <div class="input mb-2">
+        <label class="form-label"><g-t>Option name</g-t></label>
+        <div class="input-wrapper">
+          <input type="text" class="form-control"  placeholder="Add Name" name="choice[]">
+        </div>
+        <span class="error-txt">Option name is required.</span>
+      </div>
+      <label class="form-label"><g-t>Option values</g-t></label>
+      <div class="another-inputs-wrapper">
+        <div class="input value-input mb-2">
+          <div class="drag drag-input"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path d="M5.5 2.5a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path><path d="M5.5 6.75a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path><path d="M4.5 12a1 1 0 0 1 1-1h.5a1 1 0 0 1 1 1v.5a1 1 0 0 1-1 1h-.5a1 1 0 0 1-1-1z"></path><path d="M10 2.5a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path><path d="M9 7.75a1 1 0 0 1 1-1h.5a1 1 0 0 1 1 1v.5a1 1 0 0 1-1 1h-.5a1 1 0 0 1-1-1z"></path><path d="M10 11a1 1 0 0 0-1 1v.5a1 1 0 0 0 1 1h.5a1 1 0 0 0 1-1v-.5a1 1 0 0 0-1-1z"></path></svg></div>
+          <div class="input-wrapper">
+            <input type="text" class="form-control" placeholder="Add value" name="choice_options___INDEX__[]">
+            <span class="icon" style="fill: #8a8a8a;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75"></path><path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path><path fill-rule="evenodd" d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z"></path></svg></span>
+          </div>
+          <span class="error-txt">Option value is required.</span>
+        </div>
+      </div>
+    </div>
+    <div class="row option-card-action-parent">
+      <div class="col-12 option-card-action">
+        <a href="javascript:;" class="del">Delete</a>
+        <a href="javascript:;" class="done">Done</a>
+      </div>
+    </div>
+  </div>
+</template>
+<!-- Varient Options Card Template -->
+
+<script src="./assets/js/custom-calender.js"></script>
+<script src="./assets/js/short-code.js"></script>
+
+<script src="./assets/js/select2.min.js"></script>
+<script src="./assets/js/MultiFileUpload.js"></script>
+<script src="./assets/js/cropper.js"></script>
+
+<!-- <script src="./assets/js/add-product.js"></script> -->
+<script src="./assets/js/edit-product-variants.js"></script>

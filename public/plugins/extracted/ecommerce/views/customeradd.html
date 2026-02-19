@@ -1,0 +1,145 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="mb-4"><g-t>add</g-t> <g-t>customer</g-t></h3>
+                </div>
+            </div>  
+        </div>
+        <div class="widget-wrapper">
+            <form action="" id="addCustomerForm" method="post" enctype="multipart/form-data">
+                <div class="product-content p-5">
+                    <div>
+                        <div class="row gap-lg-0 gap-5">
+                            <div class="col-lg-12 form-input mt-3">
+                                <div class="row">
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="first_name" class="form-label required"><g-t>first_name</g-t></label>
+                                        <input type="text" class="form-control mb-2" name="first_name" required>
+                                    </div>                                        
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="last_name" class="form-label required"><g-t>last_name</g-t></label>
+                                        <input type="text" class="form-control mb-2" name="last_name" required>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="email" class="form-label required"><g-t>email</g-t></label>
+                                        <input type="email" class="form-control mb-2" name="email" required>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="phone" class="form-label required"><g-t>phone</g-t></label>
+                                        <input type="tel" class="form-control mb-2" name="phone" id="phone" required>
+                                        <span class="error-txt"></span>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="language" class="form-label"><g-t>language</g-t></label>
+                                        <select class="form-control mb-2" name="language" id="languageSelect">
+                                            <option value="" disabled selected>Select Language</option>
+                                            <!-- Options will be populated dynamically -->
+                                        </select>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="tax_setting" class="form-label"><g-t>tax_setting</g-t></label>
+                                        <input type="text" class="form-control mb-2" name="tax_setting">
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <label for="notes" class="form-label"><g-t>notes</g-t></label>
+                                        <textarea name="notes" class="form-control mb-2" rows="4"></textarea>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6">
+                                        <label for="tags" class="form-label"><g-t>tags</g-t></label>
+                                        <select class="form-control mb-2" name="tags[]" id="tagsSelect" multiple>
+                                            <!-- Options will be populated dynamically -->
+                                        </select>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6 d-flex align-items-center">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="market_emails" id="market_emails" value="1">
+                                        </div>
+                                        <label class="form-check-label ms-2" for="market_emails"><g-t>receive_marketing_emails</g-t></label>
+                                    </div>
+                                    <div class="mb-6 fv-row col-md-6 d-flex align-items-center">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="market_sms" id="market_sms" value="1">
+                                        </div>
+                                        <label class="form-check-label ms-2" for="market_sms"><g-t>receive_marketing_sms</g-t></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="product-content mt-5">
+                        <h3><g-t>billing_address</g-t></h3>
+                        <div class="row gap-lg-0 gap-5 mt-5">
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="address_first_name" class="form-label required"><g-t>first_name</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[address_first_name]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="address_last_name" class="form-label required"><g-t>last_name</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[address_last_name]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="company" class="form-label"><g-t>company</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[company]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="address_phone" class="form-label required"><g-t>phone</g-t></label>
+                                <input type="tel" class="form-control mb-2" name="billing_address[address_phone]" id="billing_address_phone">
+                                <span class="error-txt"></span>
+                            </div>
+                            <div class="mb-6 fv-row col-md-12">
+                                <label for="address" class="form-label"><g-t>address</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[address]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="apartment" class="form-label"><g-t>apartment</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[apartment]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="city" class="form-label"><g-t>city</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[city]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="state" class="form-label"><g-t>state</g-t></label>
+                                <input type="text" class="form-control mb-2" name="billing_address[state]">
+                            </div>
+                            <div class="mb-6 fv-row col-md-6">
+                                <label for="country" class="form-label"><g-t>country</g-t></label>
+                                <select class="form-control mb-2" name="billing_address[country]" id="billingCountrySelect">
+                                    <option value="" disabled selected>Select Country</option>
+                                    <!-- Options will be populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="shippingAddressesContainer"></div>
+                    <div class="widget-content mt-5">
+                        <button type="button" class="btn btn-secondary mb-3" id="addShippingAddressBtn" style="white-space: nowrap; align-items: center; height: 50px;"><g-t>add_shipping_address</g-t></button>
+                    </div>
+                    <div class="col-lg-12 d-flex justify-content-end gap-3 align-items-center mt-4">
+                        <button type="submit" class="btn btn-primary"><g-t>save</g-t></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="./assets/js/select2.min.js"></script>
+<style>
+    .shipping-address-container {
+        position: relative;
+        margin-top: 20px;
+    }
+    .delete-shipping-address {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 20px;
+        color: #dc3545;
+    }
+</style>

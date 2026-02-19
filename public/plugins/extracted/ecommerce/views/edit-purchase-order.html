@@ -1,0 +1,889 @@
+<div class="main-content create-purchase-main">
+  <div class="w-100 d-flex justify-content-between align-items-center flex-wrap gap-lg-0 gap-4">
+    <div class="purchase-icon-main">
+      <a href="">
+        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M14.75 8a.75.75 0 0 1-.75.75h-9.69l2.72 2.72a.749.749 0 1 1-1.06 1.06l-4-4a.747.747 0 0 1 0-1.06l4-4a.749.749 0 1 1 1.06 1.06l-2.72 2.72h9.69a.75.75 0 0 1 .75.75">
+          </path>
+        </svg>
+      </a>
+      <h2 class="purchase-title">Create purchase order</h2>
+    </div>
+    <div class="d-flex justify-content-start flex-wrap justify-content-md-end align-items-center gap-2">
+      <a href="#" class="btn btn-secondary">
+        <g-t>Delete</g-t>
+      </a>
+      <div class="dropdown" data-bs-auto-close="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Duplicate
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+              As purchase order
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+              As transfer
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="dropdown" data-bs-auto-close="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          More actions
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+              Close purchase order
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item d-flex align-items-center gap-2" href="#">
+              Export PDF
+            </a>
+          </li>
+        </ul>
+      </div>
+      <a href="javascript:;" class="receive-inventory btn btn-primary">
+        <svg class="me-2" width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.00024 2V14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M2 8.00006H14.0002" stroke="white" stroke-width="1.7" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <g-t>Receive inventory</g-t>
+      </a>
+    </div>
+  </div>
+  <div class="widget-wrapper">
+    <div class="widget-content border">
+      <div class="row">
+        <div class="col-lg-12 form-input mt-3">
+          <div class="row">
+            <div class="col-lg-6 mb-4">
+              <div class="form-group">
+                <label for="">Supplier</label>
+                <div class="select-dropdown mb-2">
+                  <div class="droupdown-head one">
+                    <span id="Selectsupplier" data-uuid="">Select supplier</span>
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="droupdown-body supplier">
+                    <ul id="select_supplier" class="p-3 m-0">
+                      <!-- <li>
+                                                <label class="custom-checkbox">
+                                                    Acme
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox">
+                                                    NomanDigitalGraphiks
+                                                </label>
+                                            </li> -->
+                    </ul>
+                    <div class="create-new-supplier">
+                      <a href="#" data-bs-toggle="modal" data-bs-target="#createSupplier">Create
+                        new supplier</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropdown hover-none" data-bs-auto-close="false">
+                  <button class="view-supplier dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    view supplier
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item d-flex align-items-center gap-2">
+                      <h5>Address</h5>
+                      <p>Pakistan</p>
+                    </li>
+                    <li class="dropdown-item d-flex align-items-center gap-2">
+                      <h5>Contact</h5>
+                      <p>No contact information</p>
+                    </li>
+                    <li class="create-new-supplier">
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        data-bs-target="#editSupplier" href="#">
+                        Edit supplier
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+              <div class="form-group">
+                <label for="">Destination</label>
+                <div class="select-dropdown">
+                  <div class="droupdown-head one">
+                    <span id="Selectlocation">Select location</span>
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="droupdown-body supplier">
+                    <ul id="select_location" class="p-3 m-0" data-uuid="">
+                      <!-- <li>
+                                                <label class="custom-checkbox">
+                                                    Acme
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <label class="custom-checkbox">
+                                                    NomanDigitalGraphiks
+                                                </label>
+                                            </li> -->
+                    </ul>
+                    <!-- <div class="create-new-supplier">
+                                            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModalThree">Create new supplier</a>
+                                        </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Payment terms (optional)</label>
+                <select name="payment_terms" id="payment_terms" class="form-control selectpicker">
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="">Supplier currency</label>
+                <select name="supplier_currency" id="supplier_currency" class="form-control selectpicker">
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="widget-content border">
+      <div class="row">
+        <div class="col-lg-12 form-input mt-3">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group mt-0">
+                <label for="">Estimated arrival</label>
+                <input name="estimated-arrival" type="date" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group mt-0">
+                <label for="">Shipping carrier</label>
+                <select name="shipping-carrier" id="shipping_carrier" class="form-control selectpicker">
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group mt-0">
+                <label for="">Tracking number</label>
+                <input type="text" class="form-control" name="tracking-number" required
+                  placeholder="Enter your tracking number">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="widget-content border">
+      <div class="row">
+        <div class="col-lg-12 form-input mt-3">
+          <div class="purchase-table-main">
+            <h5 class="mb-2">Add product</h5>
+            <div class="form-group row mb-4">
+              <div class="col-12">
+                <div class="d-flex align-items-center gap-4">
+                  <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+                    <button class="cursor" onclick="return false;">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                          stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                        <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65"
+                          stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      </svg>
+                    </button>
+                    <input type="text" id="custom_search_po2" data-bs-toggle="modal" data-bs-target="#exampleModalOne" placeholder="Searching all products" required="">
+                  </div>
+                  <a href="" data-bs-toggle="modal" data-bs-target="#exampleModalOne"
+                    class="custom-button-browse">Browse</a>
+                </div>
+              </div>
+            </div>
+            <div id="product_table_one" class="d-none">
+              <div class="table-responsive">
+                <table class="datatables-basic table table" id="Table_View">
+                  <thead>
+                    <tr>
+                      <th width="25%"><g-t>Product</g-t></th>
+                      <th width="20%"><g-t>Supplier SKU</g-t></th>
+                      <th width="20%"><g-t>Quantity</g-t></th>
+                      <th width="20%"><g-t>Cost</g-t></th>
+                      <th width="20%"><g-t>Tax</g-t></th>
+                      <th width="20%"><g-t>Total</g-t></th>
+                      <th width="10%"><g-t>&nbsp;</g-t></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+
+                  </tbody>
+
+                </table>
+              </div>
+
+              <div class="variant-purchase-main">
+                <span> <span id="variantOrdernumber">1</span> variant on purchase order</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="widget-content border">
+          <h5 class="mb-4">Additional details</h5>
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="form-input form-group">
+                <label for="">Reference number</label>
+                <input type="text" class="form-control" name="reference-number" required
+                  placeholder="Enter your reference number">
+              </div>
+            </div>
+            <div class="col-12 mb-4">
+              <div class="form-input form-group custom-count">
+                <label for="">Note to supplier</label>
+                <textarea placeholder="Enter your supplier" name="note-supplier" maxlength="5000" id="duplicateTextarea"
+                  class="form-control" rows="3"></textarea>
+                <div class="count-textarea-main" id="the-count">
+                  <span id="current">0</span>
+                  <span id="maximum">/ 5000</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="form-input form-group">
+                <label for="">Tags</label>
+                <input type="text" class="form-control" name="tag" required placeholder="Enter your tags">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="widget-content border">
+          <div class="cost-summary-main">
+            <h6>Cost summary</h6>
+            <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="">Manage</a>
+          </div>
+          <div class="cost-summary-main">
+            <span>Taxes (Included)</span>
+            <span id="tax-included">Rs 0.00</span>
+            <input id="tax-included-input" type="hidden">
+          </div>
+          <div class="cost-summary-main">
+            <h6>Subtotal</h6>
+            <h6 id="po-subtotal">Rs 0.00</h6>
+          </div>
+          <div class="cost-summary-main">
+            <span><span id="item-total">0</span> items</span>
+          </div>
+          <div class="cost-summary-main">
+            <h6>Cost adjustments</h6>
+          </div>
+          <div class="cost-summary-main">
+            <span>Shipping</span>
+            <span id="shipping-fee">Rs 0.00</span>
+          </div>
+          <div class="cost-summary-main">
+            <h6>Total</h6>
+            <h6 id="grand-total">Rs 0.00</h6>
+            <input id="grand-total-input" type="hidden">
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="d-flex justify-content-end">
+          <button id="dataSave" type="button" class="btn btn-primary btn-modal-text">Save</button>
+        </div>
+        <div class="time-line-main">
+          <span>Timeline</span>
+          <div class="comment-profile-main">
+            <div class="comment-header-main">
+              <span>NI</span>
+              <input placeholder="Leave a comment...." type="text">
+            </div>
+            <div class="comment-footer-main">
+              <div class="d-flex align-items-center gap-4">
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M9.5 5a.75.75 0 0 0-.75.75v1.5a.75.75 0 0 0 1.5 0v-1.5a.75.75 0 0 0-.75-.75">
+                    </path>
+                    <path d="M5.75 5.75a.75.75 0 0 1 1.5 0v1.5a.75.75 0 0 1-1.5 0z"></path>
+                    <path
+                      d="M9.522 9.983a2.5 2.5 0 0 1-3.044 0 2.5 2.5 0 0 1-.893-1.336.75.75 0 1 0-1.448.388 3.999 3.999 0 0 0 7.727 0 .75.75 0 1 0-1.45-.388 2.5 2.5 0 0 1-.892 1.336">
+                    </path>
+                    <path fill-rule="evenodd"
+                      d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0">
+                    </path>
+                  </svg>
+                </a>
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M5.738 2.987a5.498 5.498 0 0 1 7.762 5.013c0 .874-.227 1.44-.5 1.773a1.26 1.26 0 0 1-1 .477c-.639 0-.96-.222-1.162-.523-.236-.355-.374-.93-.374-1.727v-2.571a.749.749 0 0 0-1.28-.531c-.437-.3-1.012-.505-1.755-.505-1.159 0-1.952.6-2.422 1.352-.45.72-.614 1.58-.614 2.255s.164 1.536.614 2.255c.47.752 1.263 1.352 2.422 1.352.95 0 1.655-.468 2.119-.937l.069-.072c.515.745 1.326 1.152 2.383 1.152.824 0 1.6-.347 2.157-1.024.55-.667.843-1.6.843-2.726a7 7 0 1 0-3.009 5.751.75.75 0 0 0-.855-1.232 5.51 5.51 0 0 1-6.776-.395 5.503 5.503 0 0 1 1.378-9.137m3.276 5.877a7 7 0 0 1-.05-.864v-.976l-.033-.075c-.09-.204-.173-.392-.352-.598-.2-.228-.522-.458-1.15-.458-.556 0-.906.256-1.15.647-.265.424-.386.991-.386 1.46s.121 1.036.386 1.46c.244.39.594.647 1.15.647.42 0 .763-.199 1.052-.491a3.2 3.2 0 0 0 .534-.752Z">
+                    </path>
+                  </svg>
+                </a>
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M12.239 2.379a.751.751 0 0 0-1.478-.258l-.457 2.629h-3.478l.413-2.371a.751.751 0 0 0-1.478-.258l-.457 2.629h-2.804a.75.75 0 0 0 0 1.5h2.543l-.609 3.5h-2.434a.75.75 0 0 0 0 1.5h2.174l-.413 2.372a.75.75 0 0 0 1.478.257l.457-2.629h3.478l-.413 2.372a.75.75 0 0 0 1.478.257l.457-2.629h2.804a.75.75 0 0 0 0-1.5h-2.543l.609-3.5h2.434a.75.75 0 0 0 0-1.5h-2.174zm-6.282 7.371h3.477l.61-3.5h-3.478z">
+                    </path>
+                  </svg>
+                </a>
+                <a href="">
+                  <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M2.843 7.854a3.75 3.75 0 0 0 0 5.303l.147.147a3.543 3.543 0 0 0 5.01 0 .75.75 0 0 0-1.06-1.061 2.044 2.044 0 0 1-2.89 0l-.146-.146a2.25 2.25 0 0 1 0-3.182l5.015-5.015a2.242 2.242 0 1 1 3.173 3.172l-2.286 2.286a.815.815 0 0 1-1.155 0 .815.815 0 0 1 0-1.155l2.25-2.25a.75.75 0 0 0-1.06-1.061l-2.25 2.25a2.315 2.315 0 0 0 0 3.277c.904.905 2.37.905 3.275 0l2.286-2.286a3.743 3.743 0 1 0-5.294-5.294z">
+                    </path>
+                  </svg>
+                </a>
+              </div>
+              <button type="submit">Post</button>
+            </div>
+          </div>
+          <div class="border-after">
+            <p>Only you and other staff can see comments</p>
+            <span class="comment-text">Today</span>
+            <ul>
+              <li>
+                <div class="d-flex gap-4"><span></span>Yesterday</div>
+                <p>3:47 AM</p>
+              </li>
+              <li>
+                <div class="d-flex gap-4"><span></span>Yesterday</div>
+                <p>3:47 AM</p>
+              </li>
+              <li class="collapse-main d-block">
+                <div class="collapse-head d-flex justify-content-between" onclick="toggleCollapse(this)">
+                  <div class="d-flex gap-4">
+                    <span></span>
+                    Yesterday
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M4.24 6.2a.75.75 0 0 1 1.06.04l2.7 2.908 2.7-2.908a.75.75 0 0 1 1.1 1.02l-3.25 3.5a.75.75 0 0 1-1.1 0l-3.25-3.5a.75.75 0 0 1 .04-1.06">
+                      </path>
+                    </svg>
+                  </div>
+                  <p>3:47 AM</p>
+                </div>
+                <div class="collapse-body comment-body" style="display: none;">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Products</th>
+                        <th>Accepted</th>
+                        <th>Rejected</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <p class="comment-title-badge">title</p>
+                        </td>
+                        <td>
+                          <p class="comment-number">0</p>
+                        </td>
+                        <td>
+                          <p class="comment-number">1</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="comment-box-main">
+            <div class="comment-box-child">
+              <span class="profile-text">NI</span>
+              <div class="comment-text">
+                <div class="d-flex align-items-center gap-2">
+                  <h6>Nomi Imran</h6>
+                  <p>36 minutes ago</p>
+                </div>
+                <span>noman</span>
+              </div>
+            </div>
+            <a href="">
+              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                <path d="M9.5 6.25a.75.75 0 0 1 .75.75v4.25a.75.75 0 0 1-1.5 0v-4.25a.75.75 0 0 1 .75-.75">
+                </path>
+                <path d="M7.25 7a.75.75 0 0 0-1.5 0v4.25a.75.75 0 0 0 1.5 0z"></path>
+                <path fill-rule="evenodd"
+                  d="M5.25 3.25a2.75 2.75 0 1 1 5.5 0h3a.75.75 0 0 1 0 1.5h-.75v5.45c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311c-.642.327-1.482.327-3.162.327h-.4c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311c-.327-.642-.327-1.482-.327-3.162v-5.45h-.75a.75.75 0 0 1 0-1.5zm1.5 0a1.25 1.25 0 0 1 2.5 0zm-2.25 1.5h7v5.45c0 .865-.001 1.423-.036 1.848-.033.408-.09.559-.128.633a1.5 1.5 0 0 1-.655.655c-.074.038-.225.095-.633.128-.425.035-.983.036-1.848.036h-.4c-.865 0-1.423-.001-1.848-.036-.408-.033-.559-.09-.633-.128a1.5 1.5 0 0 1-.656-.655c-.037-.074-.094-.225-.127-.633-.035-.425-.036-.983-.036-1.848z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal Start -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Manage cost summary</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <div class="form-input form-group">
+              <label for="">Adjustment</label>
+              <span class="text-adjustment">Shipping</span>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-input form-group">
+              <label for="">Amount</label>
+              <input type="text" class="form-control" placeholder="Rs 0.00">
+            </div>
+          </div>
+        </div>
+        <div class="my-4" id="add-adjustment"></div>
+        <div class="row">
+          <div class="col-12">
+            <a class="add-adjustment-main" onclick="addSelectInput()">
+              <i style="color: #ed2121;" class="fa fa-plus-circle fa-lg"></i>
+              Add adjustment
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-modal-text">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="createSupplier" tabindex="-1" role="dialog" aria-labelledby="createSupplierLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <form id="SupplierForm" action="" class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="createSupplierLabel">Create supplier</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body supplier-body">
+        <div class="row">
+          <!-- <div class="col-12">
+                        <div class="supplier-alert">
+                            <span>To save this supplier, 1 change needs to be made:</span>
+                            <p>Company can't be blank</p>
+                        </div>
+                    </div> -->
+          <div class="col-12">
+            <div class="form-input form-group">
+              <div class="input">
+                <label>Company</label>
+                <input name="company" type="text" class="form-control">
+                <span class="error-txt"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Country/region</label>
+              <select name="country-select" id="country_select" class="form-control selectpicker">
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Address</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Apartment, suite, etc</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">City</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">Postal code</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Contact name</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">Email address</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">Phone number</label>
+              <input class="form-control" type="tel" name="phone" id="phone"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-modal-text">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="editSupplier" tabindex="-1" role="dialog" aria-labelledby="editSupplierLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <form id="SupplierForm" action="" class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="editSupplierLabel">Edit supplier</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body supplier-body">
+        <div class="row">
+          <!-- <div class="col-12">
+                        <div class="supplier-alert">
+                            <span>To save this supplier, 1 change needs to be made:</span>
+                            <p>Company can't be blank</p>
+                        </div>
+                    </div> -->
+          <div class="col-12">
+            <div class="form-input form-group">
+              <div class="input">
+                <label>Company</label>
+                <input name="company" type="text" class="form-control">
+                <span class="error-txt"></span>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Country/region</label>
+              <select name="country-select" id="country_select" class="form-control selectpicker">
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Address</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Apartment, suite, etc</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">City</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">Postal code</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-input form-group">
+              <label for="">Contact name</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">Email address</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-input form-group">
+              <label for="">Phone number</label>
+              <input class="form-control" type="tel" name="phone" id="phone"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary btn-modal-text">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- product modal start -->
+<div class="modal fade" id="exampleModalOne" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="exampleModalLabel">Add products</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body custom-modal-body">
+        <div class="add-product-modal-main">
+          <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full">
+            <!-- <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+              <button class="cursor" onclick="return false;">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                    stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <input type="text" id="custom_search_po" placeholder="Searching all products" required="">
+            </div> -->
+          </div>
+          <a id="ProductItem" data-bs-toggle="modal" data-bs-target="#exampleModalTwo" data-dismiss="modal" href=""
+            class="d-flex justify-content-between align-items-center product-new-modal-open">
+            <span>All Products</span>
+            <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M5.72 12.53a.75.75 0 0 1 0-1.06l3.47-3.47-3.47-3.47a.749.749 0 1 1 1.06-1.06l4 4a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0"
+                fill="#000s"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary btn-modal-text d-none">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalTwo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-modal-header">
+        <h5 class="modal-title custom-modal-title" id="exampleModalLabel">All products</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body custom-modal-body purchase-modal">
+        <div class="add-product-modal-main">
+          <div class="d-flex align-items-center margin-left-right  custom-form-field-search search-bar-main-full">
+            <div id="Table_View_filter" class="table-search-main dataTables_filter" style="display: flex;">
+              <button class="cursor" onclick="return false;">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                    stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2"
+                    stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <input type="text" id="custom_search_po" placeholder="Searching all products" required="">
+            </div>
+          </div>
+        </div>
+        <div class="table-modal-main">
+          <div class="product-table-head">
+            <!-- <div class="custom-checkbox-main form-group d-inline-block">
+                    <label class="aiz-checkbox">
+                        <input type="checkbox" class="check-one" name="id[]">
+                        <span class="aiz-square-check"></span>
+                    </label>
+                </div> -->
+            <div class="product-name">
+              <span>Product</span>
+            </div>
+            <!-- <div class="available-name">
+                            <span>Available at destination</span>
+                        </div> -->
+            <div class="total-name">
+              <span>Total available</span>
+            </div>
+          </div>
+          <div id="table_product" class="product-table-body">
+            <!-- <div class="table-first-item">
+                            <div class="table-row parent">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-name">
+                                    <img src="assets/images/products/product-1.png" alt="Image"
+                                        class="size-50px img-fit">
+                                    <span>Custom High Quality 100% Cotton men's Solid color Bulk Blank T-Shirts Pro Club
+                                        Loose Drop Shoulder Oversized T Shirt AG2800</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="table-row child left-side-item">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-table-item">
+                                    <span class="product-size">L</span>
+                                    <span class="product-color">Gray</span>
+                                    <span class="product-fabric">100% Cotton</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="table-row child left-side-item">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-table-item">
+                                    <span class="product-size">L</span>
+                                    <span class="product-color">Gray</span>
+                                    <span class="product-fabric">100% Cotton</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                        </div> -->
+            <!-- <div class="table-first-item">
+                            <div class="table-row parent">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-name">
+                                    <img src="assets/images/products/product-1.png" alt="Image"
+                                        class="size-50px img-fit">
+                                    <span>Custom High Quality 100% Cotton men's Solid color Bulk Blank T-Shirts Pro Club
+                                        Loose Drop Shoulder Oversized T Shirt AG2800</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                            <div class="table-row child left-side-item">
+                                <div class="custom-checkbox-main form-group d-inline-block">
+                                    <label class="custom-checkbox">
+                                        <input type="checkbox" name="">
+                                        <span class="aiz-square-check"></span>
+                                    </label>
+                                </div>
+                                <div class="product-table-item">
+                                    <span class="product-size">L</span>
+                                    <span class="product-color">Gray</span>
+                                    <span class="product-fabric">100% Cotton</span>
+                                </div>
+                                <div class="available-name">
+                                    <span>10</span>
+                                </div>
+                                <div class="total-name">
+                                    <span>10</span>
+                                </div>
+                            </div>
+                        </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn btn-secondary btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button id="AddProduct" type="button" class="btn btn-primary btn-modal-text"
+          data-bs-dismiss="modal">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal End -->
+
+<script>
+  function toggleCollapse(element) {
+    let collapseBody = element.nextElementSibling;
+    collapseBody.style.display = (collapseBody.style.display === "none" || collapseBody.style.display === "") ? "block" : "none";
+}
+
+$(".receive-inventory").on("click", function (e) {
+    e.preventDefault();
+    let page = 'receive-item';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+});
+</script>

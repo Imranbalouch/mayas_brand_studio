@@ -1,0 +1,844 @@
+<!-- <link rel="stylesheet" href="./assets/css/collections.css"> -->
+<style> 
+  .dataTables_length{ display: none !important; }
+ 
+  #Table_View_wrapper {
+      margin: 20px;
+  }
+
+</style>
+
+<div class="container-xxl container-p-y gift-card gift-card-listing-container">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-md-6">
+        <h3 class=""><g-t>Gift Cards</g-t></h3>
+      </div>
+      <div class="col-md-6 d-flex justify-content-start flex-wrap justify-content-md-end align-items-center gap-2">
+        <a href="javascript:;" class="btn btn-secondary create-giftcard-product">
+          <g-t>Add gift card product</g-t>
+        </a>
+        <a href="javascript:;" class="btn btn-primary create-giftcard">
+          <g-t>Create gift card</g-t>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="custom-table card-datatable pt-0">
+          <div class="">
+            <div class="card-header d-flex border-top rounded-0 flex-wrap pb-4 pt-4 tabs-search-sorting">
+              <ul style="border: 0; width: auto;" class="nav nav-tabs custom-tab-order" id="navList" role="tablist">
+
+                <li class="nav-item nav-link active d-none" data-filter="all" id="tabsAll">
+                  All
+                  <!-- <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill="#000"
+                            d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75">
+                          </path>
+                          <path fill-rule="evenodd" fill="#000"
+                            d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z">
+                          </path>
+                        </svg>
+                        Rename view
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill="#000"
+                            d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75">
+                          </path>
+                          <path fill-rule="evenodd" fill="#000"
+                            d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z">
+                          </path>
+                        </svg>
+                        Duplicate View
+                      </a>
+                    </li>
+                  </ul> -->
+                </li>
+
+                <!-- <li class="nav-item nav-link" data-filter="redeemable" id="tabsRadeemable">
+                  Redeemable
+                  <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill="#000"
+                            d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75">
+                          </path>
+                          <path fill-rule="evenodd" fill="#000"
+                            d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z">
+                          </path>
+                        </svg>
+                        Duplicate View
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item nav-link" data-filter="full" id="tabsFull">
+                  Full
+                  <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill="#000"
+                            d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75">
+                          </path>
+                          <path fill-rule="evenodd" fill="#000"
+                            d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z">
+                          </path>
+                        </svg>
+                        Duplicate View
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="nav-item nav-link" data-filter="partial" id="tabsPartial">
+                  Partial
+                  <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill="#000"
+                            d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75">
+                          </path>
+                          <path fill-rule="evenodd" fill="#000"
+                            d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z">
+                          </path>
+                        </svg>
+                        Duplicate View
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+
+                <li class="nav-item nav-link" data-filter="empty" id="tabsEmpty">
+                  Empty
+                  <span class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></span>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item d-flex align-items-center gap-2" data-bs-toggle="modal"
+                        href="#MaximumCharactor">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill="#000"
+                            d="M9.25 6.5a.75.75 0 0 0-.75.75v1.25h-1.25a.75.75 0 0 0 0 1.5h1.25v1.25a.75.75 0 1 0 1.5 0v-1.25h1.25a.75.75 0 1 0 0-1.5h-1.25v-1.25a.75.75 0 0 0-.75-.75">
+                          </path>
+                          <path fill-rule="evenodd" fill="#000"
+                            d="M9.25 1.5a2.75 2.75 0 0 1 2.74 2.51 2.75 2.75 0 0 1 2.51 2.74v5a2.75 2.75 0 0 1-2.75 2.75h-5a2.75 2.75 0 0 1-2.74-2.51 2.75 2.75 0 0 1-2.51-2.74v-5a2.75 2.75 0 0 1 2.75-2.75zm-2.5 2.5h3.725c-.116-.57-.62-1-1.225-1h-5c-.69 0-1.25.56-1.25 1.25v5c0 .605.43 1.11 1 1.225v-3.725a2.75 2.75 0 0 1 2.75-2.75m5 1.5c.69 0 1.25.56 1.25 1.25v5c0 .69-.56 1.25-1.25 1.25h-5c-.69 0-1.25-.56-1.25-1.25v-5c0-.69.56-1.25 1.25-1.25z">
+                          </path>
+                        </svg>
+                        Duplicate View
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a style="padding: 0;" class="" data-bs-toggle="modal" href="#MaximumCharactor">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path
+                        d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5z">
+                      </path>
+                    </svg>
+                  </a>
+                </li> -->
+              </ul>
+
+
+              <div id="Table_View_filter" class="table-search-main dataTables_filter">
+                <button class="cursor" onclick="return false;">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M7.66671 14C11.1645 14 14 11.1645 14 7.66666C14 4.16886 11.1645 1.33333 7.66671 1.33333C4.1689 1.33333 1.33337 4.16886 1.33337 7.66666C1.33337 11.1645 4.1689 14 7.66671 14Z"
+                      stroke="black" stroke-opacity="0.65" stroke-width="1.2" stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path d="M14.6667 14.6667L13.3334 13.3333" stroke="black" stroke-opacity="0.65" stroke-width="1.2"
+                      stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+                </button>
+                <input type="text" id="custom_search" placeholder="Search Gift Card" required="">
+              </div>
+              <div class="search-icon-button">
+                <span class="cancel">Cancel</span>
+                <a data-bs-toggle="modal" href="#SaveAs" class="save d-none">Save as</a>
+              </div>
+
+
+              <div class="d-flex align-items-center gap-2">
+                <span class="searchopen" id="searchOpen">
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                      d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                    </path>
+                  </svg>
+                  <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75"> </path>
+                    <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75"> </path>
+                    <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z"></path>
+                  </svg>
+                </span>
+                <div class="custom-dropdown-main">
+                  <div class="droupdown-head open-inventory-droupdown">
+                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path
+                        d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z">
+                      </path>
+                      <path
+                        d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="custom-dropdown-main droupdown-body" style="width: 220px;">
+                    <ul>
+                      <h6>Sort by</h6>
+                      <!-- <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" id="sortGiftCard" value="1">
+                          Gift code ending
+                        </label>
+                      </li> -->
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" id="sortCustomer" value="2">
+                          Customer last name
+                        </label>
+                      </li>
+                
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" id="sortCreated" value="4">
+                          Date created
+                        </label>
+                      </li>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" id="sortEdited" value="5">
+                          Date edited
+                        </label>
+                      </li>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" id="sortExpiry" value="6">
+                          Expiry date
+                        </label>
+                      </li>
+                      <!-- <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" id="sortBalance" value="7">
+                          Total balance
+                        </label>
+                      </li> -->
+                    </ul>
+                    <div class="hr"></div>
+                    <div class="lodest-first">
+                      <a href="javascript:;" id="sortAZ">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 14.5a.75.75 0 0 1-.75-.75v-9.69l-2.72 2.72a.749.749 0 1 1-1.06-1.06l4-4a.747.747 0 0 1 1.06 0l4 4a.749.749 0 1 1-1.06 1.06l-2.72-2.72v9.69a.75.75 0 0 1-.75.75">
+                          </path>
+                        </svg>
+                        <span id="ascLabel">Ascending</span>
+                      </a>
+                      <a href="javascript:;" id="sortZA">
+                        <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75">
+                          </path>
+                        </svg>
+                        <span id="descLabel">Descending</span>
+                      </a>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="selectDropdown">
+              <div
+                class="card-header d-flex border-top rounded-0 flex-wrap py-2 tabs-search-sorting select-sorting gap-2">
+
+
+                <!-- <div class="select-dropdown filter-dropdown" id="status_show">
+=======
+              div class="select-dropdown filter-dropdown" id="status_show">
+>>>>>>> 99778565607f6e3bdf573b4db961f637c451e1b9
+                  <div class="droupdown-head one">
+                    <span>Status<span id="valueItem"></span></span>
+                    <span class="clear-drop clear-drop-status" style="display: none;">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow-drop">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                        </path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label data-filter="active" class="custom-radio">
+                          <input name="status-radio" type="radio" value="Active" data-column="2">
+                          Active
+                        </label>
+                      </li>
+                      <li>
+                        <label data-filter="deactivate" class="custom-radio">
+                          <input name="status-radio" type="radio" value="Deactivate" data-column="2">
+                          Deactivate
+                        </label>
+                      </li>
+                      <li>
+                        <label data-filter="expiring" class="custom-radio">
+                          <input name="status-radio" type="radio" value="Expiring" data-column="2">
+                          Expiring
+                        </label>
+                      </li>
+                      <li>
+                        <label data-filter="expired" class="custom-radio">
+                          <input name="status-radio" type="radio" value="Expired" data-column="2">
+                          Expired
+                        </label>
+                      </li>
+                    </ul>
+                    <a href="#" class="clearSelection" data-target="status-radio">Clear</a>
+                  </div>
+                </div> -->
+
+
+                <div class="select-dropdown filter-dropdown">
+                  <div class="droupdown-head one">
+                    <span><span id="valueItemBalance"></span> Balance</span>
+                    <span class="clear-drop clear-drop-balance" style="display: none;">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow-drop">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                        </path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="balance-radio" data-filter="fullorpartial" value="fullorpartial">
+                          Full or partial
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="balance-radio" data-filter="full" value="full">
+                          Full
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="balance-radio" data-filter="partial" value="partial">
+                          Partial
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="balance-radio" data-filter="empty" value="empty">
+                          Empty
+                        </label>
+                      </li>
+                    </ul>
+                    <a href="#" class="clearSelectionBalance">Clear</a>
+                  </div>
+                </div>
+
+                <div class="select-dropdown filter-dropdown">
+                  <div class="droupdown-head one">
+                    <span>Gift card value<span id="valueItemFilter"></span></span>
+                    <span class="clear-drop clear-drop-value" style="display: none;">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow-drop">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                        </path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li class="giftCardValue">
+                        <label class="custom-radio card-value flex-nowrap">
+                          <input type="radio" name="card-value" data-filter="more">
+                          More than this amount
+                        </label>
+                        <div class="input my-2 currency-input">
+                          <span class="currency-txt">Rs</span>
+                          <input type="number" class="form-control card-value-price" name="card-value-price"
+                            placeholder="0.00" data-column="6">
+                        </div>
+                      </li>
+                      <li class="giftCardValue">
+                        <label class="custom-radio card-value flex-nowrap">
+                          <input type="radio" name="card-value" data-filter="less">
+                          Less than this amount
+                        </label>
+                        <div class="input my-2 currency-input">
+                          <span class="currency-txt">Rs</span>
+                          <input type="number" class="form-control card-value-price" name="card-value-price"
+                            placeholder="0.00" data-column="6">
+                        </div>
+                      </li>
+                      <li class="giftCardValue">
+                        <label class="custom-radio card-value flex-nowrap">
+                          <input type="radio" name="card-value" data-filter="exact">
+                          This exact amount
+                        </label>
+                        <div class="input my-2 currency-input">
+                          <span class="currency-txt">Rs</span>
+                          <input type="number" class="form-control card-value-price" name="card-value-price"
+                            placeholder="0.00" data-column="6">
+                        </div>
+                      </li>
+                      <li class="giftCardValue">
+                        <label class="custom-radio card-value flex-nowrap">
+                          <input type="radio" name="card-value" data-filter="not-exact">
+                          Not this exact amount
+                        </label>
+                        <div class="input my-2 currency-input">
+                          <span class="currency-txt">Rs</span>
+                          <input type="number" class="form-control card-value-price" name="card-value-price"
+                            placeholder="0.00" data-column="6">
+                        </div>
+                      </li>
+                    </ul>
+                    <a href="#" class="clearSelectionValue">Clear</a>
+                  </div>
+                </div>
+
+
+                <div class="select-dropdown filter-dropdown" id="dateCreatedDiv" style="display: none;">
+                  <div class="droupdown-head one">
+                    <span>Date created<span id="valueItemDate"></span></span>
+                    <span class="clear-drop clear-drop-dateTime" style="display: none;">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow-drop">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                          d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                        </path>
+                      </svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="7">
+                          Last 7 days
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="30">
+                          Last 30 days
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="90">
+                          Last 90 days
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="12-month">
+                          Last 12 months
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="last-month">
+                          Last months
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="this-month">
+                          This months
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio">
+                          <input type="radio" name="date-method" data-filter="custom">
+                          Custom
+                        </label>
+                      </li>
+                      <li>
+                        <div class="publishing-store-date" style="display: none;">
+                          <div class="d-flex gap-3 my-3"></div>
+                          <!-- Start Date Calendar -->
+                          <div class="starting">
+                            <input type="text" disabled id="startDate" class="form-control my-3" />
+                            <div class="calendar-container">
+                              <div class="calendar-nav">
+                                <span id="prev-start">&#8592;</span>
+                                <strong id="monthYear-start">May 2025</strong>
+                                <span id="next-start">&#8594;</span>
+                              </div>
+                              <table class="calendar">
+                                <thead>
+                                  <tr>
+                                    <th>Mo</th>
+                                    <th>Tu</th>
+                                    <th>We</th>
+                                    <th>Th</th>
+                                    <th>Fr</th>
+                                    <th>Sa</th>
+                                    <th>Su</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="calendarBody-start"></tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                          <!-- End Date Calendar -->
+                          <div class="ending">
+                            <input type="text" disabled id="endDate" class="form-control my-3" />
+                            <div class="calendar-container">
+                              <div class="calendar-nav">
+                                <span id="prev-end">&#8592;</span>
+                                <strong id="monthYear-end">May 2025</strong>
+                                <span id="next-end">&#8594;</span>
+                              </div>
+                              <table class="calendar">
+                                <thead>
+                                  <tr>
+                                    <th>Mo</th>
+                                    <th>Tu</th>
+                                    <th>We</th>
+                                    <th>Th</th>
+                                    <th>Fr</th>
+                                    <th>Sa</th>
+                                    <th>Su</th>
+                                  </tr>
+                                </thead>
+                                <tbody id="calendarBody-end"></tbody>
+                              </table>
+                            </div>
+                          </div>
+
+                        </div>
+                      </li>
+                    </ul>
+                    <a href="#" class="clearSelectionDateTime">Clear</a>
+                  </div>
+                </div>
+
+                <div class="select-dropdown filter-dropdownn" id="issueMethodDiv" style="display: none;">
+                  <div class="droupdown-head one">
+                    <span>Issue Method<span id="valueItem"></span></span>
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio flex-nowrap">
+                          <input type="radio" name="issue-method" value="1">
+                          Manually issueed
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio flex-nowrap">
+                          <input type="radio" name="issue-method" value="1">
+                          Customer purchased
+                        </label>
+                      </li>
+                      <li>
+                        <label class="custom-radio flex-nowrap">
+                          <input type="radio" name="issue-method" value="1">
+                          Third-party app
+                        </label>
+                      </li>
+                    </ul>
+                    <a href="#">Clear</a>
+                  </div>
+                </div>
+
+                <!-- <div class="select-dropdown filter-dropdown">
+                  <div class="droupdown-head one">
+                    <span>Add Filter<span id="valueItem"></span></span>
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                      <path fill-rule="evenodd"
+                        d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label id="dateCreated" class="custom-checkbox">
+                          Date Created
+                        </label>
+                      </li>
+                      <li>
+                        <label id="issueMethod" class="custom-checkbox">
+                          Issue Method
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="datatables-basic table" id="Table_View">
+              <thead>
+                <tr>
+                  <!-- <th style="width: 1px;">
+                    <div class="form-check m-0">
+                      <input class="form-check-input select-all" type="checkbox">
+                    </div>
+                  </th> -->
+                  <th><g-t>Code ending</g-t></th>
+                  <th><g-t>Status</g-t></th>
+                  <th><g-t>Customer</g-t></th>
+                  <th class="d-none"><g-t>Recipient</g-t></th>
+                  <th><g-t>Date issued</g-t></th>
+                  <th class="text-end"><g-t>Current / Initial</g-t></th>
+                  <th class="d-none"></th>
+                  <th class="d-none"></th>
+                  <th class="w-0 p-0 d-block">
+                    <div class="thead-filter d-none">
+                      <span class="selected"><span class="selected-count"></span> selected</span>
+                      <div class="actions">
+                        <a href="#deactivateGiftCard" data-bs-toggle="modal">Deactivate selected gift cards</a>
+                        <a href="#sendGiftCard" data-bs-toggle="modal">Send selected gift cards</a>
+                      </div>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="deactivateGiftCard" aria-hidden="true" aria-labelledby="MaximumCharactorLabel"
+  tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Deactivate selected
+          gift card?
+        </h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <P>
+              This can't be undone.
+            </P>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Deactivate</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="sendGiftCard" aria-hidden="true" aria-labelledby="MaximumCharactorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="nameForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Send selected gift
+          card?</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <P>
+              Gift card will only be delivered to customers with a valid email or phone number.
+            </P>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Send gift card</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal fade" id="MaximumCharactor" aria-hidden="true" aria-labelledby="MaximumCharactorLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <form id="dublicateForm" action="javascript:void(0);" class="modal-content">
+      <div class="modal-header justify-content-between custom-modal-header">
+        <h5 style="font-size: 16px;" class="modal-title custom-modal-title" id="exampleModalLabel">Duplicate view</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="duplicate-main">
+          <div>
+            <label for="nameInput" class="form-label">Name</label>
+            <div class="input">
+              <input type="text" id="search_type" style="display: none;" />
+              <input type="text" id="duplicateModalInput" maxlength="40" name="text" placeholder="Enter name" required>
+              <div class="count-input" id="the-count">
+                <span id="current">0</span>
+                <span id="maximum">/ 40</span>
+              </div>
+              <span class="error-text"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer custom-modal-footer">
+        <button type="button" class="btn border btn-modal-text" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-modal-text" data-bs-dismiss="modal">Create View</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script>
+ $(".create-giftcard").on("click", function(e) {
+    e.preventDefault();
+    let page = 'create-giftcard';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+  $(".create-giftcard-product").on("click", function(e) {
+    e.preventDefault();
+    let page = 'create-giftcard-product';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  function renderCalendar(date, elements, inputId) {
+    const { monthYearEl, calendarBodyEl } = elements;
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const startDay = (firstDay.getDay() + 6) % 7;
+    const totalDays = lastDay.getDate();
+
+    monthYearEl.textContent = `${date.toLocaleString('default', { month: 'long' })} ${year}`;
+    calendarBodyEl.innerHTML = '';
+    let row = document.createElement('tr');
+
+    for (let i = 0; i < startDay; i++) {
+      const cell = document.createElement('td');
+      cell.className = 'empty';
+      row.appendChild(cell);
+    }
+
+    for (let day = 1; day <= totalDays; day++) {
+      const cell = document.createElement('td');
+      cell.textContent = day;
+
+      cell.addEventListener('click', () => {
+        // Remove 'active' class from all cells in this calendar
+        const allCells = calendarBodyEl.querySelectorAll('td');
+        allCells.forEach(td => td.classList.remove('active'));
+
+        // Add 'active' to clicked cell
+        cell.classList.add('active');
+
+        // Set selected date in input
+        const selectedDate = `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+        document.getElementById(inputId).value = selectedDate;
+        $('#'+inputId).trigger('change');
+      });
+
+      row.appendChild(cell);
+
+      if ((startDay + day) % 7 === 0 || day === totalDays) {
+        calendarBodyEl.appendChild(row);
+        row = document.createElement('tr');
+      }
+    }
+  }
+
+  // Start Calendar
+  let currentDateStart = new Date(2025, 4);
+  const elementsStart = {
+    monthYearEl: document.getElementById('monthYear-start'),
+    calendarBodyEl: document.getElementById('calendarBody-start')
+  };
+  renderCalendar(currentDateStart, elementsStart, 'startDate');
+
+  document.getElementById('prev-start').addEventListener('click', () => {
+    currentDateStart.setMonth(currentDateStart.getMonth() - 1);
+    renderCalendar(currentDateStart, elementsStart, 'startDate');
+  });
+  document.getElementById('next-start').addEventListener('click', () => {
+    currentDateStart.setMonth(currentDateStart.getMonth() + 1);
+    renderCalendar(currentDateStart, elementsStart, 'startDate');
+  });
+
+  // End Calendar
+  let currentDateEnd = new Date(2025, 4);
+  const elementsEnd = {
+    monthYearEl: document.getElementById('monthYear-end'),
+    calendarBodyEl: document.getElementById('calendarBody-end')
+  };
+  renderCalendar(currentDateEnd, elementsEnd, 'endDate');
+
+  document.getElementById('prev-end').addEventListener('click', () => {
+    currentDateEnd.setMonth(currentDateEnd.getMonth() - 1);
+    renderCalendar(currentDateEnd, elementsEnd, 'endDate');
+  });
+  document.getElementById('next-end').addEventListener('click', () => {
+    currentDateEnd.setMonth(currentDateEnd.getMonth() + 1);
+    renderCalendar(currentDateEnd, elementsEnd, 'endDate');
+  });
+
+</script>

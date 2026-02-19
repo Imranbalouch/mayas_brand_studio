@@ -1,0 +1,246 @@
+.price-adjustment-percentage {
+  color: #303030;
+  position: relative;
+  border: 1px solid #3e3e3e;
+  width: 90px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.price-adjustment-percentage .left,
+.price-adjustment-percentage .right {
+  color: #616161;
+  font-size: 14px;
+}
+
+.price-adjustment-percentage input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  text-align: right;
+  height: 24px;
+}
+
+.manage-currency-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px;
+  color: #003a5a;
+  background-color: #eaf4ff;
+  border-radius: 8px;
+}
+
+.manage-currency-info a {
+  text-decoration: underline;
+  color: #003a5a;
+}
+
+.pricing-table .pricing-table-filters {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.pricing-table .pricing-table-filters .filter-btns {
+  display: flex;
+  gap: 6px;
+}
+
+.pricing-table .pricing-table-filters .filter-btns a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #303030;
+  font-weight: 500;
+}
+
+.pricing-table .pricing-table-filters .filter-btns a.active,
+.pricing-table .pricing-table-filters .filter-btns a:hover {
+  background-color: #eee;
+}
+
+.pricing-table .pricing-table-filters .filter-search {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  padding-inline-end: 45px;
+}
+
+.pricing-table .pricing-table-filters .filter-search .form-control {
+  height: 100%;
+  padding-block: 2px;
+}
+
+.pricing-table .pricing-table-filters .filter-search .form-control::placeholder {
+  color: #616161;
+}
+
+.collection-table-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.collection-table-info .img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.collection-table-info {
+  font-size: 13px;
+}
+
+.collection-table-info .title {
+  display: block;
+  color: #303030;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.collection-table-info .title:hover {
+  text-decoration: underline;
+}
+
+.collection-table-info .sub-title {
+  color: #616161;
+}
+
+.collection-table-info .sub-title a {
+  color: #005bd3;
+}
+
+table th:nth-child(1),
+table td:nth-child(1) {
+  padding-inline-end: 0;
+}
+
+table thead {
+  position: relative;
+}
+
+table .thead-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 20px;
+  padding-inline-start: 50px;
+  text-transform: none;
+  z-index: 0;
+}
+
+table .thead-filter .actions {
+  display: flex;
+  gap: 6px;
+}
+
+table .thead-filter .actions > a {
+  font-size: 12px;
+  display: inline-flex;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  color: #303030 !important;
+}
+
+table .thead-filter .actions > a:hover {
+  background-color: #eeeeee4b;
+}
+
+table .thead-filter .dropdown .dropdown-toggle::after {
+  display: none;
+}
+
+table .thead-filter .dropdown .dropdown-toggle {
+  cursor: pointer;
+  display: inline-flex;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+table .thead-filter .dropdown .dropdown-menu {
+  padding: 5px;
+}
+
+table .thead-filter .dropdown .dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #8e0b21;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+
+table .thead-filter .dropdown .dropdown-menu a:hover {
+  background-color: #fee1e6;
+}
+
+table .select-all {
+  position: relative;
+  z-index: 1;
+}
+
+table td .currency-input input {
+  background-color: #fff;
+}
+
+table td .currency-input .applied-variant {
+  font-size: 12px;
+  display: none;
+  margin-top: 3px;
+}
+
+table td .currency-input input {
+  background-color: #eee;
+  padding-inline-end: 50px;
+}
+
+table td .currency-input a {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  color: #b5b5b5;
+  display: none;
+  pointer-events: none;
+}
+
+table td .currency-input input:valid + a {
+  display: block;
+  pointer-events: all;
+  color: #005bd3;
+}
+
+table td .currency-input input:focus + a,
+table td .currency-input input:focus + a + .applied-variant,
+table td .currency-input input:valid + a + .applied-variant {
+  display: block;
+}
+
+table tbody tr {
+  border-top: 1px solid #ddd;
+}

@@ -29,7 +29,7 @@ public function childrenCategories()
     }
 
     public function category_translations(){
-    	return $this->hasMany(CategoryTranslation::class,'category_id');
+    	return $this->hasMany(CategoryTranslation::class,'category_uuid','uuid');
     }
 
     public function products()
@@ -83,5 +83,11 @@ public function childrenCategories()
         'top',
         'digital'
     ];
+
+    public function getTranslation($field = '', $lang = false){
+        $lang = $lang == false ? getConfigValue('defaul_lang') : $lang;
+        $category_translations = $this->category_translations->where('lang', $lang)->first();
+        return $category_translations != null ? $category_translations->$field : $this->$field;
+    }
 
 }

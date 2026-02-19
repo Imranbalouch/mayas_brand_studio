@@ -1,0 +1,82 @@
+.shipping-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.shipping-card .head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  padding: 16px;
+  color: #303030;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.shipping-card .head .rate {
+  color: #616161;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.shipping-card .head img {
+  width: 32px;
+  border-radius: 4px;
+}
+
+.shipping-card .body {
+  background-color: #f7f7f7;
+  padding: 16px;
+}
+
+.shipping-card .body .general {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.shipping-card .body .general span {
+  color: #303030;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.shipping-card .body .general a {
+  color: #005bd3;
+}
+
+.shipping-card .body .general a:hover {
+  text-decoration: underline;
+}
+
+.shipping-card .body .form-info {
+  padding: 12px;
+  border: 1px solid #e3e3e3;
+  border-radius: 8px;
+}
+
+.shipping-card .body .form-info .name h5 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #303030;
+  margin-bottom: 5px !important;
+}
+.shipping-card .body .form-info .name p {
+  margin: 0;
+  font-size: 12px;
+  color: #616161;
+}
+.shipping-card .body .form-info .price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: #303030;
+}

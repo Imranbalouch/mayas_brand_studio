@@ -1,0 +1,252 @@
+<link rel="stylesheet" href="./assets/css/locations.css">
+<style>
+
+  .dataTables_filter, .dataTables_info { display: none; }
+  .dt-action-buttons{ display: none !important; }
+</style>
+<div class="container-xxl container-p-y">
+  <div class="card-header mb-5">
+    <div class="row gap-4 gap-lg-0">
+      <div class="col-12">
+        <h3 class="d-flex align-items-center gap-3">
+          <g-t>Locations</g-t></h3>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card border">
+        <div class="card-header p-4 pb-0 d-flex justify-content-between align-items-center gap-3">
+          <div class="flex-grow-1 activeline">
+            <h5 class="mb-1">All locations</h5>
+            <div>Using 2 of 200 active locations available on your plan</div>
+          </div>
+          <div>
+            <a href="#" class="btn border border-secondary text-dark add-location">Add location</a>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="pricing-table">
+            <div class="pricing-table-filters d-flex gap-2 position-relative">
+              <div class="d-flex gap-2 flex-grow-1">
+                <div class="filter-btns flex-grow-1">
+                  <a href="#" class="active filter-btn" data-filter="all">All</a>
+                  <a href="#" class="filter-btn" data-filter="active">Active</a>
+                  <a href="#" class="filter-btn" data-filter="inactive">Inactive</a>
+                  <a href="#" class="filter-btn" data-filter="pro">POS Pro</a>
+                  <a href="#" class="filter-btn" data-filter="lite">POS Lite</a>
+                </div>
+                <div class="search-filter-btn">
+                  <span class="searchopen" id="searchOpen">
+                    <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a">
+                      <path fill-rule="evenodd" d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4"></path>
+                    </svg>
+                    <svg width="17" height="17" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a">
+                      <path d="M1 4a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5h-12.5a.75.75 0 0 1-.75-.75"></path>
+                      <path d="M4.75 12a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75"></path>
+                      <path d="M3.5 7.25a.75.75 0 0 0 0 1.5h9a.75.75 0 0 0 0-1.5z"></path>
+                    </svg>
+                  </span>
+                </div>
+                <div class="filter-search d-flex d-none gap-2">
+                  <div class="input has-icon flex-grow-1">
+                    <span class="icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a">
+                        <path fill-rule="evenodd"
+                          d="M10.323 11.383a5.5 5.5 0 1 1-3.323-9.883 5.5 5.5 0 0 1 4.383 8.823l2.897 2.897a.749.749 0 1 1-1.06 1.06zm.677-4.383c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4">
+                        </path>
+                      </svg>
+                    </span>
+                    <input type="text" id="locationSearch" placeholder="Search locations..." class="form-control md" />
+                  </div>
+                  <a href="#" id="searchClose" class="btn border border-secondary">Cancel</a>
+                </div>
+              </div>
+              <div>
+                <div class="custom-dropdown-main">
+                  <div class="droupdown-head open-inventory-droupdown">
+                    <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#4a4a4a">
+                      <path
+                        d="M5.75 4.06v7.69a.75.75 0 0 1-1.5 0v-7.69l-1.72 1.72a.749.749 0 1 1-1.06-1.06l3-3a.75.75 0 0 1 1.06 0l3 3a.749.749 0 1 1-1.06 1.06z">
+                      </path>
+                      <path
+                        d="M11.75 4.25a.75.75 0 0 0-1.5 0v7.69l-1.72-1.72a.749.749 0 1 0-1.06 1.06l3 3a.75.75 0 0 0 1.06 0l3-3a.749.749 0 1 0-1.06-1.06l-1.72 1.72z">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul class="px-3">
+                      <h6>Sort by</h6>
+                      <li class="product-sort">
+                        <label>
+                          <input type="radio" name="sort-option" value="name" checked> Name
+                        </label>
+                      </li>
+                    </ul>
+                    <div class="hr"></div>
+                    <div class="lodest-first">
+                      <a href="#" id="sortAZ" class="sort-btn" data-sort="az"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M8 14.5a.75.75 0 0 1-.75-.75v-9.69l-2.72 2.72a.749.749 0 1 1-1.06-1.06l4-4a.747.747 0 0 1 1.06 0l4 4a.749.749 0 1 1-1.06 1.06l-2.72-2.72v9.69a.75.75 0 0 1-.75.75">
+                          </path>
+                        </svg> A-Z</a>
+                      <a href="#" id="sortZA" class="sort-btn" data-sort="za"><svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 1.5a.75.75 0 0 1 .75.75v9.69l2.72-2.72a.749.749 0 1 1 1.06 1.06l-4 4a.747.747 0 0 1-1.06 0l-4-4a.749.749 0 1 1 1.06-1.06l2.72 2.72v-9.69a.75.75 0 0 1 .75-.75">
+                          </path>
+                        </svg> Z-A</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="selectDropdown d-none">
+              <div class="card-header d-flex border-bottom rounded-0 flex-wrap p-2 tabs-search-sorting select-sorting">
+                <div class="select-dropdown status">
+                  <div class="droupdown-head one">
+                    <span>Status <span></span></span>
+                    <span class="clear-drop clear-status d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="status-filter" value="1"> Active</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="status-filter" value="0"> Inactive</label>
+                      </li>
+                    </ul>
+                    <a href="#" class="clear-status">Clear</a>
+                  </div>
+                </div>
+                <div class="select-dropdown pos-plan">
+                  <div class="droupdown-head one">
+                    <span>POS Plan <span></span></span>
+                    <span class="clear-drop clear-pos d-none">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12" width="12" height="12"><path fill-rule="evenodd" d="M2.185 2.185a.625.625 0 0 1 .884 0l2.931 2.931 2.931-2.931a.625.625 0 1 1 .884.884l-2.931 2.931 2.933 2.933a.625.625 0 1 1-.884.884l-2.933-2.933-2.933 2.933a.625.625 0 0 1-.884-.884l2.933-2.933-2.931-2.931a.625.625 0 0 1 0-.884"></path></svg>
+                    </span>
+                    <span class="arrow">
+                      <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.72 6.47a.75.75 0 0 1 1.06 0l3.47 3.47 3.47-3.47a.749.749 0 1 1 1.06 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 0-1.06"></path></svg>
+                    </span>
+                  </div>
+                  <div class="droupdown-body">
+                    <ul>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="pos-filter" value="pro"> Pro</label>
+                      </li>
+                      <li>
+                        <label class="custom-radio"><input type="radio" name="pos-filter" value="lite"> Lite</label>
+                      </li>
+                    </ul>
+                    <a href="#" class="clear-pos">Clear</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="datatables-basic table table-borderless" id="Table_View">
+                <thead>
+                  <tr>
+                    <th style="width: 60%;"><g-t>Location</g-t></th>
+                    <th><g-t>POS location</g-t></th>
+                    <th><g-t>Status</g-t></th>
+                  </tr>
+                </thead>
+                <tbody id="locationsTableBody">
+                  <tr class="edit-location" data-name="karachi" data-status="1" data-pos="pro">
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border mt-4">
+        <div class="card-header p-4 pb-0">
+          <div class="flex-grow-1">
+            <h5 class="mb-1">Default location</h5>
+            <div>This location is used by Shopify and apps when no other location is specified</div>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="change-default-location-box">
+            <div class="info">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#4a4a4a"><path fill-rule="evenodd" d="M8 9a2.5 2.5 0 0 0 0-5 2.5 2.5 0 0 0 0 5m0-1.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path><path fill-rule="evenodd" d="M6.827 14h-3.077a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-3.077l.07-.061a18 18 0 0 0 1.707-1.758c1.224-1.46 2.55-3.574 2.55-5.954 0-3.167-2.328-5.477-5.5-5.477s-5.5 2.31-5.5 5.477c0 2.38 1.326 4.495 2.55 5.954.623.74 1.243 1.342 1.708 1.758zm1.173-11.75c-2.35 0-4 1.646-4 3.977 0 1.846 1.049 3.618 2.2 4.99a16 16 0 0 0 1.8 1.816q.111-.095.242-.212c.426-.381.993-.931 1.558-1.605 1.151-1.371 2.2-3.143 2.2-4.99 0-2.33-1.65-3.976-4-3.976"></path></svg>
+              </div>
+              <div>
+                <div class="title">Loading...</div>
+                <div class="desc">Loading...</div>
+              </div>
+            </div>
+            <div class="d-flex">
+              <div class="dropdown change-default-location-dropdown">
+                <div class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Change</div>
+                <div class="dropdown-menu">
+                  <a href="#" city="Karachi" country="35 Hague Road, Molestiae et magni m, Sit veniam autem i, Pakistan">Karachi</a>
+                  <a href="#" class="active" city="Shop location" country="Pakistan">Shop location</a>
+                  <a href="#" city="Lahore" country="123 Main Street, Lahore, Pakistan">Lahore</a>
+                  <a href="#" city="Islamabad" country="456 Blue Area, Islamabad, Pakistan">Islamabad</a>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-sm ms-2 save-default-location" style="display: none;">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="card border mt-4">
+        <div class="card-header p-4 pb-0">
+          <div class="flex-grow-1">
+            <h5 class="mb-1">Point of Sale subscriptions
+              <a href="#" class="res-tooltip bottom-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" fill="#8a8a8a">
+                  <path d="M8 12a.75.75 0 0 1-.75-.75v-3.5a.75.75 0 0 1 1.5 0v3.5a.75.75 0 0 1-.75.75"></path>
+                  <path d="M7 5a1 1 0 1 1 2 0 1 1 0 0 1-2 0"></path>
+                  <path fill-rule="evenodd" d="M15 8a7 7 0 1 1-14 0 7 7 0 0 1 14 0m-1.5 0a5.5 5.5 0 1 1-11 0 5.5 5.5 0 1 1 11 0"></path>
+                </svg>
+                <div class="res-tooltip-txt">Learn more</div>
+              </a>
+            </h5>
+            <div>Start selling in person from any location with the POS subscription included in your Shopify plan</div>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="installed-app-item">
+            <div class="info">
+              <div class="img">
+                <img src="https://cdn.shopify.com/app-store/listing_images/a53cf2ce9b5dabf5dd222b3615c29569/icon/CPXdk7L0lu8CEAE=.png?height=140&width=140" width="40" alt="">
+              </div>
+              <div>
+                <div class="title">Point of Sale</div>
+                <div class="desc">Installed</div>
+              </div>
+            </div>
+            <div>
+              <a href="#" class="btn border border-secondary text-dark bg-white py-1 px-3">Open</a>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<script>
+  $(".add-location").on("click", function(e) {
+    e.preventDefault();
+    let page = 'add-location';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+
+  $(".edit-location").on("click", function(e) {
+    e.preventDefault();
+    let page = 'edit-location';
+    window.location.assign('?P=' + page + '&M=' + menu_id);
+  });
+</script>
